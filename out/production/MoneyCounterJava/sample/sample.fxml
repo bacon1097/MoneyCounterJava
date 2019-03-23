@@ -15,7 +15,7 @@
       <AnchorPane fx:id="settingsScene" layoutY="117.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #F5F5DC;" />
       <AnchorPane fx:id="mainScene" layoutY="120.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #F5F5DC;">
          <children>
-            <Label fx:id="moneyDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="300.0" prefHeight="94.0" prefWidth="284.0" text="1000.0">
+            <Label fx:id="moneyDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="300.0" prefHeight="94.0" prefWidth="284.0" text="1000">
                <font>
                   <Font name="Corbel" size="64.0" />
                </font>

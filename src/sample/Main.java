@@ -4,8 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -17,12 +15,11 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         window = primaryStage;
         window.setTitle("Money Counter");
+        window.initStyle(StageStyle.TRANSPARENT);
         window.setOnCloseRequest(e -> {
             e.consume();
             closeProgram();
         });
-        //window.initStyle(StageStyle.TRANSPARENT);
-
 
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -33,6 +30,8 @@ public class Main extends Application {
     public void closeProgram() {
         boolean flag = ConfirmBox.display("Quit?","Are you sure you want to quit?");
         if (flag) {
+            DateInfo.isDifDay();
+            DateInfo.closing();
             window.close();
         }
     }
