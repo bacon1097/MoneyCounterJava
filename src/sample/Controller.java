@@ -33,6 +33,14 @@ public class Controller {
     private ImageView walletImage;
     @FXML
     private ImageView settingsImage;
+    @FXML
+    private ImageView minusImage;
+    @FXML
+    private ImageView plusImage;
+    @FXML
+    private ImageView resetImage;
+    @FXML
+    private ImageView saveImage;
 
     public void setValue() {
         Boolean flag = validateInput(moneyInput.getText());
@@ -95,38 +103,49 @@ public class Controller {
     public void settingsImageEnter() {
         colorChange(settingsImage);
     }
-
-    public void settingsImageLeave() {
-        colorChangeBack(settingsImage);
-    }
-
+    public void settingsImageLeave() { colorChangeBack(settingsImage); }
     public void closeImageEnter() {
         colorChange(closeImage);
     }
-
     public void closeImageLeave() {
         colorChangeBack(closeImage);
     }
-
-    public void walletImageEnter() {
-        colorChange(walletImage);
+    public void walletImageEnter() { colorChange(walletImage); }
+    public void walletImageLeave() { colorChangeBack(walletImage); }
+    public void minusImageEnter() {
+        colorChange(minusImage);
     }
-
-    public void walletImageLeave() {
-        colorChangeBack(walletImage);
+    public void minusImageLeave() {
+        colorChangeBack(minusImage);
     }
+    public void plusImageEnter() {
+        colorChange(plusImage);
+    }
+    public void plusImageLeave() { colorChangeBack(plusImage); }
+    public void resetImageEnter() {
+        colorChange(resetImage);
+    }
+    public void resetImageLeave() { colorChangeBack(resetImage); }
+    public void saveImageEnter() {
+        colorChange(saveImage);
+    }
+    public void saveImageLeave() { colorChangeBack(saveImage); }
 
     public void colorChange(ImageView image) {
-        DropShadow shadow = new DropShadow();
-        shadow.setHeight(0);
-        shadow.setWidth(0);
-        image.setEffect(shadow);
+        image.setOpacity(1);
+        image.setScaleX(1.3);
+        image.setScaleY(1.3);
+        image.setScaleZ(1.3);
     }
 
     public void colorChangeBack(ImageView image) {
-        DropShadow shadow = new DropShadow();
-        shadow.setHeight(10);
-        shadow.setWidth(10);
-        image.setEffect(shadow);
+        image.setOpacity(0.5);
+        image.setScaleX(1);
+        image.setScaleY(1);
+        image.setScaleZ(1);
+    }
+
+    public void saveData() {
+        FileWriting.saveInfo();
     }
 }
