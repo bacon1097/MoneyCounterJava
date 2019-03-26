@@ -1,30 +1,71 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import java.util.*;
-import java.util.GregorianCalendar;
-import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 
 public class Controller {
     @FXML
     private AnchorPane settingsScene;
     @FXML
+    private Slider wageSlider;
+    @FXML
+    private Circle circleImage2;
+    @FXML
+    private Label settingsLabel;
+    @FXML
+    private Label wageLabel;
+    @FXML
+    private Label wageDescription;
+    @FXML
+    private Label weeklyLabel;
+    @FXML
+    private Label monthlyLabel;
+    @FXML
+    private TextField wageInput;
+    @FXML
+    private ImageView confirmImage;
+    @FXML
+    private Label wageLabel1;
+    @FXML
+    private Label wageDescription1;
+    @FXML
+    private TableView<?> debitTable;
+    @FXML
+    private TableColumn<?, ?> debitColumn;
+    @FXML
+    private ImageView debitMinusImage;
+    @FXML
+    private ImageView debitPlusImage;
+    @FXML
+    private TextField debitInput;
+    @FXML
     private AnchorPane mainScene;
     @FXML
     private Label moneyDisplay;
     @FXML
+    private ImageView coinImage;
+    @FXML
+    private ImageView minusImage;
+    @FXML
+    private ImageView plusImage;
+    @FXML
+    private Label moneySaveDisplay;
+    @FXML
+    private ImageView piggyImage;
+    @FXML
+    private ImageView resetImage;
+    @FXML
+    private ImageView saveImage;
+    @FXML
+    private Circle circleImage1;
+    @FXML
+    private ImageView testingImage;
+    @FXML
     private TextField moneyInput;
-    @FXML
-    private Button subtractButton;
-    @FXML
-    private Button addButton;
-    @FXML
-    private Button newValButton;
     @FXML
     private AnchorPane tabLayout;
     @FXML
@@ -34,71 +75,10 @@ public class Controller {
     @FXML
     private ImageView settingsImage;
     @FXML
-    private ImageView minusImage;
+    private ImageView paidImage;
     @FXML
-    private ImageView plusImage;
-    @FXML
-    private ImageView resetImage;
-    @FXML
-    private ImageView saveImage;
+    private Label daysSincePayDayLabel;
 
-    public void setValue() {
-        Boolean flag = validateInput(moneyInput.getText());
-        if (flag) {
-            moneyDisplay.setText(moneyInput.getText());
-        }
-    }
-
-    public void addMoney() {
-        Boolean flag = validateInput(moneyInput.getText());
-        if (flag) {
-            moneyDisplay.setText(plus(moneyDisplay.getText(), moneyInput.getText()));
-        }
-    }
-
-    public void subtractMoney() {
-        Boolean flag = validateInput(moneyInput.getText());
-        if (flag) {
-            moneyDisplay.setText(minus(moneyDisplay.getText(), moneyInput.getText()));
-        }
-    }
-
-    public String minus(String val1, String val2) {
-        return String.valueOf(Float.parseFloat(val1) - Float.parseFloat(val2));
-    }
-
-    public String plus(String val1, String val2) {
-        return String.valueOf(Float.parseFloat(val1) + Float.parseFloat(val2));
-    }
-
-    public boolean validateInput(String value) {
-        Boolean flag = new Boolean(true);
-        try {
-            Float.parseFloat(value);
-            flag = true;
-        }
-        catch (NumberFormatException e){
-            flag = false;
-            System.out.println("Input is not a valid float");
-        }
-        if (value.equals(null)) {
-            flag = false;
-            System.out.println("Nothing Inputted");
-        }
-        return flag;
-    }
-
-    public void getDate() {
-        DateInfo.getDate();
-    }
-
-    public void closeProgram() {
-        boolean flag = ConfirmBox.display("Quit?","Are you sure you want to quit?");
-        if (flag) {
-            Stage stage = (Stage) closeImage.getScene().getWindow();
-            stage.close();
-        }
-    }
 
     public void settingsImageEnter() {
         colorChange(settingsImage);
@@ -130,22 +110,69 @@ public class Controller {
         colorChange(saveImage);
     }
     public void saveImageLeave() { colorChangeBack(saveImage); }
+    public void confirmImageEnter() { colorChange(confirmImage); }
+    public void confirmImageLeave() { colorChangeBack(confirmImage); }
+    public void debitMinusEnter() { colorChange(debitMinusImage); }
+    public void debitMinusLeave() { colorChangeBack(debitMinusImage); }
+    public void debitPlusEnter() { colorChange(debitPlusImage); }
+    public void debitPlusLeave() { colorChangeBack(debitPlusImage); }
+    public void paidEnter() { colorChange(paidImage); }
+    public void paidLeave() { colorChangeBack(paidImage); }
+    public void setWage() { WageStuff.setWage(Float.parseFloat(wageInput.getText())); }
+    public void saveData() { FileStuff.saveInfo(); }
+    public void closeProgram() { Main.closeProgram(); }
 
+    public void setValue() {
+        if (MoneyStuff.validateInput(moneyInput.getText())) {
+            MoneyStuff.setValue(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+        }
+    }
+    public void addMoney() {
+        if (MoneyStuff.validateInput(moneyInput.getText())) {
+            MoneyStuff.addMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+        }
+    }
+    public void subtractMoney() {
+        if (MoneyStuff.validateInput(moneyInput.getText())) {
+            MoneyStuff.subtractMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+        }
+    }
     public void colorChange(ImageView image) {
         image.setOpacity(1);
         image.setScaleX(1.3);
         image.setScaleY(1.3);
         image.setScaleZ(1.3);
     }
-
     public void colorChangeBack(ImageView image) {
         image.setOpacity(0.5);
         image.setScaleX(1);
         image.setScaleY(1);
         image.setScaleZ(1);
     }
-
-    public void saveData() {
-        FileWriting.saveInfo();
+    public void testImage() {
+        System.out.println(DateInfo.getDaysInMonth(DateInfo.getMonth()));
+    }
+    public void settingsImageClick() {
+        settingsScene.setVisible(true);
+        for (Node element : settingsScene.getChildren()) {
+            element.setVisible(true);
+        }
+        mainScene.setVisible(false);
+        for (Node element : mainScene.getChildren()) {
+            element.setVisible(false);
+        }
+    }
+    public void walletImageClick() {
+        settingsScene.setVisible(false);
+        for (Node element : settingsScene.getChildren()) {
+            element.setVisible(false);
+        }
+        mainScene.setVisible(true);
+        for (Node element : mainScene.getChildren()) {
+            element.setVisible(true);
+        }
+    }
+    public void paidImageClick() {
+        MoneyStuff.paid(moneyDisplay);
     }
 }
