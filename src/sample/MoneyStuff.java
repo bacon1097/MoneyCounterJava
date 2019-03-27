@@ -2,6 +2,8 @@ package sample;
 
 import javafx.scene.control.Label;
 
+import static java.lang.Math.floor;
+
 public class MoneyStuff {
     public static void setValue(Label moneyDisplay, float moneyInput) {
         moneyDisplay.setText(String.valueOf(moneyInput));
@@ -49,5 +51,14 @@ public class MoneyStuff {
     }
     public static String plus(float val1, float val2) {
         return String.format("%.02f", val1 + val2);
+    }
+    public static float calculateSavings() {
+        float money = Float.parseFloat(getValue()) - Float.parseFloat(FileStuff.getInfo(4));
+        float shouldSpend = calculateShouldSpend();
+        return shouldSpend - money;
+    }
+    private static float calculateShouldSpend() {
+        float shouldSpend = Float.parseFloat(String.valueOf(floor(WageStuff.getDailySpending() * DateInfo.daysSince() * 100) /100));
+        return shouldSpend;
     }
 }

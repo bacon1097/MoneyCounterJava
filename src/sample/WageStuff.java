@@ -18,4 +18,7 @@ public class WageStuff {
     public static String getPayDay() {
         return myPayDay;
     }
+    public static float getDailySpending() {
+        return getWage() / DateInfo.getDaysInMonth(DateInfo.getMonth());
+    }
 }

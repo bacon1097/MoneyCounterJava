@@ -168,9 +168,6 @@ public class Controller {
         image.setScaleY(1);
         image.setScaleZ(1);
     }
-    public void testImage() {
-        System.out.println(DateInfo.getDaysInMonth(DateInfo.getMonth()));
-    }
     public void settingsImageClick() {
         settingsScene.setVisible(true);
         for (Node element : settingsScene.getChildren()) {
@@ -193,5 +190,9 @@ public class Controller {
     }
     public void paidImageClick() {
         MoneyStuff.paid(moneyDisplay);
+    }
+    public void testImage() {
+        System.out.println(MoneyStuff.calculateSavings());
+        //System.out.println(WageStuff.getDailySpending());
     }
 }
