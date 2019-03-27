@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -8,14 +9,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 
 public class Controller {
+    private double x, y;
     @FXML
     private AnchorPane settingsScene;
     @FXML
     private Slider wageSlider;
     @FXML
     private Circle circleImage2;
-    @FXML
-    private Label settingsLabel;
     @FXML
     private Label wageLabel;
     @FXML
@@ -79,6 +79,25 @@ public class Controller {
     @FXML
     private Label daysSincePayDayLabel;
 
+    //In progress
+    @FXML
+    private void makeStageDraggable() {
+        tabLayout.setOnMousePressed(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+        tabLayout.setOnMouseDragged(event -> {
+            Main.window.setX(event.getSceneX() - x);
+            Main.window.setY(event.getSceneY() - y);
+            Main.window.setOpacity(0.8f);
+        });
+        tabLayout.setOnDragDone( event -> {
+            Main.window.setOpacity(1.0f);
+        });
+        tabLayout.setOnMouseReleased( event -> {
+            Main.window.setOpacity(1.0f);
+        });
+    }
 
     public void settingsImageEnter() {
         colorChange(settingsImage);

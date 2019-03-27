@@ -36,7 +36,7 @@ public class Main extends Application {
     private void setup(Scene scene) {
         Label moneyDisplay = (Label)scene.lookup("#moneyDisplay");
         System.out.println("New Value is: " + moneyDisplay.getText());
-        WageStuff.setWage((float)0.00);
+        WageStuff.setWage(0.00f);
         WageStuff.setPayDay("01-01-2000");
     }
     private void loadUp(Scene scene) {
