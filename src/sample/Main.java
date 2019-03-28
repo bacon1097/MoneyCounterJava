@@ -42,12 +42,15 @@ public class Main extends Application {
     private void loadUp(Scene scene) {
         Label moneyDisplay = (Label)scene.lookup("#moneyDisplay");
         Label daysSincePayDay = (Label)scene.lookup("#daysSincePayDayLabel");
+        Label dailySpendingDisplay = (Label)scene.lookup("#spendingDailyLabel");
         try {
             moneyDisplay.setText(String.format("%.02f", Float.parseFloat(FileStuff.getInfo(0))));       //Setting the money owned value
             System.out.println("New Value is: " + moneyDisplay.getText());
             WageStuff.setPayDay(FileStuff.getInfo(2));       //Setting the payday date
             WageStuff.setWage(Float.parseFloat(FileStuff.getInfo(3)));      //Setting the wage
             daysSincePayDay.setText(String.valueOf(DateInfo.daysSince()));
+            dailySpendingDisplay.setText(String.format("%.02f", WageStuff.getDailySpending()));     //Setting the daily spending amount
+            System.out.println("Daily Spending Value is: " + String.format("%.02f", WageStuff.getDailySpending()));
         }
         catch (NumberFormatException e) {
             System.out.println("Error in the data file");

@@ -1,12 +1,11 @@
 package sample;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polyline;
 
 public class Controller {
     private double x, y;
@@ -15,7 +14,7 @@ public class Controller {
     @FXML
     private Slider wageSlider;
     @FXML
-    private Circle circleImage2;
+    private Polyline polyLineImage;
     @FXML
     private Label wageLabel;
     @FXML
@@ -61,7 +60,7 @@ public class Controller {
     @FXML
     private ImageView saveImage;
     @FXML
-    private Circle circleImage1;
+    private Polyline polyLineImage1;
     @FXML
     private ImageView testingImage;
     @FXML
@@ -78,6 +77,8 @@ public class Controller {
     private ImageView paidImage;
     @FXML
     private Label daysSincePayDayLabel;
+    @FXML
+    private Label spendingDailyLabel;
 
     //In progress
     @FXML
@@ -137,10 +138,17 @@ public class Controller {
     public void debitPlusLeave() { colorChangeBack(debitPlusImage); }
     public void paidEnter() { colorChange(paidImage); }
     public void paidLeave() { colorChangeBack(paidImage); }
-    public void setWage() { WageStuff.setWage(Float.parseFloat(wageInput.getText())); }
     public void saveData() { FileStuff.saveInfo(); }
     public void closeProgram() { Main.closeProgram(); }
 
+    public void debitPlusImageClick() {
+        DebitStuff.addDebit(debitTable, debitInput.getText());
+        MoneyStuff.setDailySpending(spendingDailyLabel);
+    }
+    public void setWage() {
+        WageStuff.setWage(Float.parseFloat(wageInput.getText()));
+        MoneyStuff.setDailySpending(spendingDailyLabel);
+    }
     public void setValue() {
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             MoneyStuff.setValue(moneyDisplay, Float.parseFloat(moneyInput.getText()));
@@ -193,6 +201,6 @@ public class Controller {
     }
     public void testImage() {
         System.out.println(MoneyStuff.calculateSavings());
-        //System.out.println(WageStuff.getDailySpending());
+        System.out.println(WageStuff.getDailySpending());
     }
 }

@@ -47,7 +47,7 @@ public class DateInfo {
             }
         }
         catch (IOException e) {
-            System.out.println("File not found: " + fileName);
+            System.out.println("*isDifDay* File not found: " + fileName);
         }
         return flag;
     }

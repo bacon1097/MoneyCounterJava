@@ -19,7 +19,7 @@ public class FileStuff {
                 file.createNewFile();
             }
             catch (IOException e){
-                System.out.println("Could not create file");
+                System.out.println("*saveInfo* Could not create file");
             }
         }
         try {
@@ -32,7 +32,7 @@ public class FileStuff {
             System.out.println("Saved Data");
         }
         catch (IOException e) {
-            System.out.println("File not found: " + fileName);
+            System.out.println("*saveInfo* File not found: " + fileName);
         }
     }
     public static boolean fileExists() {
@@ -40,12 +40,15 @@ public class FileStuff {
         return file.exists();
     }
     public static String getInfo(int line) {
-        String string;
+        String string = "";
         try {
             string = Files.readAllLines(Paths.get(fileName)).get(line);
         }
         catch (IOException e) {
-            string = "Cant get line from file";
+            System.out.println("*getInfo* Cant get line from file");
+        }
+        catch (IndexOutOfBoundsException e) {
+            System.out.println("*getInfo* Index out of bounds");
         }
         return string;
     }

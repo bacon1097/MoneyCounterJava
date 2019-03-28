@@ -9,7 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polyline?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="mainParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
@@ -25,7 +25,6 @@
                </opaqueInsets>
             </Label>
             <Slider fx:id="wageSlider" layoutX="147.0" layoutY="382.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" prefHeight="50.0" prefWidth="300.0" showTickMarks="true" snapToTicks="true" value="1.0" />
-            <Circle fx:id="circleImage2" fill="#36454f" layoutX="300.0" radius="15.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
             <Label fx:id="wageLabel" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="253.0" prefHeight="19.0" prefWidth="50.0" text="WAGE" textFill="SILVER">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -89,7 +88,7 @@
                   <Image url="@images/minus.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="debitPlusImage" fitHeight="40.0" fitWidth="43.0" layoutX="544.0" layoutY="158.0" onMouseEntered="#debitPlusEnter" onMouseExited="#debitPlusLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="debitPlusImage" fitHeight="40.0" fitWidth="43.0" layoutX="544.0" layoutY="158.0" onMouseClicked="#debitPlusImageClick" onMouseEntered="#debitPlusEnter" onMouseExited="#debitPlusLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@images/add.png" />
                </image>
@@ -117,6 +116,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
+            <Polyline fx:id="polyLineImage1" fill="#36454f" layoutX="193.0" layoutY="-222.0" points="90.0, 200.0, 90.0, 245.0, 124.0, 200.0, 124.0, 245.0" strokeType="INSIDE" strokeWidth="0.0" />
          </children></AnchorPane>
       <AnchorPane fx:id="mainScene" layoutY="120.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
@@ -166,13 +166,26 @@
                   <Image url="@images/save.png" />
                </image>
             </ImageView>
-            <Circle fx:id="circleImage1" fill="#36454f" layoutX="131.0" radius="15.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
             <ImageView fx:id="testingImage" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="529.0" onMouseClicked="#testImage" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@images/blank.png" />
                </image>
             </ImageView>
             <TextField fx:id="moneyInput" alignment="CENTER" layoutX="225.0" layoutY="529.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0;" />
+            <Polyline fx:id="polyLineImage" fill="#36454f" layoutX="24.0" layoutY="-222.0" points="90.0, 200.0, 90.0, 245.0, 124.0, 200.0, 124.0, 245.0" strokeType="INSIDE" strokeWidth="0.0" />
+            <ImageView fx:id="spendingImage" fitHeight="40.0" fitWidth="40.0" layoutX="55.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/coin.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="spendingDailyLabel" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="331.0" layoutY="157.0" prefHeight="56.0" prefWidth="213.0" text="0.00" textFill="SILVER">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="tabLayout" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
