@@ -14,7 +14,7 @@
 
 <AnchorPane fx:id="mainParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="620.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <AnchorPane fx:id="settingsScene" layoutX="10.0" layoutY="130.0" opacity="0.8" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
+      <AnchorPane fx:id="settingsScene" layoutX="10.0" layoutY="130.0" opacity="0.9" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
          <children>
             <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="542.0" prefHeight="20.0" prefWidth="150.0" text="DAYS SINCE PAYDAY:" textFill="SILVER">
                <font>
@@ -121,9 +121,9 @@
             </Label>
          </children>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" height="30.0" radius="14.5" width="30.0" />
+            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="30.0" radius="14.5" width="30.0" />
          </effect></AnchorPane>
-      <AnchorPane fx:id="mainScene" layoutX="10.0" layoutY="130.0" opacity="0.8" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
+      <AnchorPane fx:id="mainScene" layoutX="10.0" layoutY="130.0" opacity="0.9" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
             <Label fx:id="moneyDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="282.0" layoutY="22.0" prefHeight="70.0" prefWidth="262.0" text="0000.00" textFill="SILVER">
                <font>
@@ -192,10 +192,10 @@
             </Label>
          </children>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" height="30.0" radius="14.5" width="30.0" />
+            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="30.0" radius="14.5" width="30.0" />
          </effect>
       </AnchorPane>
-      <AnchorPane fx:id="tabLayout" layoutX="10.0" layoutY="10.0" opacity="0.8" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
+      <AnchorPane fx:id="tabLayout" layoutX="10.0" layoutY="10.0" opacity="0.9" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
             <ImageView fx:id="closeImage" fitHeight="50.0" fitWidth="50.0" layoutX="428.0" layoutY="25.0" onMouseClicked="#closeProgram" onMouseEntered="#closeImageEnter" onMouseExited="#closeImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND; -fx-opacity: 0.5;">
                <image>
@@ -214,7 +214,7 @@
             </ImageView>
          </children>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" height="30.0" radius="14.5" width="30.0" />
+            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="30.0" radius="14.5" width="30.0" />
          </effect>
       </AnchorPane>
    </children>

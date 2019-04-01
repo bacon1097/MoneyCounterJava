@@ -79,9 +79,7 @@ public class Controller {
     @FXML
     private AnchorPane mainParent;
 
-    public void settingsImageEnter() {
-        colorChange(settingsImage);
-    }
+    public void settingsImageEnter() { colorChange(settingsImage); }
     public void settingsImageLeave() { colorChangeBack(settingsImage); }
     public void closeImageEnter() {
         colorChange(closeImage);
