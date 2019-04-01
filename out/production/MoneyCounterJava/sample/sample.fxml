@@ -6,15 +6,15 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Polyline?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="mainParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="620.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <AnchorPane fx:id="settingsScene" layoutY="120.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
+      <AnchorPane fx:id="settingsScene" layoutX="10.0" layoutY="130.0" opacity="0.8" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
             <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="542.0" prefHeight="20.0" prefWidth="150.0" text="DAYS SINCE PAYDAY:" textFill="SILVER">
                <font>
@@ -82,6 +82,9 @@
               <columns>
                 <TableColumn fx:id="debitColumn" prefWidth="278.0" text="Direct Debits" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
             <ImageView fx:id="debitMinusImage" fitHeight="40.0" fitWidth="40.0" layoutX="300.0" layoutY="158.0" onMouseEntered="#debitMinusEnter" onMouseExited="#debitMinusLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
@@ -116,9 +119,11 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Polyline fx:id="polyLineImage1" fill="#36454f" layoutX="193.0" layoutY="-222.0" points="90.0, 200.0, 90.0, 245.0, 124.0, 200.0, 124.0, 245.0" strokeType="INSIDE" strokeWidth="0.0" />
-         </children></AnchorPane>
-      <AnchorPane fx:id="mainScene" layoutY="120.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
+         </children>
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="30.0" radius="14.5" width="30.0" />
+         </effect></AnchorPane>
+      <AnchorPane fx:id="mainScene" layoutX="10.0" layoutY="130.0" opacity="0.8" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
          <children>
             <Label fx:id="moneyDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="282.0" layoutY="22.0" prefHeight="70.0" prefWidth="262.0" text="0000.00" textFill="SILVER">
                <font>
@@ -172,7 +177,6 @@
                </image>
             </ImageView>
             <TextField fx:id="moneyInput" alignment="CENTER" layoutX="225.0" layoutY="529.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0;" />
-            <Polyline fx:id="polyLineImage" fill="#36454f" layoutX="24.0" layoutY="-222.0" points="90.0, 200.0, 90.0, 245.0, 124.0, 200.0, 124.0, 245.0" strokeType="INSIDE" strokeWidth="0.0" />
             <ImageView fx:id="spendingImage" fitHeight="40.0" fitWidth="40.0" layoutX="55.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/coin.png" />
@@ -187,8 +191,11 @@
                </opaqueInsets>
             </Label>
          </children>
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="30.0" radius="14.5" width="30.0" />
+         </effect>
       </AnchorPane>
-      <AnchorPane fx:id="tabLayout" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
+      <AnchorPane fx:id="tabLayout" layoutX="10.0" layoutY="10.0" opacity="0.8" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
             <ImageView fx:id="closeImage" fitHeight="50.0" fitWidth="50.0" layoutX="428.0" layoutY="25.0" onMouseClicked="#closeProgram" onMouseEntered="#closeImageEnter" onMouseExited="#closeImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND; -fx-opacity: 0.5;">
                <image>
@@ -206,6 +213,9 @@
                </image>
             </ImageView>
          </children>
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="30.0" radius="14.5" width="30.0" />
+         </effect>
       </AnchorPane>
    </children>
 </AnchorPane>

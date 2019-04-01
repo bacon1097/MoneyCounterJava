@@ -1,10 +1,12 @@
 package sample;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
 public class DebitStuff {
-    public static void addDebit(TableView table, String value) {
-        table.getItems().add(value);
-        System.out.println("Added direct debit: " + value);
+    //In progress
+    public static ObservableList addDebit(String input) {
     }
 }

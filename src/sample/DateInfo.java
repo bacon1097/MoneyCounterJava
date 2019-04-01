@@ -22,19 +22,19 @@ public class DateInfo {
     }
     public static int getDaysInMonth(String month) {
         if (month.equals("01") || month.equals("03") || month.equals("05") || month.equals("07") || month.equals("08") || month.equals("10") || month.equals("12")) {
-            System.out.println("Days In Month: 31");
+            System.out.println("Days In Month " + month + ": 31");
             return 31;
         }
         else if (month.equals("02")) {
-            System.out.println("Days In Month: 28");
+            System.out.println("Days In Month " + month + ": 28");
             return 28;
         }
         else if (month.equals("04") || month.equals("06") || month.equals("09") || month.equals("11")){
-            System.out.println("Days In Month: 30");
+            System.out.println("Days In Month " + month + ": 30");
             return 30;
         }
         else{
-            System.out.println("*getDaysInMonth* Could not get days in month specified");
+            System.out.println("*getDaysInMonth* Could not get days in month specified: " + month);
             return 0;
         }
     }

@@ -1,8 +1,11 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -28,9 +31,9 @@ public class Controller {
     @FXML
     private Label wageDescription1;
     @FXML
-    private TableView<?> debitTable;
+    private TableView<DebitStuff> debitTable;
     @FXML
-    private TableColumn<?, ?> debitColumn;
+    private TableColumn<DebitStuff, String> debitColumn;
     @FXML
     private ImageView debitMinusImage;
     @FXML
@@ -117,8 +120,11 @@ public class Controller {
     public void saveData() { FileStuff.saveInfo(); }
     public void closeProgram() { Main.closeProgram(); }
 
+    public void initialize() {
+        debitColumn.setCellValueFactory(new PropertyValueFactory<DebitStuff, String>("debit"));
+    }
     public void debitPlusImageClick() {
-        DebitStuff.addDebit(debitTable, debitInput.getText());
+        DebitStuff.addDebit(debitInput.getText());
         MoneyStuff.setDailySpending(spendingDailyLabel);
     }
     public void setWage() {

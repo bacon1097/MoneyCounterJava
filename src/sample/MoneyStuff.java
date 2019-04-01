@@ -1,9 +1,6 @@
 package sample;
 
 import javafx.scene.control.Label;
-
-import java.awt.font.NumericShaper;
-
 import static java.lang.Math.floor;
 
 public class MoneyStuff {
