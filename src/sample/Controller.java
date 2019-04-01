@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -125,7 +126,6 @@ public class Controller {
         debitColumn.setCellValueFactory(new PropertyValueFactory<DebitStuff, String>("debit"));
     }
     public void debitPlusImageClick() {
-        DebitStuff.addDebit(debitInput.getText());
         MoneyStuff.setDailySpending(spendingDailyLabel);
     }
     public void setWage() {
