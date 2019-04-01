@@ -5,16 +5,12 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Polyline;
 
 public class Controller {
-    private double x, y;
     @FXML
     private AnchorPane settingsScene;
     @FXML
     private Slider wageSlider;
-    @FXML
-    private Polyline polyLineImage;
     @FXML
     private Label wageLabel;
     @FXML
@@ -60,8 +56,6 @@ public class Controller {
     @FXML
     private ImageView saveImage;
     @FXML
-    private Polyline polyLineImage1;
-    @FXML
     private ImageView testingImage;
     @FXML
     private TextField moneyInput;
@@ -79,26 +73,8 @@ public class Controller {
     private Label daysSincePayDayLabel;
     @FXML
     private Label spendingDailyLabel;
-
-    //In progress
     @FXML
-    private void makeStageDraggable() {
-        tabLayout.setOnMousePressed(event -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        });
-        tabLayout.setOnMouseDragged(event -> {
-            Main.window.setX(event.getSceneX() - x);
-            Main.window.setY(event.getSceneY() - y);
-            Main.window.setOpacity(0.8f);
-        });
-        tabLayout.setOnDragDone( event -> {
-            Main.window.setOpacity(1.0f);
-        });
-        tabLayout.setOnMouseReleased( event -> {
-            Main.window.setOpacity(1.0f);
-        });
-    }
+    private AnchorPane mainParent;
 
     public void settingsImageEnter() {
         colorChange(settingsImage);
@@ -201,6 +177,6 @@ public class Controller {
     }
     public void testImage() {
         System.out.println(MoneyStuff.calculateSavings());
-        System.out.println(WageStuff.getDailySpending());
+        //System.out.println(WageStuff.getDailySpending());
     }
 }

@@ -11,6 +11,7 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
     static Stage window;
+    private double x, y;
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -21,7 +22,20 @@ public class Main extends Application {
             e.consume();
             closeProgram();
         });
+
         Scene scene = new Scene(root);
+
+        root.setOnMousePressed(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            window.setX(event.getScreenX() - x);
+            window.setY(event.getScreenY() - y);
+            window.setOpacity(0.8f);
+        });
+        root.setOnDragDone( event -> window.setOpacity(1.0f));
+        root.setOnMouseReleased( event -> window.setOpacity(1.0f));
 
         if (FileStuff.fileExists()) {
             loadUp(scene);
@@ -63,7 +77,5 @@ public class Main extends Application {
             window.close();
         }
     }
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public static void main(String[] args) { launch(args); }
 }
