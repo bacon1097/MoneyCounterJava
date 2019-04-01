@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="620.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="mainParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="630.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <AnchorPane fx:id="settingsScene" layoutX="10.0" layoutY="130.0" opacity="0.9" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
+      <AnchorPane fx:id="settingsScene" layoutX="15.0" layoutY="135.0" opacity="0.9" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
          <children>
             <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="542.0" prefHeight="20.0" prefWidth="150.0" text="DAYS SINCE PAYDAY:" textFill="SILVER">
                <font>
@@ -96,14 +96,14 @@
                   <Image url="@images/add.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="paidImage" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="512.0" onMouseClicked="#paidImageClick" onMouseEntered="#paidEnter" onMouseExited="#paidLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="paidImage" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="522.0" onMouseClicked="#paidImageClick" onMouseEntered="#paidEnter" onMouseExited="#paidLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@images/paid.png" />
                </image>
             </ImageView>
             <TextField fx:id="wageInput" alignment="CENTER" layoutX="364.0" layoutY="273.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0;" />
             <TextField fx:id="debitInput" alignment="CENTER" layoutX="367.0" layoutY="158.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0;" />
-            <Label fx:id="paidLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="275.0" layoutY="486.0" prefHeight="20.0" prefWidth="50.0" text="PAID" textFill="SILVER">
+            <Label fx:id="paidLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="275.0" layoutY="496.0" prefHeight="20.0" prefWidth="50.0" text="PAID" textFill="SILVER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -121,9 +121,9 @@
             </Label>
          </children>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="30.0" radius="14.5" width="30.0" />
+            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />
          </effect></AnchorPane>
-      <AnchorPane fx:id="mainScene" layoutX="10.0" layoutY="130.0" opacity="0.9" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
+      <AnchorPane fx:id="mainScene" layoutX="15.0" layoutY="135.0" opacity="0.9" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
             <Label fx:id="moneyDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="282.0" layoutY="22.0" prefHeight="70.0" prefWidth="262.0" text="0000.00" textFill="SILVER">
                <font>
@@ -173,7 +173,7 @@
             </ImageView>
             <ImageView fx:id="testingImage" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="529.0" onMouseClicked="#testImage" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/blank.png" />
+                  <Image url="@images/wallet.png" />
                </image>
             </ImageView>
             <TextField fx:id="moneyInput" alignment="CENTER" layoutX="225.0" layoutY="529.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0;" />
@@ -192,29 +192,29 @@
             </Label>
          </children>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="30.0" radius="14.5" width="30.0" />
+            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />
          </effect>
       </AnchorPane>
-      <AnchorPane fx:id="tabLayout" layoutX="10.0" layoutY="10.0" opacity="0.9" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
+      <AnchorPane fx:id="tabLayout" layoutX="15.0" layoutY="15.0" opacity="0.9" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
-            <ImageView fx:id="closeImage" fitHeight="50.0" fitWidth="50.0" layoutX="428.0" layoutY="25.0" onMouseClicked="#closeProgram" onMouseEntered="#closeImageEnter" onMouseExited="#closeImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND; -fx-opacity: 0.5;">
+            <ImageView fx:id="closeImage" fitHeight="50.0" fitWidth="50.0" layoutX="428.0" layoutY="25.0" onMouseClicked="#closeProgram" onMouseEntered="#closeImageEnter" onMouseExited="#closeImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@images/cancel.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="walletImage" fitHeight="50.0" fitWidth="50.0" layoutX="108.0" layoutY="25.0" onMouseClicked="#walletImageClick" onMouseEntered="#walletImageEnter" onMouseExited="#walletImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND; -fx-opacity: 0.5;">
+            <ImageView fx:id="walletImage" fitHeight="50.0" fitWidth="50.0" layoutX="108.0" layoutY="25.0" onMouseClicked="#walletImageClick" onMouseEntered="#walletImageEnter" onMouseExited="#walletImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@images/wallet.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settingsImage" fitHeight="50.0" fitWidth="50.0" layoutX="275.0" layoutY="25.0" onMouseClicked="#settingsImageClick" onMouseEntered="#settingsImageEnter" onMouseExited="#settingsImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND; -fx-opacity: 0.5;">
+            <ImageView fx:id="settingsImage" fitHeight="50.0" fitWidth="50.0" layoutX="275.0" layoutY="25.0" onMouseClicked="#settingsImageClick" onMouseEntered="#settingsImageEnter" onMouseExited="#settingsImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@images/settings.png" />
                </image>
             </ImageView>
          </children>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="30.0" radius="14.5" width="30.0" />
+            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />
          </effect>
       </AnchorPane>
    </children>

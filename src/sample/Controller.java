@@ -6,8 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 public class Controller {
     @FXML
@@ -149,12 +152,20 @@ public class Controller {
         image.setScaleX(1.3);
         image.setScaleY(1.3);
         image.setScaleZ(1.3);
+        DropShadow shadow = new DropShadow();
+        shadow.setWidth(5);
+        shadow.setHeight(5);
+        shadow.setRadius(4);
+        shadow.setColor(Color.valueOf("BLACK"));
+        shadow.blurTypeProperty().setValue(BlurType.GAUSSIAN);
+        image.setEffect(shadow);
     }
     public void colorChangeBack(ImageView image) {
         image.setOpacity(0.5);
         image.setScaleX(1);
         image.setScaleY(1);
         image.setScaleZ(1);
+        image.setEffect(null);
     }
     public void settingsImageClick() {
         settingsScene.setVisible(true);
