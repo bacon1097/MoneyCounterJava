@@ -2,9 +2,7 @@ package sample;
 
 import javafx.scene.control.ListView;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class DebitStuff {
     static String debits = "";

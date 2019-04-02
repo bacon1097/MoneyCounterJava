@@ -163,11 +163,6 @@
                   <Image url="@images/save.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="testingImage" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="529.0" onMouseClicked="#testImage" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
-               <image>
-                  <Image url="@images/wallet.png" />
-               </image>
-            </ImageView>
             <TextField fx:id="moneyInput" alignment="CENTER" layoutX="225.0" layoutY="529.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0;" />
             <ImageView fx:id="spendingImage" fitHeight="40.0" fitWidth="40.0" layoutX="55.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
                <image>

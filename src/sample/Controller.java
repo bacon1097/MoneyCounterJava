@@ -1,19 +1,16 @@
 package sample;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-
-import java.io.File;
 
 public class Controller {
     @FXML
@@ -63,8 +60,6 @@ public class Controller {
     @FXML
     private ImageView saveImage;
     @FXML
-    private ImageView testingImage;
-    @FXML
     private TextField moneyInput;
     @FXML
     private AnchorPane tabLayout;
@@ -100,14 +95,17 @@ public class Controller {
                 String mainMoney = FileStuff.getInfo(0);        //For clarity
                 String paydayDate = FileStuff.getInfo(2);
                 String currentWage = FileStuff.getInfo(3);
+                String amountAtPayDay = FileStuff.getInfo(5);
 
+                MoneyStuff.setAmountAtPayDay(Float.parseFloat(amountAtPayDay));
                 moneyDisplay.setText(String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));       //Setting the money owned value
                 WageStuff.setPayDay(paydayDate);       //Setting the payday date
                 WageStuff.setWage(Float.parseFloat(currentWage));      //Setting the wage
                 daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
-                spendingDailyLabel.setText(String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));     //Setting the daily spending amount
-                moneySaveDisplay.setText(String.valueOf(Math.floor(MoneyStuff.calculateSavings(moneyDisplay.getText()) * 100) / 100));
+                MoneyStuff.setDailySpending(spendingDailyLabel);
+                MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
 
+                System.out.println("Amount at payday is: " + MoneyStuff.getAmountAtPayDay());
                 System.out.println("New Value is: " + String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));
                 System.out.println("Daily Spending Value is: " + String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));
 
@@ -119,7 +117,7 @@ public class Controller {
         else {
             System.out.println("New Value is: " + moneyDisplay.getText());
             WageStuff.setWage(0.00f);
-            WageStuff.setPayDay("01-01-2000");
+            WageStuff.setPayDay("01-01-2019");
         }
     }
 
@@ -170,24 +168,32 @@ public class Controller {
     public void debitMinusImageClick() {
         DebitStuff.deleteDebit(debitList);
         MoneyStuff.setDailySpending(spendingDailyLabel);
+        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
     public void setWage() {
         WageStuff.setWage(Float.parseFloat(wageInput.getText()));
         MoneyStuff.setDailySpending(spendingDailyLabel);
+        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
     public void setValue() {
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             MoneyStuff.setValue(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+            MoneyStuff.setDailySpending(spendingDailyLabel);
+            MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
         }
     }
     public void addMoney() {
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             MoneyStuff.addMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+            MoneyStuff.setDailySpending(spendingDailyLabel);
+            MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
         }
     }
     public void subtractMoney() {
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             MoneyStuff.subtractMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+            MoneyStuff.setDailySpending(spendingDailyLabel);
+            MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
         }
     }
     public void colorChange(ImageView image) {
@@ -229,9 +235,12 @@ public class Controller {
         for (Node element : mainScene.getChildren()) {
             element.setVisible(true);
         }
+        MoneyStuff.setDailySpending(spendingDailyLabel);
+        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
     public void paidImageClick() {
         MoneyStuff.paid(moneyDisplay);
+        MoneyStuff.setDailySpending(spendingDailyLabel);
+        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
-    public void testImage() {}
 }

@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import static java.lang.Math.floor;
 
 public class MoneyStuff {
+    static float amountAtPayDay;
     public static void setValue(Label moneyDisplay, float moneyInput) {
         moneyDisplay.setText(String.valueOf(moneyInput));
     }
@@ -15,15 +16,14 @@ public class MoneyStuff {
     }
 
     public static void addMoney(Label moneyDisplay, float moneyInput) {
-        moneyDisplay.setText(String.format("%.2f", String.valueOf(Float.parseFloat(moneyDisplay.getText()) + moneyInput)));
+        moneyDisplay.setText(String.format("%.2f", Math.floor((Float.parseFloat(moneyDisplay.getText()) + moneyInput) * 100) / 100));
         System.out.println("New Value is: " + moneyDisplay.getText());
     }
 
     public static void subtractMoney(Label moneyDisplay, float moneyInput) {
-        moneyDisplay.setText(String.format("%.2f", String.valueOf(Float.parseFloat(moneyDisplay.getText()) - moneyInput)));
+        moneyDisplay.setText(String.format("%.2f", Math.floor((Float.parseFloat(moneyDisplay.getText()) - moneyInput) * 100) / 100));
         System.out.println("New Value is: " + moneyDisplay.getText());
     }
-
     public static boolean validateInput(String value) {
         boolean flag;
         try {
@@ -42,26 +42,26 @@ public class MoneyStuff {
     }
     public static void paid(Label moneyDisplay) {
         moneyDisplay.setText(String.format("%.2f" , Float.parseFloat(moneyDisplay.getText()) + WageStuff.getWage()));
+        amountAtPayDay = Float.parseFloat(moneyDisplay.getText());
         System.out.println("Been paid: " + String.format("%.2f", WageStuff.getWage()));
         WageStuff.setPayDay(DateInfo.getDate());
     }
-    //In progress
-    public static float calculateSavings(String value) {
-        float money = 0.00f;
-        try {
-            money = (float)(Math.floor((Float.parseFloat(value) - DebitStuff.getDebitsTotal() - WageStuff.getWage()) * 100) / 100);      //Money owned takeaway wage
-        }
-        catch (NumberFormatException e) {
-            System.out.println("*calculateSavings* Number format exception");
-        }
-        return calculateShouldSpend() - money;
+    public static void setAmountAtPayDay(float value) {
+        amountAtPayDay = value;
     }
-    private static float calculateShouldSpend() {
-        float shouldSpend = Float.parseFloat(String.valueOf(floor(WageStuff.getDailySpending() * DateInfo.daysSince() * 100) /100));
-        return shouldSpend;
+    public static float getAmountAtPayDay() {
+        return (amountAtPayDay);
+    }
+    //In progress
+    public static void setCalculateSavings(Label label, String value) {
+        float dailySpending = WageStuff.getDailySpending();
+        int daysSince = DateInfo.daysSince();
+        float currentAmount = Float.parseFloat(value);
+        float money = (dailySpending * daysSince) - (amountAtPayDay - currentAmount);
+        label.setText(String.format("%.2f", Math.floor(money * 100) / 100));
     }
     public static void setDailySpending(Label dailySpendingLabel) {
-        dailySpendingLabel.setText(String.format("%.2f", WageStuff.getDailySpending()));
+        dailySpendingLabel.setText(String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));
         System.out.println("Daily Spending Value is: " + String.format("%.2f", WageStuff.getDailySpending()));
     }
 }

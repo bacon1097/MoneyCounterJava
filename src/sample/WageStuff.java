@@ -1,8 +1,5 @@
 package sample;
 
-import java.util.Iterator;
-import java.util.List;
-
 public class WageStuff {
     static float wage;
     static String myPayDay;
@@ -16,6 +13,7 @@ public class WageStuff {
     }
     public static void setPayDay(String date) {
         myPayDay = date;
+
         System.out.println("Set payday to: " + myPayDay);
     }
     public static String getPayDay() {
