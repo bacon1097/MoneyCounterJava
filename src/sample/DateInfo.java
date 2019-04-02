@@ -38,25 +38,26 @@ public class DateInfo {
             return 0;
         }
     }
-    public static boolean isDifDay() {
-        String string;
-        boolean flag = false;
-        try {
-            string = Files.readAllLines(Paths.get(fileName)).get(1);
-            if (string.equals("26-03-2019")) {
-                System.out.println("Date is not different");
-                flag = false;
-            }
-            else {
-                System.out.println("Date is different");
-                flag = true;
-            }
-        }
-        catch (IOException e) {
-            System.out.println("*isDifDay* File not found: " + fileName);
-        }
-        return flag;
-    }
+    //In progress
+//    public static boolean isDifDay() {
+//        String string;
+//        boolean flag = false;
+//        try {
+//            string = Files.readAllLines(Paths.get(fileName)).get(1);
+//            if (string.equals(getDate())) {
+//                System.out.println("Date is not different");
+//                flag = false;
+//            }
+//            else {
+//                System.out.println("Date is different");
+//                flag = true;
+//            }
+//        }
+//        catch (IOException e) {
+//            System.out.println("*isDifDay* File not found: " + fileName);
+//        }
+//        return flag;
+//    }
     public static int daysSince() {
         StringBuffer paydayString = new StringBuffer();
         StringBuffer date = new StringBuffer();
@@ -79,7 +80,7 @@ public class DateInfo {
         }
         int days = Integer.parseInt(date.toString()) - Integer.parseInt(paydayString.toString());
         if (String.valueOf(String.valueOf(days).toCharArray()[0]).equals("-")) {        //If the value is a minus number
-            if (String.valueOf(String.valueOf(getMonth()).toCharArray()[0]).equals("0")) {      //If the month is a single digit number
+            if (String.valueOf(getMonth().toCharArray()[0]).equals("0")) {      //If the month is a single digit number
                 days += getDaysInMonth("0" + (Integer.parseInt(getMonth()) - 1));       //Retain formatting
             }
             else {

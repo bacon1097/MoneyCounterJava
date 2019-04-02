@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.scene.control.Label;
-import static java.lang.Math.floor;
 
 public class MoneyStuff {
     static float amountAtPayDay;
