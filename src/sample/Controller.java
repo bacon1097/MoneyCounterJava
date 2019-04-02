@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
+import java.io.File;
+
 public class Controller {
     @FXML
     private AnchorPane settingsScene;
@@ -35,9 +37,7 @@ public class Controller {
     @FXML
     private Label wageDescription1;
     @FXML
-    private TableView<DebitStuff> debitTable;
-    @FXML
-    private TableColumn<DebitStuff, String> debitColumn;
+    private ListView debitList;
     @FXML
     private ImageView debitMinusImage;
     @FXML
@@ -83,6 +83,46 @@ public class Controller {
     @FXML
     private AnchorPane mainParent;
 
+    public void initialize() {
+        if (FileStuff.fileExists()) {
+            String debits = FileStuff.getInfo(4);
+            String temp = "";
+            for (char c : debits.toCharArray()) {
+                if (!String.valueOf(c).equals(",")) {
+                    temp = temp.concat(String.valueOf(c));
+                }
+                else {
+                    DebitStuff.addDebit(debitList, temp);
+                    temp = "";
+                }
+            }
+            try {
+                String mainMoney = FileStuff.getInfo(0);        //For clarity
+                String paydayDate = FileStuff.getInfo(2);
+                String currentWage = FileStuff.getInfo(3);
+
+                moneyDisplay.setText(String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));       //Setting the money owned value
+                WageStuff.setPayDay(paydayDate);       //Setting the payday date
+                WageStuff.setWage(Float.parseFloat(currentWage));      //Setting the wage
+                daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
+                spendingDailyLabel.setText(String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));     //Setting the daily spending amount
+                moneySaveDisplay.setText(String.valueOf(Math.floor(MoneyStuff.calculateSavings(moneyDisplay.getText()) * 100) / 100));
+
+                System.out.println("New Value is: " + String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));
+                System.out.println("Daily Spending Value is: " + String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));
+
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Error in the data file");
+            }
+        }
+        else {
+            System.out.println("New Value is: " + moneyDisplay.getText());
+            WageStuff.setWage(0.00f);
+            WageStuff.setPayDay("01-01-2000");
+        }
+    }
+
     public void settingsImageEnter() { colorChange(settingsImage); }
     public void settingsImageLeave() { colorChangeBack(settingsImage); }
     public void closeImageEnter() {
@@ -122,10 +162,13 @@ public class Controller {
     public void saveData() { FileStuff.saveInfo(); }
     public void closeProgram() { Main.closeProgram(); }
 
-    public void initialize() {
-        debitColumn.setCellValueFactory(new PropertyValueFactory<DebitStuff, String>("debit"));
-    }
     public void debitPlusImageClick() {
+        DebitStuff.addDebit(debitList, debitInput.getText());
+        MoneyStuff.setDailySpending(spendingDailyLabel);
+    }
+
+    public void debitMinusImageClick() {
+        DebitStuff.deleteDebit(debitList);
         MoneyStuff.setDailySpending(spendingDailyLabel);
     }
     public void setWage() {
@@ -190,8 +233,5 @@ public class Controller {
     public void paidImageClick() {
         MoneyStuff.paid(moneyDisplay);
     }
-    public void testImage() {
-        System.out.println(MoneyStuff.calculateSavings());
-        //System.out.println(WageStuff.getDailySpending());
-    }
+    public void testImage() {}
 }

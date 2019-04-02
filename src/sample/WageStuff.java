@@ -1,5 +1,8 @@
 package sample;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class WageStuff {
     static float wage;
     static String myPayDay;
@@ -18,7 +21,5 @@ public class WageStuff {
     public static String getPayDay() {
         return myPayDay;
     }
-    public static float getDailySpending() {
-        return getWage() / DateInfo.getDaysInMonth(DateInfo.getMonth());
-    }
+    public static float getDailySpending() { return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth(DateInfo.getMonth()); }
 }

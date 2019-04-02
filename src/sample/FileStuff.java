@@ -28,6 +28,7 @@ public class FileStuff {
             pw.println(DateInfo.getDate());
             pw.println(WageStuff.getPayDay());
             pw.println(WageStuff.getWage());
+            pw.println(DebitStuff.getDebits());
             pw.close();
             System.out.println("Saved Data");
         }

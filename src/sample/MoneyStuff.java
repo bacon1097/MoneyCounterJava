@@ -15,12 +15,12 @@ public class MoneyStuff {
     }
 
     public static void addMoney(Label moneyDisplay, float moneyInput) {
-        moneyDisplay.setText(plus(Float.parseFloat(moneyDisplay.getText()), moneyInput));
+        moneyDisplay.setText(String.format("%.2f", String.valueOf(Float.parseFloat(moneyDisplay.getText()) + moneyInput)));
         System.out.println("New Value is: " + moneyDisplay.getText());
     }
 
     public static void subtractMoney(Label moneyDisplay, float moneyInput) {
-        moneyDisplay.setText(minus(Float.parseFloat(moneyDisplay.getText()), moneyInput));
+        moneyDisplay.setText(String.format("%.2f", String.valueOf(Float.parseFloat(moneyDisplay.getText()) - moneyInput)));
         System.out.println("New Value is: " + moneyDisplay.getText());
     }
 
@@ -41,33 +41,27 @@ public class MoneyStuff {
         return flag;
     }
     public static void paid(Label moneyDisplay) {
-        moneyDisplay.setText(String.format("%.02f" , Float.parseFloat(moneyDisplay.getText()) + WageStuff.getWage()));
-        System.out.println("Been paid: " + String.format("%.02f", WageStuff.getWage()));
+        moneyDisplay.setText(String.format("%.2f" , Float.parseFloat(moneyDisplay.getText()) + WageStuff.getWage()));
+        System.out.println("Been paid: " + String.format("%.2f", WageStuff.getWage()));
         WageStuff.setPayDay(DateInfo.getDate());
     }
-    public static String minus(float val1, float val2) {
-        return String.format("%.02f", val1 - val2);
-    }
-    public static String plus(float val1, float val2) {
-        return String.format("%.02f", val1 + val2);
-    }
-    public static float calculateSavings() {
+    //In progress
+    public static float calculateSavings(String value) {
         float money = 0.00f;
         try {
-            money = Float.parseFloat(getValue()) - Float.parseFloat(FileStuff.getInfo(3));      //Money owned takeaway wage
+            money = (float)(Math.floor((Float.parseFloat(value) - DebitStuff.getDebitsTotal() - WageStuff.getWage()) * 100) / 100);      //Money owned takeaway wage
         }
         catch (NumberFormatException e) {
             System.out.println("*calculateSavings* Number format exception");
         }
-        float shouldSpend = calculateShouldSpend();
-        return shouldSpend - money;
+        return calculateShouldSpend() - money;
     }
     private static float calculateShouldSpend() {
         float shouldSpend = Float.parseFloat(String.valueOf(floor(WageStuff.getDailySpending() * DateInfo.daysSince() * 100) /100));
         return shouldSpend;
     }
     public static void setDailySpending(Label dailySpendingLabel) {
-        dailySpendingLabel.setText(String.format("%.02f", WageStuff.getDailySpending()));
-        System.out.println("Daily Spending Value is: " + String.format("%.02f", WageStuff.getDailySpending()));
+        dailySpendingLabel.setText(String.format("%.2f", WageStuff.getDailySpending()));
+        System.out.println("Daily Spending Value is: " + String.format("%.2f", WageStuff.getDailySpending()));
     }
 }
