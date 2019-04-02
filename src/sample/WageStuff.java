@@ -1,7 +1,5 @@
 package sample;
 
-import java.util.Date;
-
 public class WageStuff {
     static float wage;
     static String myPayDay;
