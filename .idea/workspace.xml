@@ -7,12 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe72689b-3d91-4ab9-b6ba-c1aa8f457b36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/MoneyCounterJava_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/DateInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/DateInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/WageStuff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/WageStuff.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/FileStuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FileStuff.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +93,7 @@
         <entry file="file://$PROJECT_DIR$/src/sample/FileStuff.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+              <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -110,7 +105,7 @@
         <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+              <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -182,10 +177,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1939" />
+    <option name="height" value="1049" />
   </component>
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="false" id="Update" />
@@ -239,7 +234,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554218383962" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554218387200" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/MoneyCounterJava_jar/MoneyCounterJava.jar" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -411,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554216829042</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="file info in same directory">
+      <created>1554218398284</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1554218398284</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -484,7 +486,8 @@
     <MESSAGE value="file saving and loading updates. FINISHED CURRENT SAVINGS. CAN BE USED OVER ORIGINAL NOW." />
     <MESSAGE value="fixed month issue if month changes and payday doesn't" />
     <MESSAGE value="module clean up" />
-    <option name="LAST_COMMIT_MESSAGE" value="module clean up" />
+    <MESSAGE value="file info in same directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="file info in same directory" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/MoneyCounter.iml">
@@ -577,7 +580,7 @@
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -585,7 +588,7 @@
     <entry file="file://$PROJECT_DIR$/src/sample/FileStuff.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+          <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
