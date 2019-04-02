@@ -113,7 +113,7 @@
             <ListView fx:id="debitList" layoutX="302.0" layoutY="42.0" prefHeight="100.0" prefWidth="279.0" />
          </children>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />
+            <DropShadow blurType="ONE_PASS_BOX" color="LIME" height="50.0" radius="24.5" width="50.0" />
          </effect></AnchorPane>
       <AnchorPane fx:id="mainScene" layoutX="15.0" layoutY="135.0" opacity="0.9" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
@@ -179,7 +179,7 @@
             </Label>
          </children>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />
+            <DropShadow blurType="ONE_PASS_BOX" color="LIME" height="50.0" radius="24.5" width="50.0" />
          </effect>
       </AnchorPane>
       <AnchorPane fx:id="tabLayout" layoutX="15.0" layoutY="15.0" opacity="0.9" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
@@ -201,7 +201,7 @@
             </ImageView>
          </children>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />
+            <DropShadow blurType="ONE_PASS_BOX" color="LIME" height="50.0" radius="24.5" width="50.0" />
          </effect>
       </AnchorPane>
    </children>
