@@ -56,7 +56,7 @@ public class MoneyStuff {
         float dailySpending = WageStuff.getDailySpending();
         int daysSince = DateInfo.daysSince();
         float currentAmount = Float.parseFloat(value);
-        float money = (dailySpending * daysSince) - (amountAtPayDay - currentAmount);
+        float money = (dailySpending * (daysSince + 1)) - (amountAtPayDay - currentAmount);
         label.setText(String.format("%.2f", Math.floor(money * 100) / 100));
     }
     public static void setDailySpending(Label dailySpendingLabel) {
