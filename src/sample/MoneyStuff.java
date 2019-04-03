@@ -46,7 +46,7 @@ public class MoneyStuff {
         WageStuff.setPayDay(DateInfo.getDate());
     }
     public static void setAmountAtPayDay(float value) {
-        amountAtPayDay = value;
+        amountAtPayDay = Float.parseFloat(String.valueOf(Math.floor(value * 100) / 100));
     }
     public static float getAmountAtPayDay() {
         return (amountAtPayDay);

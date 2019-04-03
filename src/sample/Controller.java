@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
+import java.util.List;
+
 public class Controller {
     @FXML
     private AnchorPane settingsScene;
@@ -115,9 +117,24 @@ public class Controller {
             }
         }
         else {
-            System.out.println("New Value is: " + moneyDisplay.getText());
-            WageStuff.setWage(0.00f);
-            WageStuff.setPayDay("01-01-2019");
+            if (ConfirmBox.display("Setup?", "Would you like to configure?")) {
+                List list = FirstTimeSetup.display("Configuration");
+
+                //Setting values from input
+                moneyDisplay.setText(String.valueOf(list.get(0)));
+                WageStuff.setPayDay(String.valueOf(list.get(1)));
+                WageStuff.setWage(Float.parseFloat(String.valueOf(list.get(2))));
+                MoneyStuff.setAmountAtPayDay(Float.parseFloat(String.valueOf(list.get(3))));
+
+                //Set the savings
+                MoneyStuff.setDailySpending(spendingDailyLabel);
+                MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+            }
+            else {
+                System.out.println("New Value is: " + moneyDisplay.getText());
+                WageStuff.setWage(0.00f);
+                WageStuff.setPayDay("01-01-2019");
+            }
         }
     }
 

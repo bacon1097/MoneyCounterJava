@@ -4,7 +4,7 @@ public class WageStuff {
     static float wage;
     static String myPayDay;
     public static void setWage(float input) {
-        wage = input;
+        wage = Float.parseFloat(String.valueOf(Math.floor(input * 100) /100));
         System.out.println("New Wage is: " + wage);
     }
     public static float getWage() {
