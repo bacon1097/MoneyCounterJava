@@ -33,7 +33,7 @@ public class FirstTimeSetup {
         //Second Label
         Label label2 = new Label("Date paid: ");
         TextField textField2 = new TextField();
-        textField2.setPromptText("dd-MM-yyyy");
+        textField2.setPromptText("dd-MM-YYYY");
 
         HBox hBox2 = new HBox(10);
         hBox2.getChildren().addAll(label2, textField2);

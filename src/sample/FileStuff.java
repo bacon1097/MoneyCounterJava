@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FileStuff {
-    static String fileName = ".\\MoneyData.info";
+    static String fileName = "./MoneyData.info";
     static boolean append = false;
 
     public static void saveInfo() {

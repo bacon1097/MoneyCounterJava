@@ -7,13 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe72689b-3d91-4ab9-b6ba-c1aa8f457b36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sample/FirstTimeSetup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/MoneyCounterJava_jar/MoneyCounterJava.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/MoneyCounterJava_jar/MoneyCounterJava.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MoneyStuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MoneyStuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/WageStuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/WageStuff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/MoneyStuff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/MoneyStuff.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/WageStuff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/WageStuff.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MoneyCounterJava/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/DateInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DateInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/FileStuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FileStuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/FirstTimeSetup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FirstTimeSetup.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,26 +38,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/FirstTimeSetup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="391">
+              <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="674">
-              <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
+            <state relative-caret-position="-6">
+              <caret line="144" column="5" lean-forward="true" selection-start-line="144" selection-start-column="5" selection-end-line="144" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4968#4969#0" expanded="true" />
-                <element signature="e#5047#5048#0" expanded="true" />
-                <element signature="e#5256#5257#0" expanded="true" />
-                <element signature="e#5335#5336#0" expanded="true" />
-                <element signature="e#5408#5409#0" expanded="true" />
-                <element signature="e#5548#5549#0" expanded="true" />
-                <element signature="e#5688#5689#0" expanded="true" />
+                <element signature="e#4936#4937#0" expanded="true" />
+                <element signature="e#5015#5016#0" expanded="true" />
+                <element signature="e#5224#5225#0" expanded="true" />
+                <element signature="e#5303#5304#0" expanded="true" />
+                <element signature="e#5376#5377#0" expanded="true" />
+                <element signature="e#5516#5517#0" expanded="true" />
+                <element signature="e#5656#5657#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/DateInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="102">
+              <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,11 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/FileStuff.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="47" lean-forward="true" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -196,12 +196,12 @@
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/DebitStuff.java" />
         <option value="$PROJECT_DIR$/src/sample/sample.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/DateInfo.java" />
-        <option value="$PROJECT_DIR$/src/sample/FileStuff.java" />
         <option value="$PROJECT_DIR$/src/sample/MoneyStuff.java" />
         <option value="$PROJECT_DIR$/src/sample/WageStuff.java" />
-        <option value="$PROJECT_DIR$/src/sample/FirstTimeSetup.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
+        <option value="$PROJECT_DIR$/src/sample/FirstTimeSetup.java" />
+        <option value="$PROJECT_DIR$/src/sample/FileStuff.java" />
+        <option value="$PROJECT_DIR$/src/sample/DateInfo.java" />
       </list>
     </option>
   </component>
@@ -252,7 +252,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554277968548" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554278126833" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/MoneyCounterJava_jar/MoneyCounterJava.jar" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -438,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554218810539</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="added first time configuration">
+      <created>1554277984958</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1554277984958</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView">
@@ -522,7 +529,8 @@
     <MESSAGE value="module clean up" />
     <MESSAGE value="file info in same directory" />
     <MESSAGE value="added files" />
-    <option name="LAST_COMMIT_MESSAGE" value="added files" />
+    <MESSAGE value="added first time configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="added first time configuration" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/MoneyCounter.iml">
@@ -536,26 +544,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/Money.xml" />
-    <entry file="file://$PROJECT_DIR$/src/sample/DateInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/FileStuff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="47" lean-forward="true" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -564,36 +552,29 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/MoneyStuff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/DebitStuff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="42" lean-forward="true" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/WageStuff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="25" column="64" lean-forward="true" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="35" column="62" lean-forward="true" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6">
+          <caret line="144" column="5" lean-forward="true" selection-start-line="144" selection-start-column="5" selection-end-line="144" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4936#4937#0" expanded="true" />
+            <element signature="e#5015#5016#0" expanded="true" />
+            <element signature="e#5224#5225#0" expanded="true" />
+            <element signature="e#5303#5304#0" expanded="true" />
+            <element signature="e#5376#5377#0" expanded="true" />
+            <element signature="e#5516#5517#0" expanded="true" />
+            <element signature="e#5656#5657#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -608,26 +589,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/FirstTimeSetup.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/DebitStuff.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="357">
+          <caret line="21" column="42" lean-forward="true" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/MoneyStuff.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="128" column="33" selection-start-line="128" selection-start-column="33" selection-end-line="128" selection-end-column="33" />
+        <state relative-caret-position="782">
+          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/WageStuff.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="64" lean-forward="true" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/FirstTimeSetup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4968#4969#0" expanded="true" />
-            <element signature="e#5047#5048#0" expanded="true" />
-            <element signature="e#5256#5257#0" expanded="true" />
-            <element signature="e#5335#5336#0" expanded="true" />
-            <element signature="e#5408#5409#0" expanded="true" />
-            <element signature="e#5548#5549#0" expanded="true" />
-            <element signature="e#5688#5689#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/FileStuff.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/DateInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

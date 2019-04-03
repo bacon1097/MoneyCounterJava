@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 public class DateInfo {
-    static String fileName = "C:\\ProgramData\\MoneyCounter\\MoneyData.info";
+    static String fileName = "./MoneyData.info";
     public static String getDate() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-YYYY");       //Formats the date
         GregorianCalendar calendar = new GregorianCalendar();
