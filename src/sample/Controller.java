@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -11,8 +13,10 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Controller {
     @FXML
@@ -81,6 +85,8 @@ public class Controller {
     private AnchorPane mainParent;
 
     public void initialize() {
+        mainScene.setCacheShape(true);
+        tabLayout.setCacheShape(true);
         if (FileStuff.fileExists()) {
             String debits = FileStuff.getInfo(4);
             String temp = "";
@@ -111,6 +117,8 @@ public class Controller {
                 System.out.println("New Value is: " + String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));
                 System.out.println("Daily Spending Value is: " + String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));
 
+                animateLoad(mainScene, "right", 2);
+                animateLoad(tabLayout,"left", 2);
             }
             catch (NumberFormatException e) {
                 System.out.println("Error in the data file");
@@ -134,10 +142,41 @@ public class Controller {
                 System.out.println("New Value is: " + moneyDisplay.getText());
                 WageStuff.setWage(0.00f);
                 WageStuff.setPayDay("01-01-2019");
+
+                animateLoad(mainScene, "right", 2);
+                animateLoad(tabLayout,"left", 2);
             }
         }
     }
-
+    private void animateLoad(AnchorPane scene, String direction, double s) {
+        double number = scene.getLayoutX();
+        double number2 = 0;
+        if (direction.equals("right")) {
+            number = -600;
+            number2 = 615;
+        }
+        else if (direction.equals("left")) {
+            number = 630;
+            number2 = -615;
+        }
+        else if (direction.equals("backLeft")) {
+            number2 = 0;
+        }
+        else if (direction.equals("backRight")) {
+            number2 = 0;
+        }
+        else {
+            System.out.println("*animate* Animation doesn't exist");
+        }
+        scene.setLayoutX(number);
+        scene.setOpacity(0);
+        TranslateTransition t = new TranslateTransition(Duration.seconds(s), scene);
+        t.setToX(number2);
+        FadeTransition f = new FadeTransition(Duration.seconds(s), scene);
+        f.setToValue(1);
+        f.play();
+        t.play();
+    }
     public void settingsImageEnter() { colorChange(settingsImage); }
     public void settingsImageLeave() { colorChangeBack(settingsImage); }
     public void closeImageEnter() {
@@ -234,26 +273,61 @@ public class Controller {
         image.setEffect(null);
     }
     public void settingsImageClick() {
-        settingsScene.setVisible(true);
-        for (Node element : settingsScene.getChildren()) {
-            element.setVisible(true);
-        }
-        mainScene.setVisible(false);
-        for (Node element : mainScene.getChildren()) {
-            element.setVisible(false);
-        }
-    }
-    public void walletImageClick() {
-        settingsScene.setVisible(false);
-        for (Node element : settingsScene.getChildren()) {
-            element.setVisible(false);
-        }
-        mainScene.setVisible(true);
-        for (Node element : mainScene.getChildren()) {
-            element.setVisible(true);
-        }
+        animateSwitch(mainScene, "backRight", 0.25);
+        animateSwitch(settingsScene, "left", 0.25);
         MoneyStuff.setDailySpending(spendingDailyLabel);
         MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+
+    }
+    public void walletImageClick() {
+        animateSwitch(settingsScene, "backLeft", 0.25);
+        animateSwitch(mainScene, "right", 0.25);
+        MoneyStuff.setDailySpending(spendingDailyLabel);
+        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+    }
+    private void animateSwitch(AnchorPane scene, String direction, double s) {
+        double number = scene.getLayoutX();
+        double number2 = 0;
+        if (direction.equals("right")) {
+            number = -600;
+            number2 = 615;
+        }
+        else if (direction.equals("left")) {
+            number = 630;
+            number2 = -615;
+        }
+        else if (direction.equals("backLeft") || direction.equals("backRight")) {
+            number2 = 0;
+        }
+        else {
+            System.out.println("*animate* Animation doesn't exist");
+        }
+
+        scene.setLayoutX(number);
+        TranslateTransition t = new TranslateTransition(Duration.seconds(s), scene);
+        t.setToX(number2);
+        t.setOnFinished(e -> {
+            if (direction.equals("right") || direction.equals("left")) {
+                if (scene.getId().equals(settingsScene.getId())) {
+                    for (Node element : mainScene.getChildren()) {
+                        element.setVisible(false);
+                    }
+                    mainScene.setVisible(false);
+                } else if (scene.getId().equals(mainScene.getId())) {
+                    for (Node element : settingsScene.getChildren()) {
+                        element.setVisible(false);
+                    }
+                    settingsScene.setVisible(false);
+                }
+            }
+        });
+        if (direction.equals("right") || direction.equals("left")) {
+            scene.setVisible(true);
+            for (Node element : scene.getChildren()) {
+                element.setVisible(true);
+            }
+        }
+        t.play();
     }
     public void paidImageClick() {
         MoneyStuff.paid(moneyDisplay);

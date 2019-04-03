@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +18,7 @@ public class ConfirmBox {
         window.setTitle(title);
         window.setMinWidth(400);
         window.setMinHeight(200);
+        window.setResizable(false);
 
         //Label
         Label label = new Label();
@@ -42,7 +44,8 @@ public class ConfirmBox {
         layout1.setAlignment(Pos.CENTER);
 
         //Setting scene. Show and pause the code
-        window.setScene(new Scene(layout1));
+        Scene scene = new Scene(layout1);
+        window.setScene(scene);
         window.showAndWait();
 
         //Returning the answer at the end of this script

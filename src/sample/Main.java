@@ -24,17 +24,17 @@ public class Main extends Application {
             closeProgram();
         });
         Scene scene = new Scene(root);
-        root.setOnMousePressed(event -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
+        root.setOnMousePressed(e -> {
+            x = e.getSceneX();
+            y = e.getSceneY();
         });
-        root.setOnMouseDragged(event -> {
-            window.setX(event.getScreenX() - x);
-            window.setY(event.getScreenY() - y);
-            window.setOpacity(0.8f);
+        root.setOnMouseDragged(e -> {
+            window.setX(e.getScreenX() - x);
+            window.setY(e.getScreenY() - y);
+            window.setOpacity(0.8);
         });
-        root.setOnDragDone( event -> window.setOpacity(1.0f));
-        root.setOnMouseReleased( event -> window.setOpacity(1.0f));
+        root.setOnDragDone( e -> window.setOpacity(1));
+        root.setOnMouseReleased( e -> window.setOpacity(1));
         scene.setFill(Color.TRANSPARENT);
         window.setScene(scene);
         window.show();

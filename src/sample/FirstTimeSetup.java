@@ -19,6 +19,7 @@ public class FirstTimeSetup {
         window.setTitle(title);
         window.setMinWidth(400);
         window.setMinHeight(200);
+        window.setResizable(false);
 
         List list = new ArrayList();
 
