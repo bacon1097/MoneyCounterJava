@@ -85,6 +85,8 @@ public class Controller {
     private Label spendingDailyLabel;
     @FXML
     private AnchorPane mainParent;
+    @FXML
+    private Label wageDisplayLabel;
 
     public void initialize() {
         mainScene.setCacheShape(true);
@@ -110,8 +112,10 @@ public class Controller {
                 MoneyStuff.setAmountAtPayDay(Float.parseFloat(amountAtPayDay));
                 moneyDisplay.setText(String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));       //Setting the money owned value
                 WageStuff.setPayDay(paydayDate);       //Setting the payday date
-                WageStuff.setWage(Float.parseFloat(currentWage));      //Setting the wage
+                WageStuff.setWage(Float.parseFloat(currentWage), wageDisplayLabel);      //Setting the wage
                 daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
+
+                //Set the savings
                 MoneyStuff.setDailySpending(spendingDailyLabel);
                 MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
 
@@ -133,8 +137,9 @@ public class Controller {
                 //Setting values from input
                 moneyDisplay.setText(String.valueOf(list.get(0)));
                 WageStuff.setPayDay(String.valueOf(list.get(1)));
-                WageStuff.setWage(Float.parseFloat(String.valueOf(list.get(2))));
+                WageStuff.setWage(Float.parseFloat(String.valueOf(list.get(2))), wageDisplayLabel);
                 MoneyStuff.setAmountAtPayDay(Float.parseFloat(String.valueOf(list.get(3))));
+                daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
 
                 //Set the savings
                 MoneyStuff.setDailySpending(spendingDailyLabel);
@@ -142,7 +147,7 @@ public class Controller {
             }
             else {
                 System.out.println("New Value is: " + moneyDisplay.getText());
-                WageStuff.setWage(0.00f);
+                WageStuff.setWage(0.00f, wageDisplayLabel);
                 WageStuff.setPayDay("01-01-2019");
 
                 animateLoad(mainScene, "right", 2);
@@ -229,7 +234,7 @@ public class Controller {
         MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
     public void setWage() {
-        WageStuff.setWage(Float.parseFloat(wageInput.getText()));
+        WageStuff.setWage(Float.parseFloat(wageInput.getText()), wageDisplayLabel);
         MoneyStuff.setDailySpending(spendingDailyLabel);
         MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
