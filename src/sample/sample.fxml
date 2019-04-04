@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
@@ -36,28 +37,28 @@
       </AnchorPane>
       <AnchorPane fx:id="settingsScene" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="135.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
          <children>
-            <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="542.0" prefHeight="20.0" prefWidth="150.0" text="DAYS SINCE PAYDAY:" textFill="SILVER">
+            <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="542.0" prefHeight="20.0" prefWidth="150.0" style="-fx-opacity: 0.5;" text="DAYS SINCE PAYDAY:" textFill="SILVER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Slider fx:id="wageSlider" layoutX="147.0" layoutY="382.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" prefHeight="50.0" prefWidth="300.0" showTickMarks="true" snapToTicks="true" value="1.0" />
-            <Label fx:id="wageLabel" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="253.0" prefHeight="19.0" prefWidth="50.0" text="WAGE" textFill="SILVER">
+            <Label fx:id="wageLabel" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="253.0" prefHeight="19.0" prefWidth="50.0" style="-fx-opacity: 0.5;" text="WAGE" textFill="SILVER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="wageDescription" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="273.0" prefHeight="40.0" prefWidth="126.0" text="Enter you wage here for calculations" textFill="SILVER" wrapText="true">
+            <Label fx:id="wageDescription" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="11.0" layoutY="273.0" prefHeight="40.0" prefWidth="126.0" style="-fx-opacity: 0.5;" text="Enter you wage here for calculations" textFill="SILVER" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="weeklyLabel" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="137.0" layoutY="422.0" prefHeight="19.0" prefWidth="50.0" text="Weekly" textFill="SILVER">
+            <Label fx:id="weeklyLabel" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="137.0" layoutY="422.0" prefHeight="19.0" prefWidth="50.0" style="-fx-opacity: 0.5;" text="Weekly" textFill="SILVER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="monthlyLabel" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="405.0" layoutY="422.0" prefHeight="20.0" prefWidth="59.0" text="Monthly" textFill="SILVER">
+            <Label fx:id="monthlyLabel" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="405.0" layoutY="422.0" prefHeight="20.0" prefWidth="59.0" style="-fx-opacity: 0.5;" text="Monthly" textFill="SILVER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -67,12 +68,12 @@
                   <Image url="@images/confirm.png" />
                </image>
             </ImageView>
-            <Label fx:id="wageLabel1" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="13.0" layoutY="42.0" prefHeight="20.0" prefWidth="105.0" text="DIRECT DEBITS" textFill="SILVER">
+            <Label fx:id="wageLabel1" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="13.0" layoutY="42.0" prefHeight="20.0" prefWidth="105.0" style="-fx-opacity: 0.5;" text="DIRECT DEBITS" textFill="SILVER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="wageDescription1" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="13.0" layoutY="62.0" prefHeight="85.0" prefWidth="168.0" text="Add or delete direct debits. This will be taken into account when calculating daily spending." textFill="SILVER" wrapText="true">
+            <Label fx:id="wageDescription1" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="13.0" layoutY="62.0" prefHeight="85.0" prefWidth="168.0" style="-fx-opacity: 0.5;" text="Add or delete direct debits. This will be taken into account when calculating daily spending." textFill="SILVER" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
@@ -92,14 +93,20 @@
                   <Image url="@images/paid.png" />
                </image>
             </ImageView>
-            <TextField fx:id="wageInput" alignment="CENTER" layoutX="364.0" layoutY="273.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0;" />
-            <TextField fx:id="debitInput" alignment="CENTER" layoutX="367.0" layoutY="158.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0;" />
-            <Label fx:id="paidLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="275.0" layoutY="496.0" prefHeight="20.0" prefWidth="50.0" text="PAID" textFill="SILVER">
+            <TextField fx:id="wageInput" alignment="CENTER" layoutX="364.0" layoutY="273.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0; -fx-border-width: 0 0 1 0; -fx-background-color: transparent; -fx-opacity: 0.5; -fx-text-fill: #c0c0c0;">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></TextField>
+            <TextField fx:id="debitInput" alignment="CENTER" layoutX="367.0" layoutY="158.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0; -fx-border-width: 0 0 1 0; -fx-background-color: transparent; -fx-opacity: 0.5; -fx-text-fill: #c0c0c0;">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></TextField>
+            <Label fx:id="paidLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="275.0" layoutY="496.0" prefHeight="20.0" prefWidth="50.0" style="-fx-opacity: 0.5;" text="PAID" textFill="SILVER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="daysSincePayDayLabel" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="546.0" layoutY="542.0" prefHeight="20.0" prefWidth="40.0" text="0" textFill="SILVER">
+            <Label fx:id="daysSincePayDayLabel" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="546.0" layoutY="542.0" prefHeight="20.0" prefWidth="40.0" style="-fx-opacity: 0.5;" text="0" textFill="SILVER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -111,16 +118,28 @@
          </effect></AnchorPane>
       <AnchorPane fx:id="mainScene" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="135.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
-            <Label fx:id="moneyDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="282.0" layoutY="22.0" prefHeight="70.0" prefWidth="262.0" text="0000.00" textFill="SILVER">
-               <font>
-                  <Font name="System Bold" size="48.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="coinImage" fitHeight="40.0" fitWidth="40.0" layoutX="55.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/coin.png" />
-               </image>
-            </ImageView>
+            <AnchorPane layoutX="39.0" layoutY="29.0" prefHeight="70.0" prefWidth="570.0" style="-fx-background-color: #3e4f5b;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <Label fx:id="moneyDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="367.0" layoutY="7.0" prefHeight="56.0" prefWidth="251.0" style="-fx-opacity: 0.5;" text="0000.00" textFill="SILVER" AnchorPane.rightAnchor="15.0">
+                     <font>
+                        <Font name="SansSerif Bold" size="48.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="coinImage" fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                     <image>
+                        <Image url="@images/coin.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="balanceLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" prefHeight="42.0" prefWidth="133.0" style="-fx-opacity: 0.5;" text="Balance" textFill="SILVER">
+                     <font>
+                        <Font name="SansSerif Regular" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
             <ImageView fx:id="minusImage" fitHeight="40.0" fitWidth="40.0" layoutX="172.0" layoutY="529.0" onMouseClicked="#subtractMoney" onMouseEntered="#minusImageEnter" onMouseExited="#minusImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@images/minus.png" />
@@ -129,16 +148,6 @@
             <ImageView fx:id="plusImage" fitHeight="40.0" fitWidth="43.0" layoutX="386.0" layoutY="529.0" onMouseClicked="#addMoney" onMouseEntered="#plusImageEnter" onMouseExited="#plusImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@images/add.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="moneySaveDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="331.0" layoutY="101.0" prefHeight="56.0" prefWidth="213.0" text="0.00" textFill="SILVER">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="piggyImage" fitHeight="40.0" fitWidth="40.0" layoutX="55.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/piggy.png" />
                </image>
             </ImageView>
             <ImageView fx:id="resetImage" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="479.0" onMouseClicked="#setValue" onMouseEntered="#resetImageEnter" onMouseExited="#resetImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
@@ -151,17 +160,62 @@
                   <Image url="@images/save.png" />
                </image>
             </ImageView>
-            <TextField fx:id="moneyInput" alignment="CENTER" layoutX="225.0" layoutY="529.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0;" />
-            <ImageView fx:id="spendingImage" fitHeight="40.0" fitWidth="40.0" layoutX="55.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/coin.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="spendingDailyLabel" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="331.0" layoutY="157.0" prefHeight="56.0" prefWidth="213.0" text="0.00" textFill="SILVER">
+            <TextField fx:id="moneyInput" alignment="CENTER" focusTraversable="false" layoutX="225.0" layoutY="529.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: #c0c0c0; -fx-text-fill: #c0c0c0; -fx-opacity: 0.5;">
                <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-            </Label>
+                  <Font name="System Bold" size="18.0" />
+               </font></TextField>
+            <AnchorPane layoutX="15.0" layoutY="85.0" prefHeight="70.0" prefWidth="570.0" style="-fx-background-color: #485d6a;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <Label fx:id="moneySaveDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="304.0" layoutY="7.0" prefHeight="56.0" prefWidth="251.0" style="-fx-opacity: 0.5;" text="0000.00" textFill="SILVER" AnchorPane.rightAnchor="15.0">
+                     <font>
+                        <Font name="SansSerif Bold" size="48.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets top="15.0" />
+                     </opaqueInsets>
+                  </Label>
+                  <ImageView fx:id="spendingImage" fitHeight="40.0" fitWidth="40.0" layoutX="7.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                     <image>
+                        <Image url="@images/coin.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="savingsLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" prefHeight="42.0" prefWidth="134.0" style="-fx-opacity: 0.5;" text="Savings" textFill="SILVER">
+                     <font>
+                        <Font name="SansSerif Regular" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="15.0" layoutY="155.0" prefHeight="70.0" prefWidth="570.0" style="-fx-background-color: #536a79;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <ImageView fx:id="piggyImage" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                     <image>
+                        <Image url="@images/piggy.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="spendingDailyLabel" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="292.0" layoutY="7.0" prefHeight="56.0" prefWidth="251.0" style="-fx-opacity: 0.5;" text="0000.00" textFill="SILVER" AnchorPane.rightAnchor="15.0">
+                     <font>
+                        <Font name="SansSerif Bold" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="allowanceLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="7.0" prefHeight="54.0" prefWidth="168.0" style="-fx-opacity: 0.5;" text="Allowance" textFill="SILVER">
+                     <font>
+                        <Font name="SansSerif Regular" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="perDayLabel" contentDisplay="CENTER" layoutX="223.0" layoutY="33.0" prefHeight="20.0" prefWidth="59.0" style="-fx-opacity: 0.5;" text="(Per day)" textFill="SILVER">
+                     <font>
+                        <Font name="SansSerif Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />

@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.naming.internal.FactoryEnumeration;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -233,24 +235,52 @@ public class Controller {
     }
     public void setValue() {
         if (MoneyStuff.validateInput(moneyInput.getText())) {
-            MoneyStuff.setValue(moneyDisplay, Float.parseFloat(moneyInput.getText()));
-            MoneyStuff.setDailySpending(spendingDailyLabel);
-            MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+            refreshMoney("set");
         }
     }
     public void addMoney() {
         if (MoneyStuff.validateInput(moneyInput.getText())) {
-            MoneyStuff.addMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
-            MoneyStuff.setDailySpending(spendingDailyLabel);
-            MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+            refreshMoney("plus");
         }
     }
     public void subtractMoney() {
         if (MoneyStuff.validateInput(moneyInput.getText())) {
-            MoneyStuff.subtractMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+            refreshMoney("minus");
+        }
+    }
+    private void refreshMoney(String operation) {
+        FadeTransition f = new FadeTransition();
+        double t = new Duration(250).toMillis();
+        f.setToValue(0);
+        f.setDuration(Duration.millis(t));
+        f.setNode(moneyDisplay);
+        f.setOnFinished(e -> {
+            if (operation.equals("plus")) {
+                MoneyStuff.addMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+            } else if (operation.equals("minus")) {
+                MoneyStuff.subtractMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+            } else if (operation.equals("set")) {
+                MoneyStuff.setValue(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+            }
             MoneyStuff.setDailySpending(spendingDailyLabel);
             MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
-        }
+            FadeTransition f2 = new FadeTransition();
+            f2.setToValue(0.5);
+            f2.setDuration(Duration.millis(t));
+            f2.setNode(moneyDisplay);
+            FadeTransition f3 = new FadeTransition();
+            f3.setToValue(0.5);
+            f3.setDuration(Duration.millis(t));
+            f3.setNode(moneySaveDisplay);
+            f2.play();
+            f3.play();
+        });
+        FadeTransition f1 = new FadeTransition();
+        f1.setToValue(0);
+        f1.setDuration(Duration.millis(t));
+        f1.setNode(moneySaveDisplay);
+        f.play();
+        f1.play();
     }
     public void colorChange(ImageView image) {
         image.setOpacity(1);
