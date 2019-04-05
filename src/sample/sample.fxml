@@ -9,6 +9,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="mainParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="630.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
@@ -123,6 +126,17 @@
                   <Insets />
                </opaqueInsets>
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0">
+                     <fill>
+                        <LinearGradient endX="0.3380952380952381" endY="0.25714285714285706">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="#3e4f5b" offset="0.007662835249042145" />
+                              <Stop color="#485d6a" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
                   <Label fx:id="moneyDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="367.0" layoutY="7.0" prefHeight="56.0" prefWidth="251.0" style="-fx-opacity: 0.5;" text="0000.00" textFill="SILVER" AnchorPane.rightAnchor="15.0">
                      <font>
                         <Font name="SansSerif Bold" size="48.0" />
@@ -169,6 +183,17 @@
                   <Insets />
                </opaqueInsets>
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0">
+                     <fill>
+                        <LinearGradient endX="0.36190476190476184" endY="0.2523809523809523">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="#485d6a" offset="0.007662835249042145" />
+                              <Stop color="#536a79" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
                   <Label fx:id="moneySaveDisplay" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="304.0" layoutY="7.0" prefHeight="56.0" prefWidth="251.0" style="-fx-opacity: 0.5;" text="0000.00" textFill="SILVER" AnchorPane.rightAnchor="15.0">
                      <font>
                         <Font name="SansSerif Bold" size="48.0" />
@@ -194,6 +219,17 @@
                   <Insets />
                </opaqueInsets>
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0">
+                     <fill>
+                        <LinearGradient endX="0.4" endY="0.2761904761904761">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="#536a79" offset="0.007662835249042145" />
+                              <Stop color="#5d7789" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
                   <ImageView fx:id="piggyImage1" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                      <image>
                         <Image url="@images/piggy.png" />
@@ -221,6 +257,17 @@
                   <Insets />
                </opaqueInsets>
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0" AnchorPane.rightAnchor="12.0">
+                     <fill>
+                        <LinearGradient endX="0.40476190476190477" endY="0.3047619047619047">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="#5d7789" offset="0.007662835249042145" />
+                              <Stop color="#678498" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
                   <ImageView fx:id="coinImage1" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                      <image>
                         <Image url="@images/coin.png" />
@@ -243,6 +290,61 @@
                   </Label>
                </children>
             </AnchorPane>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="10.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="570.0" AnchorPane.leftAnchor="15.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="0.5857142857142856" startX="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="#3e4f5b" offset="0.007662835249042145" />
+                        <Stop color="#485d6a" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="20.0" layoutY="149.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="570.0" AnchorPane.leftAnchor="15.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="0.5857142857142856" startX="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="#485d6a" offset="0.007662835249042145" />
+                        <Stop color="#536a79" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="30.0" layoutY="219.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="570.0" AnchorPane.leftAnchor="15.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="0.5857142857142856" startX="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="#536a79" offset="0.007662835249042145" />
+                        <Stop color="#5d7789" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="40.0" layoutY="289.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="570.0" AnchorPane.leftAnchor="15.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="0.5857142857142856" startX="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="#5d7789" offset="0.007662835249042145" />
+                        <Stop color="#36454f" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="15.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="570.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="0.5857142857142856" startX="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="#36454f" offset="0.007662835249042145" />
+                        <Stop color="#3e4f5b" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
          </children>
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />

@@ -21,7 +21,6 @@ public class Main extends Application {
         window.initStyle(StageStyle.TRANSPARENT);
         window.setOnCloseRequest(e -> {
             e.consume();
-            closeProgram();
         });
         Scene scene = new Scene(root);
         root.setOnMousePressed(e -> {
@@ -40,11 +39,8 @@ public class Main extends Application {
         window.show();
     }
     public static void closeProgram() {
-        boolean flag = ConfirmBox.display("Quit","Are you sure you want to quit?");
-        if (flag) {
-            FileStuff.saveInfo();
-            window.close();
-        }
+        FileStuff.saveInfo();
+        window.close();
     }
     public static void main(String[] args) { launch(args); }
 }

@@ -1,8 +1,7 @@
 package sample;
 
 import com.sun.naming.internal.FactoryEnumeration;
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -14,10 +13,12 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Controller {
@@ -123,8 +124,8 @@ public class Controller {
                 System.out.println("New Value is: " + String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));
                 System.out.println("Daily Spending Value is: " + String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));
 
-                animateLoad(mainScene, "right", 2);
-                animateLoad(tabLayout,"left", 2);
+                animate(mainScene, "right", 1, "load");
+                animate(tabLayout,"left", 1, "load");
             }
             catch (NumberFormatException e) {
                 System.out.println("Error in the data file");
@@ -150,12 +151,12 @@ public class Controller {
                 WageStuff.setWage(0.00f, wageDisplayLabel);
                 WageStuff.setPayDay("01-01-2019");
 
-                animateLoad(mainScene, "right", 2);
-                animateLoad(tabLayout,"left", 2);
+                animate(mainScene, "right", 1, "load");
+                animate(tabLayout,"left", 1, "load");
             }
         }
     }
-    private void animateLoad(AnchorPane scene, String direction, double s) {
+    private void animate(AnchorPane scene, String direction, double s, String type) {
         double number = scene.getLayoutX();
         double number2 = 0;
         if (direction.equals("right")) {
@@ -166,23 +167,60 @@ public class Controller {
             number = 630;
             number2 = -615;
         }
-        else if (direction.equals("backLeft")) {
-            number2 = 0;
-        }
-        else if (direction.equals("backRight")) {
+        else if (direction.equals("backLeft") || direction.equals("backRight")) {
             number2 = 0;
         }
         else {
             System.out.println("*animate* Animation doesn't exist");
         }
         scene.setLayoutX(number);
-        scene.setOpacity(0);
         TranslateTransition t = new TranslateTransition(Duration.seconds(s), scene);
         t.setToX(number2);
-        FadeTransition f = new FadeTransition(Duration.seconds(s), scene);
-        f.setToValue(1);
-        f.play();
-        t.play();
+        if (type.equals("load")) {      //If loading then tranlate inwards with a fade in
+            scene.setOpacity(0);
+            FadeTransition f = new FadeTransition(Duration.seconds(s), scene);
+            f.setToValue(1);
+            ParallelTransition p = new ParallelTransition();
+            p.getChildren().setAll(f, t);
+            p.play();
+        }
+        else if (type.equals("close")) {        //If closing then reverse the load animation
+            FadeTransition f = new FadeTransition(Duration.seconds(s), scene);
+            f.setToValue(0);
+            ParallelTransition p = new ParallelTransition();
+            p.getChildren().setAll(f, t);
+            if (scene.getId().equals(tabLayout.getId())) {
+                p.setOnFinished(e -> Main.closeProgram());
+            }
+            p.play();
+        }
+        else if (type.equals("switch")){        //If switching pane then keep the appropriate scene visible and translate
+            t.setOnFinished(e -> {
+                if (direction.equals("right") || direction.equals("left")) {
+                    if (scene.getId().equals(settingsScene.getId())) {
+                        for (Node element : mainScene.getChildren()) {
+                            element.setVisible(false);
+                        }
+                        mainScene.setVisible(false);
+                    } else if (scene.getId().equals(mainScene.getId())) {
+                        for (Node element : settingsScene.getChildren()) {
+                            element.setVisible(false);
+                        }
+                        settingsScene.setVisible(false);
+                    }
+                }
+            });
+            if (direction.equals("right") || direction.equals("left")) {
+                scene.setVisible(true);
+                for (Node element : scene.getChildren()) {
+                    element.setVisible(true);
+                }
+            }
+            t.play();
+        }
+        else {
+            System.out.println("*animate* animation doesn't exist");
+        }
     }
     public void settingsImageEnter() { colorChange(settingsImage); }
     public void settingsImageLeave() { colorChangeBack(settingsImage); }
@@ -221,7 +259,11 @@ public class Controller {
     public void paidEnter() { colorChange(paidImage); }
     public void paidLeave() { colorChangeBack(paidImage); }
     public void saveData() { FileStuff.saveInfo(); }
-    public void closeProgram() { Main.closeProgram(); }
+    public void closeProgram() {
+        if (ConfirmBox.display("Quit","Are you sure you want to quit?")) {
+            closer();
+        }
+    }
 
     public void debitPlusImageClick() {
         DebitStuff.addDebit(debitList, debitInput.getText());
@@ -277,15 +319,35 @@ public class Controller {
             f3.setToValue(0.5);
             f3.setDuration(Duration.millis(t));
             f3.setNode(moneySaveDisplay);
-            f2.play();
-            f3.play();
+            moneyDisplay.setTranslateY(-10);
+            TranslateTransition t3 = new TranslateTransition();
+            t3.setToY(0);
+            t3.setDuration(Duration.millis(t - 50));
+            t3.setNode(moneyDisplay);
+            moneySaveDisplay.setTranslateY(-10);
+            TranslateTransition t4 = new TranslateTransition();
+            t4.setToY(0);
+            t4.setDuration(Duration.millis(t - 50));
+            t4.setNode(moneySaveDisplay);
+            ParallelTransition p = new ParallelTransition();
+            p.getChildren().setAll(f2, f3, t3, t4);
+            p.play();
         });
         FadeTransition f1 = new FadeTransition();
         f1.setToValue(0);
         f1.setDuration(Duration.millis(t));
         f1.setNode(moneySaveDisplay);
-        f.play();
-        f1.play();
+        TranslateTransition t1 = new TranslateTransition();
+        t1.setToY(10);
+        t1.setDuration(Duration.millis(t - 50));
+        t1.setNode(moneyDisplay);
+        TranslateTransition t2 = new TranslateTransition();
+        t2.setToY(10);
+        t2.setDuration(Duration.millis(t - 50));
+        t2.setNode(moneySaveDisplay);
+        ParallelTransition p = new ParallelTransition();
+        p.getChildren().setAll(f, f1, t1, t2);
+        p.play();
     }
     public void colorChange(ImageView image) {
         image.setOpacity(1);
@@ -308,61 +370,22 @@ public class Controller {
         image.setEffect(null);
     }
     public void settingsImageClick() {
-        animateSwitch(mainScene, "backRight", 0.25);
-        animateSwitch(settingsScene, "left", 0.25);
+        animate(mainScene, "backRight", 0.25, "switch");
+        animate(settingsScene, "left", 0.25, "switch");
         MoneyStuff.setDailySpending(spendingDailyLabel);
         MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
 
     }
     public void walletImageClick() {
-        animateSwitch(settingsScene, "backLeft", 0.25);
-        animateSwitch(mainScene, "right", 0.25);
+        animate(settingsScene, "backLeft", 0.25, "switch");
+        animate(mainScene, "right", 0.25, "switch");
         MoneyStuff.setDailySpending(spendingDailyLabel);
         MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
-    private void animateSwitch(AnchorPane scene, String direction, double s) {
-        double number = scene.getLayoutX();
-        double number2 = 0;
-        if (direction.equals("right")) {
-            number = -600;
-            number2 = 615;
-        }
-        else if (direction.equals("left")) {
-            number = 630;
-            number2 = -615;
-        }
-        else if (direction.equals("backLeft") || direction.equals("backRight")) {
-            number2 = 0;
-        }
-        else {
-            System.out.println("*animate* Animation doesn't exist");
-        }
-
-        scene.setLayoutX(number);
-        TranslateTransition t = new TranslateTransition(Duration.seconds(s), scene);
-        t.setToX(number2);
-        t.setOnFinished(e -> {
-            if (direction.equals("right") || direction.equals("left")) {
-                if (scene.getId().equals(settingsScene.getId())) {
-                    for (Node element : mainScene.getChildren()) {
-                        element.setVisible(false);
-                    }
-                    mainScene.setVisible(false);
-                } else if (scene.getId().equals(mainScene.getId())) {
-                    for (Node element : settingsScene.getChildren()) {
-                        element.setVisible(false);
-                    }
-                    settingsScene.setVisible(false);
-                }
-            }
-        });
-        if (direction.equals("right") || direction.equals("left")) {
-            scene.setVisible(true);
-            for (Node element : scene.getChildren()) {
-                element.setVisible(true);
-            }
-        }
-        t.play();
+    public void closer() {
+        animate(settingsScene, "backRight", 1, "close");
+        animate(mainScene, "backRight", 1, "close");
+        animate(tabLayout, "backLeft", 1, "close");
     }
     public void paidImageClick() {
         MoneyStuff.paid(moneyDisplay);
