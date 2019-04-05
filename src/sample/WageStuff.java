@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 
 public class WageStuff {
