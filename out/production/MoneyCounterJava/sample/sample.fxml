@@ -126,6 +126,17 @@
                   <Insets />
                </opaqueInsets>
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="295.0" layoutY="7.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0" AnchorPane.leftAnchor="12.0">
+                     <fill>
+                        <LinearGradient endX="0.3380952380952381" endY="0.25714285714285706">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="#3e4f5b" offset="0.007662835249042145" />
+                              <Stop color="#485d6a" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0">
                      <fill>
                         <LinearGradient endX="0.3380952380952381" endY="0.25714285714285706">
@@ -183,6 +194,17 @@
                   <Insets />
                </opaqueInsets>
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="8.0" layoutY="7.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0" AnchorPane.leftAnchor="12.0">
+                     <fill>
+                        <LinearGradient endX="0.36190476190476184" endY="0.2523809523809523">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="#485d6a" offset="0.007662835249042145" />
+                              <Stop color="#536a79" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0">
                      <fill>
                         <LinearGradient endX="0.36190476190476184" endY="0.2523809523809523">
@@ -219,6 +241,17 @@
                   <Insets />
                </opaqueInsets>
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="14.0" layoutY="7.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0" AnchorPane.leftAnchor="12.0">
+                     <fill>
+                        <LinearGradient endX="0.4" endY="0.2761904761904761">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="#536a79" offset="0.007662835249042145" />
+                              <Stop color="#5d7789" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0">
                      <fill>
                         <LinearGradient endX="0.4" endY="0.2761904761904761">
@@ -257,6 +290,17 @@
                   <Insets />
                </opaqueInsets>
                <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutY="7.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="0.0">
+                     <fill>
+                        <LinearGradient endX="0.40476190476190477" endY="0.3047619047619047">
+                           <stops>
+                              <Stop color="WHITE" />
+                              <Stop color="#5d7789" offset="0.007662835249042145" />
+                              <Stop color="#678498" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0" AnchorPane.rightAnchor="12.0">
                      <fill>
                         <LinearGradient endX="0.40476190476190477" endY="0.3047619047619047">
