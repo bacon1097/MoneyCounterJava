@@ -56,35 +56,43 @@ public class DateInfo {
 //        return flag;
 //    }
     public static int daysSince() {
-        StringBuffer paydayString = new StringBuffer();
-        StringBuffer date = new StringBuffer();
+        StringBuffer paydayStringDay = new StringBuffer();
+        StringBuffer paydayStringMonth = new StringBuffer();
+        StringBuffer dateDay = new StringBuffer();
+        StringBuffer dateMonth = new StringBuffer();
         String payday = WageStuff.getPayDay();
-        for (char c : payday.toCharArray()) {
-            if (String.valueOf(c).equals("-") ) {
-                break;
+        String dateNow = DateInfo.getDate();
+        for (int i = 0; i < payday.toCharArray().length; i++) {
+            if (i == 0 || i == 1) {
+                paydayStringDay.append(payday.toCharArray()[i]);
+            }
+            else if (i == 3 || i == 4) {
+                paydayStringMonth.append(payday.toCharArray()[i]);
             }
             else {
-                paydayString.append(c);
+                continue;
             }
         }
-        for (char c : DateInfo.getDate().toCharArray()) {
-            if (String.valueOf(c).equals("-")) {
-                break;
-            }
-            else {
-                date.append(c);
-            }
-        }
-        int days = Integer.parseInt(date.toString()) - Integer.parseInt(paydayString.toString());
-        if (String.valueOf(String.valueOf(days).toCharArray()[0]).equals("-")) {        //If the value is a minus number
-            if (String.valueOf(getMonth().toCharArray()[0]).equals("0")) {      //If the month is a single digit number
-                days += getDaysInMonth("0" + (Integer.parseInt(getMonth()) - 1));       //Retain formatting
-            }
-            else {
-                days += getDaysInMonth(String.valueOf(Integer.parseInt(getMonth()) - 1));
+        for (int i = 0; i < dateNow.toCharArray().length; i++) {
+            if (i == 0 || i == 1) {
+                dateDay.append(dateNow.toCharArray()[i]);
+            } else if (i == 3 || i == 4) {
+                dateMonth.append(dateNow.toCharArray()[i]);
+            } else {
+                continue;
             }
         }
-        System.out.println("Days since payday: " + days);
-        return days;
+        int result;
+        if (Integer.parseInt(paydayStringMonth.toString()) != Integer.parseInt(dateMonth.toString())) {
+            result = (Integer.parseInt(dateDay.toString()) - Integer.parseInt(paydayStringDay.toString())) + getDaysInMonth(paydayStringMonth.toString());
+        }
+        else {
+            result = (Integer.parseInt(dateDay.toString()) - Integer.parseInt(paydayStringDay.toString()));
+        }
+        if (result >= getDaysInMonth(paydayStringMonth.toString())) {
+            result = getDaysInMonth(paydayStringMonth.toString()) - 1;
+        }
+        System.out.println("Days since payday: " + result);
+        return result;
     }
 }
