@@ -193,7 +193,7 @@ public class Controller {
             }
             p.play();
         }
-        else if (type.equals("switch")){        //If switching pane then keep the appropriate scene visible and translate
+        else if (type.equals("switch")) {        //If switching pane then keep the appropriate scene visible and translate
             t.setOnFinished(e -> {      //Make sure that the scene switching out disappears after the animation
                 if (direction.equals("right") || direction.equals("left")) {
                     if (!scene.getId().equals(mainScene.getId())) {      //Checking what scene is being switched out
