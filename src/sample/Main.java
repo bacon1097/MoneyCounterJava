@@ -19,9 +19,7 @@ public class Main extends Application {
         window.setTitle("Money Counter");
         window.getIcons().add(new Image(getClass().getResourceAsStream("images/money-bag.png")));
         window.initStyle(StageStyle.TRANSPARENT);
-        window.setOnCloseRequest(e -> {
-            e.consume();
-        });
+        window.setOnCloseRequest(e -> e.consume());
         Scene scene = new Scene(root);
         root.setOnMousePressed(e -> {
             x = e.getSceneX();
@@ -39,7 +37,9 @@ public class Main extends Application {
         window.show();
     }
     public static void closeProgram() {
-        FileStuff.saveInfo();
+        if (ConfirmBox.answer.equals("true")) {
+            FileStuff.saveInfo();
+        }
         window.close();
     }
     public static void main(String[] args) { launch(args); }

@@ -9,8 +9,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ConfirmBox {
-    static boolean answer;
-    public static boolean display(String title, String message) {
+    static String answer;
+    public static String display(String title, String message, String type) {
+
         //Setting the stage
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL); //Focus windows which stops you from doing things
@@ -26,20 +27,32 @@ public class ConfirmBox {
         //Yes button
         Button yesButton = new Button("Yes");
         yesButton.setOnAction(e -> {
-            answer = true;
+            answer = "true";
             window.close();
         });
 
         //No button
         Button noButton = new Button("No");
         noButton.setOnAction(e -> {
-            answer = false;
+            answer = "false";
             window.close();
         });
 
         //Setting layout
         VBox layout1 = new VBox(10);
-        layout1.getChildren().addAll(label, yesButton, noButton);
+        if (type.equals("close")) {
+            //Yes without saving button
+            Button noSaveButton = new Button("Yes, without saving");
+            noSaveButton.setOnAction(e -> {
+                answer = "nosave";
+                window.close();
+            });
+            layout1.getChildren().addAll(label, yesButton, noButton, noSaveButton);
+        }
+        else {
+            layout1.getChildren().addAll(label, yesButton, noButton);
+        }
+
         layout1.setAlignment(Pos.CENTER);
 
         //Setting scene. Show and pause the code

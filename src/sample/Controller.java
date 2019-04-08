@@ -131,7 +131,7 @@ public class Controller {
             }
         }
         else {
-            if (ConfirmBox.display("Setup?", "Would you like to configure?")) {
+            if (ConfirmBox.display("Setup?", "Would you like to configure?", "setup").equals("true")) {
                 List list = FirstTimeSetup.display("Configuration");
 
                 //Setting values from input
@@ -257,11 +257,6 @@ public class Controller {
     public void debitEnter() { colorChange(debitPaid); }
     public void debitLeave() { colorChangeBack(debitPaid); }
     public void saveData() { FileStuff.saveInfo(); }
-    public void closeProgram() {
-        if (ConfirmBox.display("Quit","Are you sure you want to quit?")) {
-            closer();
-        }
-    }
 
     public void debitPlusImageClick() {
         DebitStuff.addDebit(debitList, debitInput.getText());
@@ -380,10 +375,13 @@ public class Controller {
         MoneyStuff.setDailySpending(spendingDailyLabel);
         MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
-    public void closer() {
-        animate(settingsScene, "backRight", 1, "close");
-        animate(mainScene, "backRight", 1, "close");
-        animate(tabLayout, "backLeft", 1, "close");
+    public void closeProgram() {
+        String result = ConfirmBox.display("Quit","Are you sure you want to quit?", "close");
+        if (result.equals("true") || result.equals("nosave")) {
+            animate(settingsScene, "backRight", 1, "close");
+            animate(mainScene, "backRight", 1, "close");
+            animate(tabLayout, "backLeft", 1, "close");
+        }
     }
     public void paidImageClick() {
         MoneyStuff.paid(moneyDisplay);
