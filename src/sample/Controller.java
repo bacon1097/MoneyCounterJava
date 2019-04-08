@@ -78,6 +78,8 @@ public class Controller {
     @FXML
     private ImageView paidImage;
     @FXML
+    private ImageView debitPaid;
+    @FXML
     private Label daysSincePayDayLabel;
     @FXML
     private Label spendingDailyLabel;
@@ -255,6 +257,8 @@ public class Controller {
     public void debitPlusLeave() { colorChangeBack(debitPlusImage); }
     public void paidEnter() { colorChange(paidImage); }
     public void paidLeave() { colorChangeBack(paidImage); }
+    public void debitEnter() { colorChange(debitPaid); }
+    public void debitLeave() { colorChangeBack(debitPaid); }
     public void saveData() { FileStuff.saveInfo(); }
     public void closeProgram() {
         if (ConfirmBox.display("Quit","Are you sure you want to quit?")) {
@@ -388,5 +392,11 @@ public class Controller {
         MoneyStuff.paid(moneyDisplay);
         MoneyStuff.setDailySpending(spendingDailyLabel);
         MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+    }
+    public void debitImageClick() {
+        float item = Float.parseFloat(debitList.getSelectionModel().getSelectedItem().toString());
+        MoneyStuff.subtractMoney(moneyDisplay, item);
+        MoneyStuff.setAmountAtPayDay(MoneyStuff.amountAtPayDay - item);
+        System.out.println("Debit Paid: " + String.valueOf(item));
     }
 }
