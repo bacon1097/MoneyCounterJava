@@ -14,7 +14,7 @@ public class Main extends Application {
     private double x, y;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         window = primaryStage;
         window.setTitle("Money Counter");
         window.getIcons().add(new Image(getClass().getResourceAsStream("images/money-bag.png")));
