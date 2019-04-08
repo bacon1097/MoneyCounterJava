@@ -38,7 +38,7 @@
             <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />
          </effect>
       </AnchorPane>
-      <AnchorPane fx:id="settingsScene" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="135.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
+      <AnchorPane fx:id="settingsScene" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="135.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
          <children>
             <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="405.0" layoutY="542.0" prefHeight="20.0" prefWidth="150.0" style="-fx-opacity: 0.5;" text="DAYS SINCE PAYDAY:" textFill="SILVER">
                <font>
@@ -124,7 +124,7 @@
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />
          </effect></AnchorPane>
-      <AnchorPane fx:id="mainScene" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="135.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
+      <AnchorPane fx:id="mainScene" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="135.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
             <AnchorPane layoutX="39.0" layoutY="29.0" prefHeight="70.0" prefWidth="570.0" style="-fx-background-color: #3e4f5b;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
                <opaqueInsets>

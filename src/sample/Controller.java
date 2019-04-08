@@ -156,69 +156,66 @@ public class Controller {
         }
     }
     private void animate(AnchorPane scene, String direction, double s, String type) {
-        double number = scene.getLayoutX();
-        double number2 = 0;
-        if (direction.equals("right")) {
-            number = -600;
-            number2 = 615;
+        double translateFromValue = scene.getLayoutX();
+        double translateToValue = 0;
+        if (direction.equals("right")) {        //Setting the direction of the translation
+            translateFromValue = -600;      //Setting the appropriate translation variales depending on the direction of translation
+            translateToValue = 615;
         }
         else if (direction.equals("left")) {
-            number = 630;
-            number2 = -615;
+            translateFromValue = 630;
+            translateToValue = -615;
         }
-        else if (direction.equals("backLeft") || direction.equals("backRight")) {
-            number2 = 0;
+        else if (direction.equals("backLeft") || direction.equals("backRight")) {       //These 2 values are used when switching pages
+            translateToValue = 0;       //Value is 0 because the scene needs to be set back to its original position
         }
         else {
-            System.out.println("*animate* Animation doesn't exist");
+            System.out.println("*animate* Animation doesn't exist");        //Validation checking
         }
-        scene.setLayoutX(number);
+        scene.setLayoutX(translateFromValue);       //Ensure that the scene is at its original position
         TranslateTransition t = new TranslateTransition(Duration.seconds(s), scene);
-        t.setToX(number2);
-        if (type.equals("load")) {      //If loading then tranlate inwards with a fade in
-            scene.setOpacity(0);
+        t.setToX(translateToValue);
+        if (type.equals("load")) {      //If loading then translate inwards with a fade in
+            scene.setOpacity(0);        //Start the scene with 0 opacity
             FadeTransition f = new FadeTransition(Duration.seconds(s), scene);
-            f.setToValue(1);
+            f.setToValue(1);        //Animate the opacity to 1
             ParallelTransition p = new ParallelTransition();
             p.getChildren().setAll(f, t);
             p.play();
         }
         else if (type.equals("close")) {        //If closing then reverse the load animation
-            FadeTransition f = new FadeTransition(Duration.seconds(s), scene);
-            f.setToValue(0);
-            ParallelTransition p = new ParallelTransition();
+            FadeTransition f = new FadeTransition(Duration.seconds(s), scene);      //Add a fade out transition
+            f.setToValue(0);        //Setting the opacity level to 0
+            ParallelTransition p = new ParallelTransition();        //Adding the transitions into a singular transition
             p.getChildren().setAll(f, t);
             if (scene.getId().equals(tabLayout.getId())) {
-                p.setOnFinished(e -> Main.closeProgram());
+                p.setOnFinished(e -> Main.closeProgram());      //Close the program after the transition
             }
             p.play();
         }
         else if (type.equals("switch")){        //If switching pane then keep the appropriate scene visible and translate
-            t.setOnFinished(e -> {
+            t.setOnFinished(e -> {      //Make sure that the scene switching out disappears after the animation
                 if (direction.equals("right") || direction.equals("left")) {
-                    if (scene.getId().equals(settingsScene.getId())) {
-                        for (Node element : mainScene.getChildren()) {
-                            element.setVisible(false);
-                        }
-                        mainScene.setVisible(false);
-                    } else if (scene.getId().equals(mainScene.getId())) {
-                        for (Node element : settingsScene.getChildren()) {
-                            element.setVisible(false);
-                        }
+                    if (!scene.getId().equals(mainScene.getId())) {      //Checking what scene is being switched out
+                        mainScene.setVisible(false);        //Disable the visibility of the parent
+                    } else if (!scene.getId().equals(settingsScene.getId())) {
                         settingsScene.setVisible(false);
+                    }
+                    else {
+                        System.out.println("*animate* scene doesn't exist");        //Validation checking
                     }
                 }
             });
-            if (direction.equals("right") || direction.equals("left")) {
+            if (direction.equals("right") || direction.equals("left")) {        //If the direction of the scene is not sliding out of view then set the scene as visible
                 scene.setVisible(true);
                 for (Node element : scene.getChildren()) {
                     element.setVisible(true);
                 }
             }
-            t.play();
+            t.play();       //Play the animation
         }
         else {
-            System.out.println("*animate* animation doesn't exist");
+            System.out.println("*animate* animation doesn't exist");        //Validation checking
         }
     }
     public void settingsImageEnter() { colorChange(settingsImage); }
