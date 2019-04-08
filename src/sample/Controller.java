@@ -87,6 +87,8 @@ public class Controller {
     private AnchorPane mainParent;
     @FXML
     private Label wageDisplayLabel;
+    @FXML
+    private Label differenceDisplayLabel;
 
     public void initialize() {
         mainScene.setCacheShape(true);
@@ -289,6 +291,7 @@ public class Controller {
         }
     }
     private void refreshMoney(String operation) {
+        float valueBefore = Float.parseFloat(moneyDisplay.getText());
         FadeTransition f = new FadeTransition();
         double t = new Duration(250).toMillis();
         f.setToValue(0);
@@ -302,44 +305,74 @@ public class Controller {
             } else if (operation.equals("set")) {
                 MoneyStuff.setValue(moneyDisplay, Float.parseFloat(moneyInput.getText()));
             }
+            differenceDisplayLabel.setText(String.valueOf(Float.parseFloat(differenceDisplayLabel.getText()) - (valueBefore - Float.parseFloat(moneyDisplay.getText()))));      //Setting the difference calculated when changes are made.
             MoneyStuff.setDailySpending(spendingDailyLabel);
             MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+
             FadeTransition f2 = new FadeTransition();
             f2.setToValue(0.5);
             f2.setDuration(Duration.millis(t));
             f2.setNode(moneyDisplay);
+
             FadeTransition f3 = new FadeTransition();
             f3.setToValue(0.5);
             f3.setDuration(Duration.millis(t));
             f3.setNode(moneySaveDisplay);
+
+            FadeTransition f5 = new FadeTransition();
+            f5.setToValue(0.5);
+            f5.setDuration(Duration.millis(t));
+            f5.setNode(differenceDisplayLabel);
+
+            differenceDisplayLabel.setTranslateY(-10);
+            TranslateTransition t6 = new TranslateTransition();
+            t6.setToY(0);
+            t6.setDuration(Duration.millis(t - 50));
+            t6.setNode(differenceDisplayLabel);
+
             moneyDisplay.setTranslateY(-10);
             TranslateTransition t3 = new TranslateTransition();
             t3.setToY(0);
             t3.setDuration(Duration.millis(t - 50));
             t3.setNode(moneyDisplay);
+
             moneySaveDisplay.setTranslateY(-10);
             TranslateTransition t4 = new TranslateTransition();
             t4.setToY(0);
             t4.setDuration(Duration.millis(t - 50));
             t4.setNode(moneySaveDisplay);
+
             ParallelTransition p = new ParallelTransition();
-            p.getChildren().setAll(f2, f3, t3, t4);
+            p.getChildren().setAll(f2, f3, t3, t4, f5, t6);
             p.play();
         });
         FadeTransition f1 = new FadeTransition();
         f1.setToValue(0);
         f1.setDuration(Duration.millis(t));
         f1.setNode(moneySaveDisplay);
+
+        FadeTransition f4 = new FadeTransition();
+        f4.setToValue(0);
+        f4.setDuration(Duration.millis(t));
+        f4.setNode(differenceDisplayLabel);
+
         TranslateTransition t1 = new TranslateTransition();
         t1.setToY(10);
         t1.setDuration(Duration.millis(t - 50));
         t1.setNode(moneyDisplay);
+
         TranslateTransition t2 = new TranslateTransition();
         t2.setToY(10);
         t2.setDuration(Duration.millis(t - 50));
         t2.setNode(moneySaveDisplay);
+
+        TranslateTransition t5 = new TranslateTransition();
+        t5.setToY(10);
+        t5.setDuration(Duration.millis(t - 50));
+        t5.setNode(differenceDisplayLabel);
+
         ParallelTransition p = new ParallelTransition();
-        p.getChildren().setAll(f, f1, t1, t2);
+        p.getChildren().setAll(f, f1, t1, t2, f4, t5);
         p.play();
     }
     public void colorChange(ImageView image) {
