@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 
 public class FileStuff {
     static String fileName = "./MoneyData.info";
-    static boolean append = false;
 
     public static void saveInfo() {
         System.out.println("Saving info");
@@ -23,7 +22,7 @@ public class FileStuff {
             }
         }
         try {
-            PrintWriter pw = new PrintWriter(new FileWriter(fileName, append));
+            PrintWriter pw = new PrintWriter(new FileWriter(fileName, false));
             pw.println(MoneyStuff.getValue());
             pw.println(DateInfo.getDate());
             pw.println(WageStuff.getPayDay());
