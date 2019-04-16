@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.animation.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -120,20 +122,46 @@ public class Controller {
                 String paydayDate = FileStuff.getInfo(2);
                 String currentWage = FileStuff.getInfo(3);
                 String amountAtPayDay = FileStuff.getInfo(5);
+                String wageSliderValue = FileStuff.getInfo(6);
 
                 MoneyStuff.setAmountAtPayDay(Float.parseFloat(amountAtPayDay));
                 moneyDisplay.setText(String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));       //Setting the money owned value
                 WageStuff.setPayDay(paydayDate);       //Setting the payday date
                 WageStuff.setWage(Float.parseFloat(currentWage), wageDisplayLabel);      //Setting the wage
                 daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
+                WageStuff.setWageSlider(wageSlider, wageSliderValue);
 
                 //Set the savings
-                MoneyStuff.setDailySpending(spendingDailyLabel);
-                MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+                refreshData();
 
                 System.out.println("Amount at payday is: " + MoneyStuff.getAmountAtPayDay());
                 System.out.println("New Value is: " + String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));
                 System.out.println("Daily Spending Value is: " + String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));
+
+                try {
+                    wageSlider.valueProperty().addListener(new ChangeListener<Number>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                            if (newValue.floatValue() == 0 || newValue.floatValue() == 1) {
+                                System.out.println(newValue);
+                                wageSliderChange();
+                            }
+                        }
+                    });
+                    moneyDisplay.textProperty().addListener(new ChangeListener<String>() {
+                        @Override
+                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                            refreshData();
+                        }
+                    });
+                    wageDisplayLabel.textProperty().addListener(new ChangeListener<String>() {
+                        @Override
+                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                            refreshData();
+                        }
+                    });
+                }
+                catch (NullPointerException e) {}
 
                 animate(mainScene, "right", 1, "load");
                 animate(tabLayout,"left", 1, "load");
@@ -154,8 +182,7 @@ public class Controller {
                 daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
 
                 //Set the savings
-                MoneyStuff.setDailySpending(spendingDailyLabel);
-                MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+                refreshData();
             }
             else {
                 System.out.println("New Value is: " + moneyDisplay.getText());
@@ -279,18 +306,15 @@ public class Controller {
 
     public void debitPlusImageClick() {
         DebitStuff.addDebit(debitList, debitInput.getText());
-        MoneyStuff.setDailySpending(spendingDailyLabel);
+        refreshData();
     }
 
     public void debitMinusImageClick() {
         DebitStuff.deleteDebit(debitList);
-        MoneyStuff.setDailySpending(spendingDailyLabel);
-        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+        refreshData();
     }
     public void setWage() {
         WageStuff.setWage(Float.parseFloat(wageInput.getText()), wageDisplayLabel);
-        MoneyStuff.setDailySpending(spendingDailyLabel);
-        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
     public void setValue() {
         if (MoneyStuff.validateInput(moneyInput.getText())) {
@@ -306,6 +330,10 @@ public class Controller {
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             refreshMoney("minus");
         }
+    }
+    private void refreshData() {
+        MoneyStuff.setDailySpending(spendingDailyLabel);
+        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
     private void refreshMoney(String operation) {
         float valueBefore = Float.parseFloat(moneyDisplay.getText());
@@ -323,8 +351,7 @@ public class Controller {
                 MoneyStuff.setValue(moneyDisplay, Float.parseFloat(moneyInput.getText()));
             }
             differenceDisplayLabel.setText(String.valueOf(Float.parseFloat(differenceDisplayLabel.getText()) - (valueBefore - Float.parseFloat(moneyDisplay.getText()))));      //Setting the difference calculated when changes are made.
-            MoneyStuff.setDailySpending(spendingDailyLabel);
-            MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+            refreshData();
 
             FadeTransition f2 = new FadeTransition();
             f2.setToValue(0.5);
@@ -416,8 +443,7 @@ public class Controller {
         animate(settingsScene, "backLeft", 0.25, "switch");
         animate(mainScene, "right", 0.25, "switch");
         animate(investScene, "backLeft", 0.25, "switch");
-        MoneyStuff.setDailySpending(spendingDailyLabel);
-        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+        refreshData();
     }
     public void settingsImageClick() {
         if (mainScene.isVisible()) {
@@ -428,16 +454,14 @@ public class Controller {
             animate(settingsScene, "right", 0.25, "switch");
             animate(investScene, "backLeft", 0.25, "switch");
         }
-        MoneyStuff.setDailySpending(spendingDailyLabel);
-        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+        refreshData();
 
     }
     public void investImageClick() {
         animate(settingsScene, "backRight", 0.25, "switch");
         animate(mainScene, "backRight", 0.25, "switch");
         animate(investScene, "left", 0.25, "switch");
-        MoneyStuff.setDailySpending(spendingDailyLabel);
-        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+        refreshData();
     }
     public void closeProgram() {
         String result = ConfirmBox.display("Quit","Are you sure you want to quit?", "close");
@@ -450,13 +474,26 @@ public class Controller {
     }
     public void paidImageClick() {
         MoneyStuff.paid(moneyDisplay);
-        MoneyStuff.setDailySpending(spendingDailyLabel);
-        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+        refreshData();
     }
     public void debitImageClick() {
         float item = Float.parseFloat(debitList.getSelectionModel().getSelectedItem().toString());
         MoneyStuff.subtractMoney(moneyDisplay, item);
         MoneyStuff.setAmountAtPayDay(MoneyStuff.amountAtPayDay - item);
         System.out.println("Debit Paid: " + String.valueOf(item));
+    }
+    public void wageSliderChange() {
+        String timePeriod;
+        if (wageSlider.getValue() == 1) {
+            timePeriod = "Monthly";
+        }
+        else if (wageSlider.getValue() == 0) {
+            timePeriod = "Weekly";
+        }
+        else {
+            timePeriod = null;
+            System.out.println("*wageSliderChange* Not a valid slider option");
+        }
+        WageStuff.setWageSlider(wageSlider, timePeriod);
     }
 }

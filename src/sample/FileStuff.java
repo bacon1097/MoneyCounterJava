@@ -29,6 +29,7 @@ public class FileStuff {
             pw.println(WageStuff.getWage());
             pw.println(DebitStuff.getDebits());
             pw.println(MoneyStuff.getAmountAtPayDay());
+            pw.println(WageStuff.getWageSlider());
             pw.close();
             System.out.println("Saved Data");
         }

@@ -1,0 +1,3 @@
+.\out\artifacts\MoneyCounterJava\MoneyData.info
+.\out\artifacts\MoneyCounterJava_jar\MoneyData.info
+.\MoneyData.info
