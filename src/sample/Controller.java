@@ -1,10 +1,10 @@
 package sample;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.ParallelTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
@@ -21,6 +21,10 @@ import java.util.List;
 public class Controller {
     @FXML
     private AnchorPane settingsScene;
+    @FXML
+    private AnchorPane investScene;
+    @FXML
+    private PieChart pieChart1;
     @FXML
     private Slider wageSlider;
     @FXML
@@ -66,6 +70,8 @@ public class Controller {
     @FXML
     private ImageView saveImage;
     @FXML
+    private ImageView investImage;
+    @FXML
     private TextField moneyInput;
     @FXML
     private AnchorPane tabLayout;
@@ -94,6 +100,10 @@ public class Controller {
         mainScene.setCacheShape(true);
         tabLayout.setCacheShape(true);
         if (FileStuff.fileExists()) {
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                    new PieChart.Data("Bitcoin", 100),
+                    new PieChart.Data("Litecoin", 50));
+            pieChart1.setData(pieChartData);
             String debits = FileStuff.getInfo(4);
             String temp = "";
             for (char c : debits.toCharArray()) {
@@ -157,67 +167,72 @@ public class Controller {
             }
         }
     }
-    private void animate(AnchorPane scene, String direction, double s, String type) {
-        double translateFromValue = scene.getLayoutX();
-        double translateToValue = 0;
-        if (direction.equals("right")) {        //Setting the direction of the translation
-            translateFromValue = -600;      //Setting the appropriate translation variales depending on the direction of translation
-            translateToValue = 615;
+    private void animate(AnchorPane scene, String direction, double time, String type) {
+        if (type.equals("load")) {
+            scene.opacityProperty().set(0);
+            if (direction.equals("left")) {
+                scene.translateXProperty().set(scene.getPrefWidth() + scene.getLayoutX());
+            } else if (direction.equals("right")) {
+                scene.translateXProperty().set(-scene.getPrefWidth() - scene.getLayoutX());
+            } else {
+                System.out.println("Direction doesn't exist");
+            }
+            KeyValue kv = new KeyValue(scene.translateXProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(time), kv);
+            KeyValue kv1 = new KeyValue(scene.opacityProperty(), 1.0f);
+            KeyFrame kf1 = new KeyFrame(Duration.seconds(time), kv1);
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().addAll(kf, kf1);
+            timeline.play();
         }
-        else if (direction.equals("left")) {
-            translateFromValue = 630;
-            translateToValue = -615;
+        else if (type.equals("switch")) {
+            if (direction.equals("left") || direction.equals("right")) {
+                if (!scene.isVisible()) {
+                    scene.setVisible(true);
+                    if (direction.equals("left")) {
+                        scene.translateXProperty().set(scene.getPrefWidth() + scene.getLayoutX());
+                    } else if (direction.equals("right")) {
+                        scene.translateXProperty().set(-scene.getPrefWidth() - scene.getLayoutX());
+                    }
+                    KeyValue kv = new KeyValue(scene.translateXProperty(), 0, Interpolator.EASE_IN);
+                    KeyFrame kf = new KeyFrame(Duration.seconds(time), kv);
+                    Timeline timeline = new Timeline();
+                    timeline.getKeyFrames().add(kf);
+                    timeline.play();
+                }
+            } else if (direction.equals("backLeft") || direction.equals("backRight")) {
+                switchAnimate(scene, direction, time);
+            }
         }
-        else if (direction.equals("backLeft") || direction.equals("backRight")) {       //These 2 values are used when switching pages
-            translateToValue = 0;       //Value is 0 because the scene needs to be set back to its original position
+        else if (type.equals("close")) {
+            switchAnimate(scene, direction, time);
+            KeyValue kv = new KeyValue(scene.opacityProperty(), 0.0f);
+            KeyFrame kf = new KeyFrame(Duration.seconds(time), kv);
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().add(kf);
+            timeline.setOnFinished(e -> Main.closeProgram());
+            timeline.play();
         }
         else {
-            System.out.println("*animate* Animation doesn't exist");        //Validation checking
+            System.out.println("Type doesn't exist: " + type);
         }
-        scene.setLayoutX(translateFromValue);       //Ensure that the scene is at its original position
-        TranslateTransition t = new TranslateTransition(Duration.seconds(s), scene);
-        t.setToX(translateToValue);
-        if (type.equals("load")) {      //If loading then translate inwards with a fade in
-            scene.setOpacity(0);        //Start the scene with 0 opacity
-            FadeTransition f = new FadeTransition(Duration.seconds(s), scene);
-            f.setToValue(1);        //Animate the opacity to 1
-            ParallelTransition p = new ParallelTransition();
-            p.getChildren().setAll(f, t);
-            p.play();
-        }
-        else if (type.equals("close")) {        //If closing then reverse the load animation
-            FadeTransition f = new FadeTransition(Duration.seconds(s), scene);      //Add a fade out transition
-            f.setToValue(0);        //Setting the opacity level to 0
-            ParallelTransition p = new ParallelTransition();        //Adding the transitions into a singular transition
-            p.getChildren().setAll(f, t);
-            if (scene.getId().equals(tabLayout.getId())) {
-                p.setOnFinished(e -> Main.closeProgram());      //Close the program after the transition
-            }
-            p.play();
-        }
-        else if (type.equals("switch")) {        //If switching pane then keep the appropriate scene visible and translate
-            t.setOnFinished(e -> {      //Make sure that the scene switching out disappears after the animation
-                if (direction.equals("right") || direction.equals("left")) {
-                    if (!scene.getId().equals(mainScene.getId())) {      //Checking what scene is being switched out
-                        mainScene.setVisible(false);        //Disable the visibility of the parent
-                    } else if (!scene.getId().equals(settingsScene.getId())) {
-                        settingsScene.setVisible(false);
-                    }
-                    else {
-                        System.out.println("*animate* scene doesn't exist");        //Validation checking
-                    }
-                }
-            });
-            if (direction.equals("right") || direction.equals("left")) {        //If the direction of the scene is not sliding out of view then set the scene as visible
-                scene.setVisible(true);
-                for (Node element : scene.getChildren()) {
-                    element.setVisible(true);
-                }
-            }
-            t.play();       //Play the animation
-        }
-        else {
-            System.out.println("*animate* animation doesn't exist");        //Validation checking
+    }
+    private void switchAnimate(AnchorPane scene, String direction, double time) {
+        scene.translateXProperty().set(15);
+        if (direction.equals("backLeft")) {
+            KeyValue kv = new KeyValue(scene.translateXProperty(), scene.getPrefWidth() + scene.getLayoutX(), Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(time), kv);
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().add(kf);
+            timeline.setOnFinished(e -> scene.setVisible(false));
+            timeline.play();
+        } else if (direction.equals("backRight")) {
+            KeyValue kv = new KeyValue(scene.translateXProperty(), -scene.getPrefWidth() - scene.getLayoutX(), Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(time), kv);
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().add(kf);
+            timeline.setOnFinished(e -> scene.setVisible(false));
+            timeline.play();
         }
     }
     public void settingsImageEnter() { colorChange(settingsImage); }
@@ -258,6 +273,8 @@ public class Controller {
     public void paidLeave() { colorChangeBack(paidImage); }
     public void debitEnter() { colorChange(debitPaid); }
     public void debitLeave() { colorChangeBack(debitPaid); }
+    public void investImageEnter() { colorChange(investImage); }
+    public void investImageLeave() { colorChangeBack(investImage); }
     public void saveData() { FileStuff.saveInfo(); }
 
     public void debitPlusImageClick() {
@@ -395,16 +412,30 @@ public class Controller {
         image.setScaleZ(1);
         image.setEffect(null);
     }
+    public void walletImageClick() {
+        animate(settingsScene, "backLeft", 0.25, "switch");
+        animate(mainScene, "right", 0.25, "switch");
+        animate(investScene, "backLeft", 0.25, "switch");
+        MoneyStuff.setDailySpending(spendingDailyLabel);
+        MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
+    }
     public void settingsImageClick() {
-        animate(mainScene, "backRight", 0.25, "switch");
-        animate(settingsScene, "left", 0.25, "switch");
+        if (mainScene.isVisible()) {
+            animate(settingsScene, "left", 0.25, "switch");
+            animate(mainScene, "backRight", 0.25, "switch");
+        }
+        else if (investScene.isVisible()) {
+            animate(settingsScene, "right", 0.25, "switch");
+            animate(investScene, "backLeft", 0.25, "switch");
+        }
         MoneyStuff.setDailySpending(spendingDailyLabel);
         MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
 
     }
-    public void walletImageClick() {
-        animate(settingsScene, "backLeft", 0.25, "switch");
-        animate(mainScene, "right", 0.25, "switch");
+    public void investImageClick() {
+        animate(settingsScene, "backRight", 0.25, "switch");
+        animate(mainScene, "backRight", 0.25, "switch");
+        animate(investScene, "left", 0.25, "switch");
         MoneyStuff.setDailySpending(spendingDailyLabel);
         MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
     }
@@ -412,6 +443,7 @@ public class Controller {
         String result = ConfirmBox.display("Quit","Are you sure you want to quit?", "close");
         if (result.equals("true") || result.equals("nosave")) {
             animate(settingsScene, "backRight", 1, "close");
+            animate(investScene, "backRight", 1, "close");
             animate(mainScene, "backRight", 1, "close");
             animate(tabLayout, "backLeft", 1, "close");
         }

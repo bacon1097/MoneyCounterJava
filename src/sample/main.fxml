@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
@@ -18,25 +19,38 @@
    <children>
       <AnchorPane fx:id="tabLayout" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="15.0" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
-            <ImageView fx:id="closeImage" fitHeight="50.0" fitWidth="50.0" layoutX="428.0" layoutY="25.0" onMouseEntered="#closeImageEnter" onMouseExited="#closeImageLeave" onMouseReleased="#closeProgram" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="closeImage" fitHeight="50.0" fitWidth="50.0" layoutX="550.0" layoutY="25.0" onMouseEntered="#closeImageEnter" onMouseExited="#closeImageLeave" onMouseReleased="#closeProgram" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;" AnchorPane.rightAnchor="50.0">
                <image>
                   <Image url="@images/cancel.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="walletImage" fitHeight="50.0" fitWidth="50.0" layoutX="108.0" layoutY="25.0" onMouseEntered="#walletImageEnter" onMouseExited="#walletImageLeave" onMouseReleased="#walletImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="walletImage" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="25.0" onMouseEntered="#walletImageEnter" onMouseExited="#walletImageLeave" onMouseReleased="#walletImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;" AnchorPane.leftAnchor="50.0">
                <image>
                   <Image url="@images/wallet.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settingsImage" fitHeight="50.0" fitWidth="50.0" layoutX="275.0" layoutY="25.0" onMouseEntered="#settingsImageEnter" onMouseExited="#settingsImageLeave" onMouseReleased="#settingsImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="settingsImage" fitHeight="50.0" fitWidth="50.0" layoutX="200.0" layoutY="25.0" onMouseEntered="#settingsImageEnter" onMouseExited="#settingsImageLeave" onMouseReleased="#settingsImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@images/settings.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="investImage" fitHeight="50.0" fitWidth="50.0" layoutX="350.0" layoutY="25.0" onMouseEntered="#investImageEnter" onMouseExited="#investImageLeave" onMouseReleased="#investImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+               <image>
+                  <Image url="@images/invest.png" />
                </image>
             </ImageView>
          </children>
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />
          </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="investScene" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="135.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" color="WHITE" height="50.0" radius="24.5" width="50.0" />
+         </effect>
+         <children>
+            <PieChart fx:id="pieChart1" prefHeight="90.0" prefWidth="125.0" />
+         </children>
       </AnchorPane>
       <AnchorPane fx:id="settingsScene" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="135.0" prefHeight="583.0" prefWidth="600.0" style="-fx-background-color: #36454F;" visible="false">
          <children>
@@ -142,7 +156,7 @@
                         </LinearGradient>
                      </fill>
                   </Rectangle>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0" AnchorPane.rightAnchor="12.0">
                      <fill>
                         <LinearGradient endX="0.3380952380952381" endY="0.25714285714285706">
                            <stops>
@@ -210,7 +224,7 @@
                         </LinearGradient>
                      </fill>
                   </Rectangle>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0" AnchorPane.rightAnchor="12.0">
                      <fill>
                         <LinearGradient endX="0.36190476190476184" endY="0.2523809523809523">
                            <stops>
@@ -257,7 +271,7 @@
                         </LinearGradient>
                      </fill>
                   </Rectangle>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="285.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="270.0" AnchorPane.rightAnchor="12.0">
                      <fill>
                         <LinearGradient endX="0.4" endY="0.2761904761904761">
                            <stops>
