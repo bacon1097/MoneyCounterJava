@@ -101,7 +101,7 @@ public class Controller {
     public void initialize() {
         mainScene.setCacheShape(true);
         tabLayout.setCacheShape(true);
-        if (FileStuff.fileExists()) {
+        if (FileStuff.fileExists(FileStuff.fileName)) {
             ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                     new PieChart.Data("Bitcoin", 100),
                     new PieChart.Data("Litecoin", 50));

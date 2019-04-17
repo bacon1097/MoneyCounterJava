@@ -8,11 +8,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FileStuff {
-    static String fileName = "./MoneyData.info";
-
+    static String fileName = System.getProperty("user.home") + "\\AppData\\Local\\MoneyCounter\\MoneyData.info";
+    static String direc = System.getProperty("user.home") + "\\AppData\\Local\\MoneyCounter";
     public static void saveInfo() {
         System.out.println("Saving info");
-        if (!fileExists()) {
+        if (!fileExists(direc)) {
+            File dir = new File(direc);
+            dir.mkdirs();
+        }
+        if (!fileExists(fileName)) {
             try {
                 File file = new File(fileName);
                 file.createNewFile();
@@ -22,6 +26,7 @@ public class FileStuff {
             }
         }
         try {
+            System.out.println(fileName);
             PrintWriter pw = new PrintWriter(new FileWriter(fileName, false));
             pw.println(MoneyStuff.getValue());
             pw.println(DateInfo.getDate());
@@ -37,8 +42,8 @@ public class FileStuff {
             System.out.println("*saveInfo* File not found: " + fileName);
         }
     }
-    public static boolean fileExists() {
-        File file = new File(fileName);
+    public static boolean fileExists(String name) {
+        File file = new File(name);
         return file.exists();
     }
     public static String getInfo(int line) {
