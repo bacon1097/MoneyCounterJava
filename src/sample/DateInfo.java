@@ -62,6 +62,10 @@ public class DateInfo {
         StringBuffer dateMonth = new StringBuffer();
         String payday = WageStuff.getPayDay();
         String dateNow = DateInfo.getDate();
+        /*
+        Reading in the payday date from the file character by character and only obtaining the days
+        and the months. Do the same for the current date.
+        */
         for (int i = 0; i < payday.toCharArray().length; i++) {
             if (i == 0 || i == 1) {
                 paydayStringDay.append(payday.toCharArray()[i]);

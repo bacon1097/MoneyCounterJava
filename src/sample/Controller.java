@@ -58,6 +58,8 @@ public class Controller {
     @FXML
     private Label moneyDisplay;
     @FXML
+    private Label perMonthLabel;
+    @FXML
     private ImageView coinImage;
     @FXML
     private ImageView minusImage;
@@ -129,7 +131,7 @@ public class Controller {
                 WageStuff.setPayDay(paydayDate);       //Setting the payday date
                 WageStuff.setWage(Float.parseFloat(currentWage), wageDisplayLabel);      //Setting the wage
                 daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
-                WageStuff.setWageSlider(wageSlider, wageSliderValue);
+                WageStuff.setWageSlider(wageSlider, perMonthLabel, wageSliderValue);       //Setting the slider for monthly or weekly
 
                 //Set the savings
                 refreshData();
@@ -331,6 +333,9 @@ public class Controller {
             refreshMoney("minus");
         }
     }
+    /*
+    Main calculation of savings.
+     */
     private void refreshData() {
         MoneyStuff.setDailySpending(spendingDailyLabel);
         MoneyStuff.setCalculateSavings(moneySaveDisplay, moneyDisplay.getText());
@@ -494,6 +499,6 @@ public class Controller {
             timePeriod = null;
             System.out.println("*wageSliderChange* Not a valid slider option");
         }
-        WageStuff.setWageSlider(wageSlider, timePeriod);
+        WageStuff.setWageSlider(wageSlider, perMonthLabel, timePeriod);
     }
 }

@@ -51,7 +51,9 @@ public class MoneyStuff {
     public static float getAmountAtPayDay() {
         return (amountAtPayDay);
     }
-    //In progress
+    /*
+    Main savings calculations
+     */
     public static void setCalculateSavings(Label label, String value) {
         float dailySpending = WageStuff.getDailySpending();
         int daysSince = DateInfo.daysSince();

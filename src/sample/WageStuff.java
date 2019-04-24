@@ -2,6 +2,9 @@ package sample;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import oracle.jrockit.jfr.StringConstantPool;
+
+import java.util.Date;
 
 public class WageStuff {
     static float wage;
@@ -27,14 +30,16 @@ public class WageStuff {
         System.out.println("Wage period is: " + wagePeriod);
         return wagePeriod;
     }
-    public static void setWageSlider(Slider slider, String val) {
+    public static void setWageSlider(Slider slider, Label monthly, String val) {
         if (val.equals("Monthly") || val.equals("Weekly")) {
             wagePeriod = val;
             if (val.equals("Monthly")) {
                 slider.setValue(1);
+                monthly.setText("(Monthly)");
             }
             else if (val.equals("Weekly")) {
                 slider.setValue(0);
+                monthly.setText("(Weekly)");
             }
             System.out.println("Setting wage period to: " + val);
         }
@@ -43,33 +48,42 @@ public class WageStuff {
         }
     }
     public static float getDailySpending() {
-        boolean flag = false;
         String payDayDay = "";
-        for (char c : getPayDay().toCharArray()) {
-            if (!String.valueOf(c).equals("-")) {
-                payDayDay = payDayDay.concat(String.valueOf(c));
+        String payDayMonth = "";
+        String payday = getPayDay();
+        for (int i = 0; i < payday.toCharArray().length; i++) {
+            if (i == 0 || i == 1) {
+                payDayDay = payDayDay.concat(String.valueOf(getPayDay().toCharArray()[i]));
             }
-            else {
-                break;
+            else if (i == 3 || i == 4){
+                payDayMonth = payDayMonth.concat(String.valueOf(getPayDay().toCharArray()[i]));
             }
         }
         String currentDay = "";
-        for (char c : DateInfo.getDate().toCharArray()) {
-            if (!String.valueOf(c).equals("-")) {
-                currentDay = currentDay.concat(String.valueOf(c));
+        String currentMonth = "";
+        String date = DateInfo.getDate();
+        for (int i = 0; i < date.toCharArray().length; i++) {
+            if (i == 0 || i == 1) {
+                currentDay = currentDay.concat(String.valueOf(getPayDay().toCharArray()[i]));
             }
-            else {
-                break;
+            else if (i == 3 || i == 4){
+                currentMonth = currentMonth.concat(String.valueOf(getPayDay().toCharArray()[i]));
             }
         }
-        if (Integer.parseInt(currentDay) < Integer.parseInt(payDayDay)) {
-            flag = true;
+        System.out.println(payDayMonth);
+        if (wagePeriod.equals("Monthly")) {
+            if (Integer.parseInt(currentMonth) > Integer.parseInt(payDayMonth)) {
+                return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth("0" + String.valueOf(Integer.parseInt(DateInfo.getMonth()) - 1));
+            } else {
+                return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth(DateInfo.getMonth());
+            }
         }
-        if (flag) {
-            return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth("0" + String.valueOf(Integer.parseInt(DateInfo.getMonth()) - 1));
+        else if (wagePeriod.equals("Weekly")) {
+            return (getWage() / 7) - ((DebitStuff.getDebitsTotal() / DateInfo.getDaysInMonth(DateInfo.getMonth())) * 7);
         }
         else {
-            return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth(DateInfo.getMonth());
+            System.out.println("*getDailySpending* Error finding wage period");
+            return 0.00f;
         }
     }
 }
