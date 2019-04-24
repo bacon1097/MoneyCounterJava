@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import java.awt.font.NumericShaper;
 import java.util.List;
 
 public class Controller {
@@ -88,7 +89,7 @@ public class Controller {
     @FXML
     private ImageView paidImage;
     @FXML
-    private ImageView debitPaid;
+    private ImageView debitPaidImage;
     @FXML
     private Label daysSincePayDayLabel;
     @FXML
@@ -131,7 +132,14 @@ public class Controller {
                 WageStuff.setPayDay(paydayDate);       //Setting the payday date
                 WageStuff.setWage(Float.parseFloat(currentWage), wageDisplayLabel);      //Setting the wage
                 daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
-                WageStuff.setWageSlider(wageSlider, perMonthLabel, wageSliderValue);       //Setting the slider for monthly or weekly
+                if (wageSliderValue.equals("Monthly") || wageSliderValue.equals("Weekly")) {
+                    WageStuff.setWageSlider(wageSlider, perMonthLabel, wageSliderValue);       //Setting the slider for monthly or weekly
+                    System.out.println("Setting wage slider to: " + wageSliderValue);
+                }
+                else{
+                    WageStuff.setWageSlider(wageSlider, perMonthLabel, "Monthly");
+                    System.out.println("Setting wage slider to: Monthly");
+                }
 
                 //Set the savings
                 refreshData();
@@ -168,7 +176,7 @@ public class Controller {
                 animate(mainScene, "right", 1, "load");
                 animate(tabLayout,"left", 1, "load");
             }
-            catch (NumberFormatException e) {
+            catch (NumberFormatException | NullPointerException e) {
                 System.out.println("Error in the data file");
             }
         }
@@ -190,11 +198,33 @@ public class Controller {
                 System.out.println("New Value is: " + moneyDisplay.getText());
                 WageStuff.setWage(0.00f, wageDisplayLabel);
                 WageStuff.setPayDay("01-01-2019");
+                WageStuff.setWageSlider(wageSlider, perMonthLabel, "Monthly");
 
                 animate(mainScene, "right", 1, "load");
                 animate(tabLayout,"left", 1, "load");
             }
         }
+    }
+    private void clickAnimate(ImageView image) {
+        double time = 75;
+        double originX = image.getScaleX();
+        double originY = image.getScaleY();
+        KeyValue kv = new KeyValue(image.scaleXProperty(), 0.8, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.millis(time), kv);
+        KeyValue kv1 = new KeyValue(image.scaleYProperty(), 0.8, Interpolator.EASE_IN);
+        KeyFrame kf1 = new KeyFrame(Duration.millis(time), kv1);
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().addAll(kf, kf1);
+        timeline.setOnFinished(e -> {
+            KeyValue kv2 = new KeyValue(image.scaleXProperty(), originX, Interpolator.EASE_IN);
+            KeyFrame kf2 = new KeyFrame(Duration.millis(time), kv2);
+            KeyValue kv3 = new KeyValue(image.scaleYProperty(), originY, Interpolator.EASE_IN);
+            KeyFrame kf3 = new KeyFrame(Duration.millis(time), kv3);
+            Timeline timeline1 = new Timeline();
+            timeline1.getKeyFrames().addAll(kf2, kf3);
+            timeline1.play();
+        });
+        timeline.play();
     }
     private void animate(AnchorPane scene, String direction, double time, String type) {
         if (type.equals("load")) {
@@ -300,35 +330,44 @@ public class Controller {
     public void debitPlusLeave() { colorChangeBack(debitPlusImage); }
     public void paidEnter() { colorChange(paidImage); }
     public void paidLeave() { colorChangeBack(paidImage); }
-    public void debitEnter() { colorChange(debitPaid); }
-    public void debitLeave() { colorChangeBack(debitPaid); }
+    public void debitEnter() { colorChange(debitPaidImage); }
+    public void debitLeave() { colorChangeBack(debitPaidImage); }
     public void investImageEnter() { colorChange(investImage); }
     public void investImageLeave() { colorChangeBack(investImage); }
-    public void saveData() { FileStuff.saveInfo(); }
+    public void saveImageClick() {
+        clickAnimate(saveImage);
+        FileStuff.saveInfo();
+    }
 
+    public void confirmImageClick() {
+        clickAnimate(confirmImage);
+        WageStuff.setWage(Float.parseFloat(wageInput.getText()), wageDisplayLabel);
+    }
     public void debitPlusImageClick() {
+        clickAnimate(debitPlusImage);
         DebitStuff.addDebit(debitList, debitInput.getText());
         refreshData();
     }
 
     public void debitMinusImageClick() {
+        clickAnimate(debitMinusImage);
         DebitStuff.deleteDebit(debitList);
         refreshData();
     }
-    public void setWage() {
-        WageStuff.setWage(Float.parseFloat(wageInput.getText()), wageDisplayLabel);
-    }
-    public void setValue() {
+    public void resetImageClick() {
+        clickAnimate(resetImage);
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             refreshMoney("set");
         }
     }
     public void addMoney() {
+        clickAnimate(plusImage);
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             refreshMoney("plus");
         }
     }
     public void subtractMoney() {
+        clickAnimate(minusImage);
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             refreshMoney("minus");
         }
@@ -445,12 +484,14 @@ public class Controller {
         image.setEffect(null);
     }
     public void walletImageClick() {
+        clickAnimate(walletImage);
         animate(settingsScene, "backLeft", 0.25, "switch");
         animate(mainScene, "right", 0.25, "switch");
         animate(investScene, "backLeft", 0.25, "switch");
         refreshData();
     }
     public void settingsImageClick() {
+        clickAnimate(settingsImage);
         if (mainScene.isVisible()) {
             animate(settingsScene, "left", 0.25, "switch");
             animate(mainScene, "backRight", 0.25, "switch");
@@ -463,12 +504,14 @@ public class Controller {
 
     }
     public void investImageClick() {
+        clickAnimate(investImage);
         animate(settingsScene, "backRight", 0.25, "switch");
         animate(mainScene, "backRight", 0.25, "switch");
         animate(investScene, "left", 0.25, "switch");
         refreshData();
     }
     public void closeProgram() {
+        clickAnimate(closeImage);
         String result = ConfirmBox.display("Quit","Are you sure you want to quit?", "close");
         if (result.equals("true") || result.equals("nosave")) {
             animate(settingsScene, "backRight", 1, "close");
@@ -478,10 +521,12 @@ public class Controller {
         }
     }
     public void paidImageClick() {
+        clickAnimate(paidImage);
         MoneyStuff.paid(moneyDisplay);
         refreshData();
     }
     public void debitImageClick() {
+        clickAnimate(debitPaidImage);
         float item = Float.parseFloat(debitList.getSelectionModel().getSelectedItem().toString());
         MoneyStuff.subtractMoney(moneyDisplay, item);
         MoneyStuff.setAmountAtPayDay(MoneyStuff.amountAtPayDay - item);

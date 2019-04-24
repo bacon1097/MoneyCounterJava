@@ -70,7 +70,6 @@ public class WageStuff {
                 currentMonth = currentMonth.concat(String.valueOf(getPayDay().toCharArray()[i]));
             }
         }
-        System.out.println(payDayMonth);
         if (wagePeriod.equals("Monthly")) {
             if (Integer.parseInt(currentMonth) > Integer.parseInt(payDayMonth)) {
                 return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth("0" + String.valueOf(Integer.parseInt(DateInfo.getMonth()) - 1));
