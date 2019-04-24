@@ -206,9 +206,9 @@ public class Controller {
         }
     }
     private void clickAnimate(ImageView image) {
-        AudioClip noise = new AudioClip(getClass().getResource("./sounds/clickNoise.wav").toString());
-        noise.setVolume(0.1);
-        noise.play();
+//        AudioClip noise = new AudioClip(getClass().getResource("./sounds/clickNoise.wav").toString());
+//        noise.setVolume(0.1);
+//        noise.play();
         double time = 75;
         double originX = image.getScaleX();
         double originY = image.getScaleY();
