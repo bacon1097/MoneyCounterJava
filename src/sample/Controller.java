@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-import java.awt.font.NumericShaper;
+import javafx.scene.media.AudioClip;
 import java.util.List;
 
 public class Controller {
@@ -206,6 +206,9 @@ public class Controller {
         }
     }
     private void clickAnimate(ImageView image) {
+        AudioClip noise = new AudioClip(getClass().getResource("./sounds/clickNoise.wav").toString());
+        noise.setVolume(0.1);
+        noise.play();
         double time = 75;
         double originX = image.getScaleX();
         double originY = image.getScaleY();
