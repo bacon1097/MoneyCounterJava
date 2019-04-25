@@ -17,7 +17,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         window = primaryStage;
         window.setTitle("Money Counter");
-        window.getIcons().add(new Image(getClass().getResourceAsStream("images/money-bag.png")));
+        window.getIcons().add(new Image(getClass().getResourceAsStream("/sample/resources/images/money-bag.png")));
         window.initStyle(StageStyle.TRANSPARENT);
         window.setOnCloseRequest(e -> e.consume());
         Scene scene = new Scene(root);

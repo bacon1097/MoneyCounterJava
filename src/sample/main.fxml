@@ -19,24 +19,24 @@
    <children>
       <AnchorPane fx:id="tabLayout" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="15.0" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
-            <ImageView fx:id="closeImage" fitHeight="50.0" fitWidth="50.0" layoutX="550.0" layoutY="25.0" onMouseEntered="#closeImageEnter" onMouseExited="#closeImageLeave" onMouseReleased="#closeProgram" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;" AnchorPane.rightAnchor="50.0">
+            <ImageView fx:id="closeImage" onMousePressed="#closeImagePress" fitHeight="50.0" fitWidth="50.0" layoutX="550.0" layoutY="25.0" onMouseEntered="#closeImageEnter" onMouseExited="#closeImageLeave" onMouseReleased="#closeProgram" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;" AnchorPane.rightAnchor="50.0">
                <image>
-                  <Image url="@images/cancel.png" />
+                  <Image url="@resources/images/cancel.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="walletImage" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="25.0" onMouseEntered="#walletImageEnter" onMouseExited="#walletImageLeave" onMouseReleased="#walletImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;" AnchorPane.leftAnchor="50.0">
+            <ImageView fx:id="walletImage" onMousePressed="#walletImagePress" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="25.0" onMouseEntered="#walletImageEnter" onMouseExited="#walletImageLeave" onMouseReleased="#walletImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;" AnchorPane.leftAnchor="50.0">
                <image>
-                  <Image url="@images/wallet.png" />
+                  <Image url="@resources/images/wallet.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settingsImage" fitHeight="50.0" fitWidth="50.0" layoutX="200.0" layoutY="25.0" onMouseEntered="#settingsImageEnter" onMouseExited="#settingsImageLeave" onMouseReleased="#settingsImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="settingsImage" onMousePressed="#settingsImagePress" fitHeight="50.0" fitWidth="50.0" layoutX="200.0" layoutY="25.0" onMouseEntered="#settingsImageEnter" onMouseExited="#settingsImageLeave" onMouseReleased="#settingsImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/settings.png" />
+                  <Image url="@resources/images/settings.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="investImage" fitHeight="50.0" fitWidth="50.0" layoutX="350.0" layoutY="25.0" onMouseEntered="#investImageEnter" onMouseExited="#investImageLeave" onMouseReleased="#investImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="investImage" onMousePressed="#investImagePress" fitHeight="50.0" fitWidth="50.0" layoutX="350.0" layoutY="25.0" onMouseEntered="#investImageEnter" onMouseExited="#investImageLeave" onMouseReleased="#investImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/invest.png" />
+                  <Image url="@resources/images/invest.png" />
                </image>
             </ImageView>
          </children>
@@ -80,9 +80,9 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView fx:id="confirmImage" fitHeight="40.0" fitWidth="40.0" layoutX="543.0" layoutY="273.0" onMouseClicked="#confirmImageClick" onMouseEntered="#confirmImageEnter" onMouseExited="#confirmImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND; -fx-opacity: 0.5;">
+            <ImageView fx:id="confirmImage" onMousePressed="#confirmImagePress" fitHeight="40.0" fitWidth="40.0" layoutX="543.0" layoutY="273.0" onMouseClicked="#confirmImageClick" onMouseEntered="#confirmImageEnter" onMouseExited="#confirmImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND; -fx-opacity: 0.5;">
                <image>
-                  <Image url="@images/confirm.png" />
+                  <Image url="@resources/images/confirm.png" />
                </image>
             </ImageView>
             <Label fx:id="wageLabel1" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="13.0" layoutY="42.0" prefHeight="20.0" prefWidth="105.0" style="-fx-opacity: 0.5;" text="DIRECT DEBITS" textFill="SILVER">
@@ -95,19 +95,19 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView fx:id="debitMinusImage" fitHeight="40.0" fitWidth="40.0" layoutX="300.0" layoutY="158.0" onMouseClicked="#debitMinusImageClick" onMouseEntered="#debitMinusEnter" onMouseExited="#debitMinusLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="debitMinusImage" onMousePressed="#debitMinusPress" fitHeight="40.0" fitWidth="40.0" layoutX="300.0" layoutY="158.0" onMouseClicked="#debitMinusImageClick" onMouseEntered="#debitMinusEnter" onMouseExited="#debitMinusLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/minus.png" />
+                  <Image url="@resources/images/minus.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="debitPlusImage" fitHeight="40.0" fitWidth="43.0" layoutX="544.0" layoutY="158.0" onMouseClicked="#debitPlusImageClick" onMouseEntered="#debitPlusEnter" onMouseExited="#debitPlusLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="debitPlusImage" onMousePressed="#debitPlusPress" fitHeight="40.0" fitWidth="43.0" layoutX="544.0" layoutY="158.0" onMouseClicked="#debitPlusImageClick" onMouseEntered="#debitPlusEnter" onMouseExited="#debitPlusLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/add.png" />
+                  <Image url="@resources/images/add.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="paidImage" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="522.0" onMouseClicked="#paidImageClick" onMouseEntered="#paidEnter" onMouseExited="#paidLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="paidImage" onMousePressed="#paidPress" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="522.0" onMouseClicked="#paidImageClick" onMouseEntered="#paidEnter" onMouseExited="#paidLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/paid.png" />
+                  <Image url="@resources/images/paid.png" />
                </image>
             </ImageView>
             <TextField fx:id="wageInput" alignment="CENTER" layoutX="364.0" layoutY="273.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-border-color: #c0c0c0; -fx-border-width: 0 0 1 0; -fx-background-color: transparent; -fx-opacity: 0.5; -fx-text-fill: #c0c0c0;">
@@ -129,9 +129,9 @@
                </font>
             </Label>
             <ListView fx:id="debitList" layoutX="302.0" layoutY="42.0" prefHeight="100.0" prefWidth="279.0" />
-            <ImageView fx:id="debitPaidImage" fitHeight="40.0" fitWidth="40.0" layoutX="422.0" layoutY="213.0" onMouseClicked="#debitImageClick" onMouseEntered="#debitEnter" onMouseExited="#debitLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="debitPaidImage" onMousePressed="#debitImagePress" fitHeight="40.0" fitWidth="40.0" layoutX="422.0" layoutY="213.0" onMouseClicked="#debitImageClick" onMouseEntered="#debitEnter" onMouseExited="#debitLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/paid.png" />
+                  <Image url="@resources/images/paid.png" />
                </image>
             </ImageView>
          </children>
@@ -174,7 +174,7 @@
                   </Label>
                   <ImageView fx:id="coinImage" fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                      <image>
-                        <Image url="@images/coin.png" />
+                        <Image url="@resources/images/coin.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="balanceLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" prefHeight="42.0" prefWidth="133.0" style="-fx-opacity: 0.5;" text="Balance" textFill="SILVER">
@@ -184,24 +184,24 @@
                   </Label>
                </children>
             </AnchorPane>
-            <ImageView fx:id="minusImage" fitHeight="40.0" fitWidth="40.0" layoutX="172.0" layoutY="529.0" onMouseClicked="#subtractMoney" onMouseEntered="#minusImageEnter" onMouseExited="#minusImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="minusImage" onMousePressed="#minusImagePress" fitHeight="40.0" fitWidth="40.0" layoutX="172.0" layoutY="529.0" onMouseClicked="#subtractMoney" onMouseEntered="#minusImageEnter" onMouseExited="#minusImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/minus.png" />
+                  <Image url="@resources/images/minus.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="plusImage" fitHeight="40.0" fitWidth="43.0" layoutX="386.0" layoutY="529.0" onMouseClicked="#addMoney" onMouseEntered="#plusImageEnter" onMouseExited="#plusImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="plusImage" onMousePressed="#plusImagePress" fitHeight="40.0" fitWidth="43.0" layoutX="386.0" layoutY="529.0" onMouseClicked="#addMoney" onMouseEntered="#plusImageEnter" onMouseExited="#plusImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/add.png" />
+                  <Image url="@resources/images/add.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="resetImage" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="479.0" onMouseClicked="#resetImageClick" onMouseEntered="#resetImageEnter" onMouseExited="#resetImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="resetImage" onMousePressed="#resetImagePress" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="479.0" onMouseClicked="#resetImageClick" onMouseEntered="#resetImageEnter" onMouseExited="#resetImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/blank.png" />
+                  <Image url="@resources/images/blank.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="saveImage" fitHeight="40.0" fitWidth="40.0" layoutX="544.0" layoutY="529.0" onMouseClicked="#saveImageClick" onMouseEntered="#saveImageEnter" onMouseExited="#saveImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="saveImage" onMousePressed="#saveImagePress" fitHeight="40.0" fitWidth="40.0" layoutX="544.0" layoutY="529.0" onMouseClicked="#saveImageClick" onMouseEntered="#saveImageEnter" onMouseExited="#saveImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
-                  <Image url="@images/save.png" />
+                  <Image url="@resources/images/save.png" />
                </image>
             </ImageView>
             <TextField fx:id="moneyInput" alignment="CENTER" focusTraversable="false" layoutX="225.0" layoutY="529.0" prefHeight="40.0" prefWidth="150.0" promptText="ENTER" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: #c0c0c0; -fx-text-fill: #c0c0c0; -fx-opacity: 0.5;">
@@ -245,7 +245,7 @@
                   </Label>
                   <ImageView fx:id="piggyImage" fitHeight="40.0" fitWidth="40.0" layoutX="7.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                      <image>
-                        <Image url="@images/piggy.png" />
+                        <Image url="@resources/images/piggy.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="savingsLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" prefHeight="42.0" prefWidth="134.0" style="-fx-opacity: 0.5;" text="Savings" textFill="SILVER">
@@ -284,7 +284,7 @@
                   </Rectangle>
                   <ImageView fx:id="piggyImage1" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                      <image>
-                        <Image url="@images/piggy.png" />
+                        <Image url="@resources/images/piggy.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="spendingDailyLabel" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="292.0" layoutY="7.0" prefHeight="56.0" prefWidth="251.0" style="-fx-opacity: 0.5;" text="0.00" textFill="SILVER" AnchorPane.rightAnchor="15.0">
@@ -333,7 +333,7 @@
                   </Rectangle>
                   <ImageView fx:id="coinImage1" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                      <image>
-                        <Image url="@images/coin.png" />
+                        <Image url="@resources/images/coin.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="wageDisplayLabel" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="292.0" layoutY="7.0" prefHeight="56.0" prefWidth="251.0" style="-fx-opacity: 0.5;" text="0.00" textFill="SILVER" AnchorPane.rightAnchor="15.0">
@@ -382,7 +382,7 @@
                   </Rectangle>
                   <ImageView fx:id="coinImage2" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                      <image>
-                        <Image url="@images/coin.png" />
+                        <Image url="@resources/images/coin.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="differenceDisplayLabel" alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="292.0" layoutY="7.0" prefHeight="56.0" prefWidth="251.0" style="-fx-opacity: 0.5;" text="0.00" textFill="SILVER" AnchorPane.rightAnchor="15.0">

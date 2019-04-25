@@ -7,12 +7,13 @@ import java.util.Iterator;
 public class DebitStuff {
     static String debits = "";
     public static void addDebit(ListView list, String input) {
-        try {
-            list.getItems().addAll(Float.parseFloat(input));
-            setDebits(list);
-        }
-        catch (NumberFormatException e) {
-            System.out.println("*addDebit* could not parse string into float");
+        if (input != null || !input.isEmpty()) {
+            try {
+                list.getItems().addAll(Float.parseFloat(input));
+                setDebits(list);
+            } catch (NumberFormatException e) {
+                System.out.println("*addDebit* could not parse string into float");
+            }
         }
     }
     public static String getDebits() {

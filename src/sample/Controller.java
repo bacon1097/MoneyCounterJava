@@ -15,10 +15,10 @@ import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-import javafx.scene.media.AudioClip;
 import java.util.List;
 
 public class Controller {
@@ -128,11 +128,20 @@ public class Controller {
                 String wageSliderValue = FileStuff.getInfo(6);
 
                 MoneyStuff.setAmountAtPayDay(Float.parseFloat(amountAtPayDay));
+                System.out.println("Amount at payday is: " + MoneyStuff.getAmountAtPayDay());
+
                 moneyDisplay.setText(String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));       //Setting the money owned value
+                System.out.println("New Value is: " + String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));
+
                 WageStuff.setPayDay(paydayDate);       //Setting the payday date
+                System.out.println("New payday date is: " + WageStuff.getPayDay());
+
                 WageStuff.setWage(Float.parseFloat(currentWage), wageDisplayLabel);      //Setting the wage
-                daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
-                if (wageSliderValue.equals("Monthly") || wageSliderValue.equals("Weekly")) {
+                System.out.println("New wage is: " + WageStuff.getWage());
+
+                daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));     //Setting the days since being paid
+
+                if (wageSliderValue != null && (wageSliderValue.equals("Monthly") || wageSliderValue.equals("Weekly"))) {
                     WageStuff.setWageSlider(wageSlider, perMonthLabel, wageSliderValue);       //Setting the slider for monthly or weekly
                     System.out.println("Setting wage slider to: " + wageSliderValue);
                 }
@@ -140,38 +149,6 @@ public class Controller {
                     WageStuff.setWageSlider(wageSlider, perMonthLabel, "Monthly");
                     System.out.println("Setting wage slider to: Monthly");
                 }
-
-                //Set the savings
-                refreshData();
-
-                System.out.println("Amount at payday is: " + MoneyStuff.getAmountAtPayDay());
-                System.out.println("New Value is: " + String.format("%.2f", Math.floor(Float.parseFloat(mainMoney) * 100) / 100));
-                System.out.println("Daily Spending Value is: " + String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));
-
-                try {
-                    wageSlider.valueProperty().addListener(new ChangeListener<Number>() {
-                        @Override
-                        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                            if (newValue.floatValue() == 0 || newValue.floatValue() == 1) {
-                                System.out.println(newValue);
-                                wageSliderChange();
-                            }
-                        }
-                    });
-                    moneyDisplay.textProperty().addListener(new ChangeListener<String>() {
-                        @Override
-                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                            refreshData();
-                        }
-                    });
-                    wageDisplayLabel.textProperty().addListener(new ChangeListener<String>() {
-                        @Override
-                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                            refreshData();
-                        }
-                    });
-                }
-                catch (NullPointerException e) {}
 
                 animate(mainScene, "right", 1, "load");
                 animate(tabLayout,"left", 1, "load");
@@ -185,48 +162,122 @@ public class Controller {
                 List list = FirstTimeSetup.display("Configuration");
 
                 //Setting values from input
-                moneyDisplay.setText(String.valueOf(list.get(0)));
-                WageStuff.setPayDay(String.valueOf(list.get(1)));
-                WageStuff.setWage(Float.parseFloat(String.valueOf(list.get(2))), wageDisplayLabel);
-                MoneyStuff.setAmountAtPayDay(Float.parseFloat(String.valueOf(list.get(3))));
-                daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
+                if (!String.valueOf(list.get(0)).isEmpty()) {
+                    moneyDisplay.setText(String.valueOf(list.get(0)));      //Setting the main value
+                }
+                System.out.println("New Value is: " + moneyDisplay.getText());
 
-                //Set the savings
-                refreshData();
+                if (!String.valueOf(list.get(1)).isEmpty()) {
+                    WageStuff.setPayDay(String.valueOf(list.get(1)));       //Setting the date paid
+                }
+                else {
+                    WageStuff.setPayDay("01-01-2019");
+                }
+                System.out.println("New payday date is: " + WageStuff.getPayDay());
+
+                if (!String.valueOf(list.get(2)).isEmpty()) {
+                    WageStuff.setWage(Float.parseFloat(String.valueOf(list.get(2))), wageDisplayLabel);     //Setting the wage
+                }
+                System.out.println("New wage is: " + WageStuff.getWage());
+
+                if (!String.valueOf(list.get(3)).isEmpty()) {
+                    MoneyStuff.setAmountAtPayDay(Float.parseFloat(String.valueOf(list.get(3))));        //Setting the amount at payday
+                }
+                System.out.println("New amount at payday is:" + MoneyStuff.getAmountAtPayDay());
+
+                daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
+                WageStuff.setWageSlider(wageSlider, perMonthLabel, "Monthly");
+
+                animate(mainScene, "right", 1, "load");
+                animate(tabLayout,"left", 1, "load");
             }
             else {
                 System.out.println("New Value is: " + moneyDisplay.getText());
+
                 WageStuff.setWage(0.00f, wageDisplayLabel);
+                System.out.println("New wage is: " + WageStuff.getWage());
+
                 WageStuff.setPayDay("01-01-2019");
+                System.out.println("New payday date is: " + WageStuff.getPayDay());
+
+                MoneyStuff.setAmountAtPayDay(Float.parseFloat("0"));        //Setting the amount at payday
+                System.out.println("New amount at payday is:" + MoneyStuff.getAmountAtPayDay());
+
+                daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));
                 WageStuff.setWageSlider(wageSlider, perMonthLabel, "Monthly");
 
                 animate(mainScene, "right", 1, "load");
                 animate(tabLayout,"left", 1, "load");
             }
         }
+        //Set the savings
+        refreshData();
+        try {
+            wageSlider.valueProperty().addListener(new ChangeListener<Number>() {
+                @Override
+                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                    if (newValue.floatValue() == 0 || newValue.floatValue() == 1) {
+                        System.out.println(newValue);
+                        wageSliderChange();
+                    }
+                }
+            });
+            moneyDisplay.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    refreshData();
+                }
+            });
+            wageDisplayLabel.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    refreshData();
+                }
+            });
+        }
+        catch (NullPointerException e) {}
+    }
+    public void colorChange(ImageView image) {
+        image.setOpacity(1);
+        image.setScaleX(1.3);
+        image.setScaleY(1.3);
+        image.setScaleZ(1.3);
+        DropShadow shadow = new DropShadow();
+        shadow.setWidth(5);
+        shadow.setHeight(5);
+        shadow.setRadius(4);
+        shadow.setColor(Color.valueOf("BLACK"));
+        shadow.blurTypeProperty().setValue(BlurType.GAUSSIAN);
+        image.setEffect(shadow);
+    }
+    public void colorChangeBack(ImageView image) {
+        image.setOpacity(0.5);
+        image.setScaleX(1);
+        image.setScaleY(1);
+        image.setScaleZ(1);
+        image.setEffect(null);
+    }
+    public void releaseClickAnimate(ImageView image) {
+        double time = 20;
+        AudioClip noise = new AudioClip(getClass().getResource("/sample/resources/sounds/clickNoise.wav").toString());
+        noise.setVolume(0.1);
+        noise.play();
+        KeyValue kv = new KeyValue(image.scaleXProperty(), 1.0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.millis(time), kv);
+        KeyValue kv1 = new KeyValue(image.scaleYProperty(), 1.0, Interpolator.EASE_IN);
+        KeyFrame kf1 = new KeyFrame(Duration.millis(time), kv1);
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().addAll(kf, kf1);
+        timeline.play();
     }
     private void clickAnimate(ImageView image) {
-//        AudioClip noise = new AudioClip(getClass().getResource("./sounds/clickNoise.wav").toString());
-//        noise.setVolume(0.1);
-//        noise.play();
-        double time = 75;
-        double originX = image.getScaleX();
-        double originY = image.getScaleY();
+        double time = 20;
         KeyValue kv = new KeyValue(image.scaleXProperty(), 0.8, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.millis(time), kv);
         KeyValue kv1 = new KeyValue(image.scaleYProperty(), 0.8, Interpolator.EASE_IN);
         KeyFrame kf1 = new KeyFrame(Duration.millis(time), kv1);
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().addAll(kf, kf1);
-        timeline.setOnFinished(e -> {
-            KeyValue kv2 = new KeyValue(image.scaleXProperty(), originX, Interpolator.EASE_IN);
-            KeyFrame kf2 = new KeyFrame(Duration.millis(time), kv2);
-            KeyValue kv3 = new KeyValue(image.scaleYProperty(), originY, Interpolator.EASE_IN);
-            KeyFrame kf3 = new KeyFrame(Duration.millis(time), kv3);
-            Timeline timeline1 = new Timeline();
-            timeline1.getKeyFrames().addAll(kf2, kf3);
-            timeline1.play();
-        });
         timeline.play();
     }
     private void animate(AnchorPane scene, String direction, double time, String type) {
@@ -297,80 +348,92 @@ public class Controller {
             timeline.play();
         }
     }
-    public void settingsImageEnter() { colorChange(settingsImage); }
-    public void settingsImageLeave() { colorChangeBack(settingsImage); }
-    public void closeImageEnter() {
-        colorChange(closeImage);
+    public void settingsImagePress() { clickAnimate(settingsImage); }
+    public void closeImagePress() {
+        clickAnimate(closeImage);
     }
-    public void closeImageLeave() {
-        colorChangeBack(closeImage);
+    public void walletImagePress() { clickAnimate(walletImage); }
+    public void minusImagePress() {
+        clickAnimate(minusImage);
     }
-    public void walletImageEnter() { colorChange(walletImage); }
-    public void walletImageLeave() { colorChangeBack(walletImage); }
-    public void minusImageEnter() {
-        colorChange(minusImage);
+    public void plusImagePress() {
+        clickAnimate(plusImage);
     }
-    public void minusImageLeave() {
-        colorChangeBack(minusImage);
+    public void resetImagePress() {
+        clickAnimate(resetImage);
     }
-    public void plusImageEnter() {
-        colorChange(plusImage);
-    }
-    public void plusImageLeave() { colorChangeBack(plusImage); }
-    public void resetImageEnter() {
-        colorChange(resetImage);
-    }
-    public void resetImageLeave() { colorChangeBack(resetImage); }
-    public void saveImageEnter() {
-        colorChange(saveImage);
-    }
-    public void saveImageLeave() { colorChangeBack(saveImage); }
-    public void confirmImageEnter() { colorChange(confirmImage); }
-    public void confirmImageLeave() { colorChangeBack(confirmImage); }
-    public void debitMinusEnter() { colorChange(debitMinusImage); }
-    public void debitMinusLeave() { colorChangeBack(debitMinusImage); }
-    public void debitPlusEnter() { colorChange(debitPlusImage); }
-    public void debitPlusLeave() { colorChangeBack(debitPlusImage); }
-    public void paidEnter() { colorChange(paidImage); }
-    public void paidLeave() { colorChangeBack(paidImage); }
-    public void debitEnter() { colorChange(debitPaidImage); }
-    public void debitLeave() { colorChangeBack(debitPaidImage); }
-    public void investImageEnter() { colorChange(investImage); }
-    public void investImageLeave() { colorChangeBack(investImage); }
-    public void saveImageClick() {
+    public void saveImagePress() {
         clickAnimate(saveImage);
+    }
+    public void confirmImagePress() { clickAnimate(confirmImage); }
+    public void debitMinusPress() { clickAnimate(debitMinusImage); }
+    public void debitPlusPress() { clickAnimate(debitPlusImage); }
+    public void paidPress() { clickAnimate(paidImage); }
+    public void debitImagePress() { clickAnimate(debitPaidImage); }
+    public void investImagePress() { clickAnimate(investImage); }
+    public void settingsImageEnter() { colorChange(settingsImage); }
+    public void closeImageEnter() { colorChange(closeImage); }
+    public void walletImageEnter() { colorChange(walletImage); }
+    public void minusImageEnter() { colorChange(minusImage); }
+    public void plusImageEnter() { colorChange(plusImage); }
+    public void resetImageEnter() { colorChange(resetImage); }
+    public void saveImageEnter() { colorChange(saveImage); }
+    public void confirmImageEnter() { colorChange(confirmImage); }
+    public void debitMinusEnter() { colorChange(debitMinusImage); }
+    public void debitPlusEnter() { colorChange(debitPlusImage); }
+    public void paidEnter() { colorChange(paidImage); }
+    public void debitEnter() { colorChange(debitPaidImage); }
+    public void investImageEnter() { colorChange(investImage); }
+    public void settingsImageLeave() { colorChangeBack(settingsImage); }
+    public void closeImageLeave() { colorChangeBack(closeImage); }
+    public void walletImageLeave() { colorChangeBack(walletImage); }
+    public void minusImageLeave() { colorChangeBack(minusImage); }
+    public void plusImageLeave() { colorChangeBack(plusImage); }
+    public void resetImageLeave() { colorChangeBack(resetImage); }
+    public void saveImageLeave() { colorChangeBack(saveImage); }
+    public void confirmImageLeave() { colorChangeBack(confirmImage); }
+    public void debitMinusLeave() { colorChangeBack(debitMinusImage); }
+    public void debitPlusLeave() { colorChangeBack(debitPlusImage); }
+    public void paidLeave() { colorChangeBack(paidImage); }
+    public void debitLeave() { colorChangeBack(debitPaidImage); }
+    public void investImageLeave() { colorChangeBack(investImage); }
+
+    public void saveImageClick() {
+        releaseClickAnimate(saveImage);
         FileStuff.saveInfo();
     }
 
     public void confirmImageClick() {
-        clickAnimate(confirmImage);
+        releaseClickAnimate(confirmImage);
         WageStuff.setWage(Float.parseFloat(wageInput.getText()), wageDisplayLabel);
     }
     public void debitPlusImageClick() {
-        clickAnimate(debitPlusImage);
-        DebitStuff.addDebit(debitList, debitInput.getText());
-        refreshData();
+        if (MoneyStuff.validateInput(debitInput.getText())) {
+            releaseClickAnimate(debitPlusImage);
+            DebitStuff.addDebit(debitList, debitInput.getText());
+            refreshData();
+        }
     }
 
     public void debitMinusImageClick() {
-        clickAnimate(debitMinusImage);
+        releaseClickAnimate(debitMinusImage);
         DebitStuff.deleteDebit(debitList);
         refreshData();
     }
     public void resetImageClick() {
-        clickAnimate(resetImage);
+        releaseClickAnimate(resetImage);
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             refreshMoney("set");
         }
     }
     public void addMoney() {
-        clickAnimate(plusImage);
+        releaseClickAnimate(plusImage);
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             refreshMoney("plus");
         }
     }
     public void subtractMoney() {
-        clickAnimate(minusImage);
+        releaseClickAnimate(minusImage);
         if (MoneyStuff.validateInput(moneyInput.getText())) {
             refreshMoney("minus");
         }
@@ -466,35 +529,15 @@ public class Controller {
         p.getChildren().setAll(f, f1, t1, t2, f4, t5);
         p.play();
     }
-    public void colorChange(ImageView image) {
-        image.setOpacity(1);
-        image.setScaleX(1.3);
-        image.setScaleY(1.3);
-        image.setScaleZ(1.3);
-        DropShadow shadow = new DropShadow();
-        shadow.setWidth(5);
-        shadow.setHeight(5);
-        shadow.setRadius(4);
-        shadow.setColor(Color.valueOf("BLACK"));
-        shadow.blurTypeProperty().setValue(BlurType.GAUSSIAN);
-        image.setEffect(shadow);
-    }
-    public void colorChangeBack(ImageView image) {
-        image.setOpacity(0.5);
-        image.setScaleX(1);
-        image.setScaleY(1);
-        image.setScaleZ(1);
-        image.setEffect(null);
-    }
     public void walletImageClick() {
-        clickAnimate(walletImage);
+        releaseClickAnimate(walletImage);
         animate(settingsScene, "backLeft", 0.25, "switch");
         animate(mainScene, "right", 0.25, "switch");
         animate(investScene, "backLeft", 0.25, "switch");
         refreshData();
     }
     public void settingsImageClick() {
-        clickAnimate(settingsImage);
+        releaseClickAnimate(settingsImage);
         if (mainScene.isVisible()) {
             animate(settingsScene, "left", 0.25, "switch");
             animate(mainScene, "backRight", 0.25, "switch");
@@ -507,14 +550,14 @@ public class Controller {
 
     }
     public void investImageClick() {
-        clickAnimate(investImage);
+        releaseClickAnimate(investImage);
         animate(settingsScene, "backRight", 0.25, "switch");
         animate(mainScene, "backRight", 0.25, "switch");
         animate(investScene, "left", 0.25, "switch");
         refreshData();
     }
     public void closeProgram() {
-        clickAnimate(closeImage);
+        releaseClickAnimate(closeImage);
         String result = ConfirmBox.display("Quit","Are you sure you want to quit?", "close");
         if (result.equals("true") || result.equals("nosave")) {
             animate(settingsScene, "backRight", 1, "close");
@@ -524,12 +567,12 @@ public class Controller {
         }
     }
     public void paidImageClick() {
-        clickAnimate(paidImage);
+        releaseClickAnimate(paidImage);
         MoneyStuff.paid(moneyDisplay);
         refreshData();
     }
     public void debitImageClick() {
-        clickAnimate(debitPaidImage);
+        releaseClickAnimate(debitPaidImage);
         float item = Float.parseFloat(debitList.getSelectionModel().getSelectedItem().toString());
         MoneyStuff.subtractMoney(moneyDisplay, item);
         MoneyStuff.setAmountAtPayDay(MoneyStuff.amountAtPayDay - item);

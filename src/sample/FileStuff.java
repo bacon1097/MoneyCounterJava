@@ -8,8 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FileStuff {
-    static String fileName = System.getProperty("user.home") + "\\AppData\\Local\\MoneyCounter\\MoneyData.info";
-    static String direc = System.getProperty("user.home") + "\\AppData\\Local\\MoneyCounter";
+    private static String direc = System.getProperty("user.home") + "\\AppData\\Local\\MoneyCounter";
+    static String fileName = direc + "\\MoneyCounter.info";
     public static void saveInfo() {
         System.out.println("Saving info");
         if (!fileExists(direc)) {
@@ -26,7 +26,6 @@ public class FileStuff {
             }
         }
         try {
-            System.out.println(fileName);
             PrintWriter pw = new PrintWriter(new FileWriter(fileName, false));
             pw.println(MoneyStuff.getValue());
             pw.println(DateInfo.getDate());
