@@ -42,7 +42,8 @@ public class DebitStuff {
     private static void setDebits(ListView list) {
         debits = "";
         for (Iterator<String> iteration = list.getItems().listIterator(); iteration.hasNext();) {
-            debits = debits.concat(iteration.next() + ",");
+            String val = String.valueOf(iteration.next());
+            debits = debits.concat(val + ",");
         }
         System.out.println("New Direct Debit List: " + debits);
     }
