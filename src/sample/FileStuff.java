@@ -8,12 +8,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FileStuff {
-    private static String direc = System.getProperty("user.home") + "\\AppData\\Local\\MoneyCounter";
-    static String fileName = direc + "\\MoneyCounter.info";
+    private static String directory = System.getProperty("user.home") + "\\AppData\\Local\\MoneyCounter";
+    static String fileName = directory + "\\MoneyCounter.info";
     public static void saveInfo() {
         System.out.println("Saving info");
-        if (!fileExists(direc)) {
-            File dir = new File(direc);
+        if (!fileExists(directory)) {
+            File dir = new File(directory);
             dir.mkdirs();
         }
         if (!fileExists(fileName)) {

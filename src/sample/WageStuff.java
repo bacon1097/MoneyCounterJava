@@ -37,7 +37,7 @@ public class WageStuff {
                 slider.setValue(1);
                 monthly.setText("(Monthly)");
             }
-            else if (val.equals("Weekly")) {
+            else {
                 slider.setValue(0);
                 monthly.setText("(Weekly)");
             }
@@ -72,7 +72,7 @@ public class WageStuff {
         }
         if (wagePeriod.equals("Monthly")) {
             if (Integer.parseInt(currentMonth) > Integer.parseInt(payDayMonth)) {
-                return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth("0" + String.valueOf(Integer.parseInt(DateInfo.getMonth()) - 1));
+                return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth("0" + (Integer.parseInt(DateInfo.getMonth()) - 1));
             } else {
                 return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth(DateInfo.getMonth());
             }

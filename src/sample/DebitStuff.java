@@ -5,9 +5,9 @@ import javafx.scene.control.ListView;
 import java.util.Iterator;
 
 public class DebitStuff {
-    static String debits = "";
+    private static String debits = "";
     public static void addDebit(ListView list, String input) {
-        if (input != null || !input.isEmpty()) {
+        if (input != null) {
             try {
                 list.getItems().addAll(Float.parseFloat(input));
                 setDebits(list);
@@ -42,7 +42,7 @@ public class DebitStuff {
     private static void setDebits(ListView list) {
         debits = "";
         for (Iterator<String> iteration = list.getItems().listIterator(); iteration.hasNext();) {
-            debits = debits.concat(String.valueOf(iteration.next()) + ",");
+            debits = debits.concat(iteration.next() + ",");
         }
         System.out.println("New Direct Debit List: " + debits);
     }

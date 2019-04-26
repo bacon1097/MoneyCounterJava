@@ -19,22 +19,22 @@
    <children>
       <AnchorPane fx:id="tabLayout" cache="true" cacheHint="SPEED" layoutX="15.0" layoutY="15.0" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #36454F;">
          <children>
-            <ImageView fx:id="closeImage" onMousePressed="#closeImagePress" fitHeight="50.0" fitWidth="50.0" layoutX="550.0" layoutY="25.0" onMouseEntered="#closeImageEnter" onMouseExited="#closeImageLeave" onMouseReleased="#closeProgram" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;" AnchorPane.rightAnchor="50.0">
+            <ImageView fx:id="closeImage" fitHeight="50.0" fitWidth="50.0" layoutX="550.0" layoutY="25.0" onMouseEntered="#closeImageEnter" onMouseExited="#closeImageLeave" onMousePressed="#closeImagePress" onMouseReleased="#closeProgram" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;" AnchorPane.rightAnchor="50.0">
                <image>
                   <Image url="@resources/images/cancel.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="walletImage" onMousePressed="#walletImagePress" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="25.0" onMouseEntered="#walletImageEnter" onMouseExited="#walletImageLeave" onMouseReleased="#walletImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;" AnchorPane.leftAnchor="50.0">
+            <ImageView fx:id="walletImage" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="25.0" onMouseEntered="#walletImageEnter" onMouseExited="#walletImageLeave" onMousePressed="#walletImagePress" onMouseReleased="#walletImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;" AnchorPane.leftAnchor="50.0">
                <image>
                   <Image url="@resources/images/wallet.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="settingsImage" onMousePressed="#settingsImagePress" fitHeight="50.0" fitWidth="50.0" layoutX="200.0" layoutY="25.0" onMouseEntered="#settingsImageEnter" onMouseExited="#settingsImageLeave" onMouseReleased="#settingsImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="settingsImage" fitHeight="50.0" fitWidth="50.0" layoutX="200.0" layoutY="25.0" onMouseEntered="#settingsImageEnter" onMouseExited="#settingsImageLeave" onMousePressed="#settingsImagePress" onMouseReleased="#settingsImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@resources/images/settings.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="investImage" onMousePressed="#investImagePress" fitHeight="50.0" fitWidth="50.0" layoutX="350.0" layoutY="25.0" onMouseEntered="#investImageEnter" onMouseExited="#investImageLeave" onMouseReleased="#investImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="investImage" fitHeight="50.0" fitWidth="50.0" layoutX="350.0" layoutY="25.0" onMouseEntered="#investImageEnter" onMouseExited="#investImageLeave" onMousePressed="#investImagePress" onMouseReleased="#investImageClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@resources/images/invest.png" />
                </image>
@@ -80,7 +80,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView fx:id="confirmImage" onMousePressed="#confirmImagePress" fitHeight="40.0" fitWidth="40.0" layoutX="543.0" layoutY="273.0" onMouseClicked="#confirmImageClick" onMouseEntered="#confirmImageEnter" onMouseExited="#confirmImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND; -fx-opacity: 0.5;">
+            <ImageView fx:id="confirmImage" fitHeight="40.0" fitWidth="40.0" layoutX="543.0" layoutY="273.0" onMouseClicked="#confirmImageClick" onMouseEntered="#confirmImageEnter" onMouseExited="#confirmImageLeave" onMousePressed="#confirmImagePress" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND; -fx-opacity: 0.5;">
                <image>
                   <Image url="@resources/images/confirm.png" />
                </image>
@@ -95,17 +95,17 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView fx:id="debitMinusImage" onMousePressed="#debitMinusPress" fitHeight="40.0" fitWidth="40.0" layoutX="300.0" layoutY="158.0" onMouseClicked="#debitMinusImageClick" onMouseEntered="#debitMinusEnter" onMouseExited="#debitMinusLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="debitMinusImage" fitHeight="40.0" fitWidth="40.0" layoutX="300.0" layoutY="158.0" onMouseClicked="#debitMinusImageClick" onMouseEntered="#debitMinusEnter" onMouseExited="#debitMinusLeave" onMousePressed="#debitMinusPress" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@resources/images/minus.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="debitPlusImage" onMousePressed="#debitPlusPress" fitHeight="40.0" fitWidth="43.0" layoutX="544.0" layoutY="158.0" onMouseClicked="#debitPlusImageClick" onMouseEntered="#debitPlusEnter" onMouseExited="#debitPlusLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="debitPlusImage" fitHeight="40.0" fitWidth="43.0" layoutX="544.0" layoutY="158.0" onMouseClicked="#debitPlusImageClick" onMouseEntered="#debitPlusEnter" onMouseExited="#debitPlusLeave" onMousePressed="#debitPlusPress" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@resources/images/add.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="paidImage" onMousePressed="#paidPress" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="522.0" onMouseClicked="#paidImageClick" onMouseEntered="#paidEnter" onMouseExited="#paidLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="paidImage" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="522.0" onMouseClicked="#paidImageClick" onMouseEntered="#paidEnter" onMouseExited="#paidLeave" onMousePressed="#paidPress" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@resources/images/paid.png" />
                </image>
@@ -129,7 +129,7 @@
                </font>
             </Label>
             <ListView fx:id="debitList" layoutX="302.0" layoutY="42.0" prefHeight="100.0" prefWidth="279.0" />
-            <ImageView fx:id="debitPaidImage" onMousePressed="#debitImagePress" fitHeight="40.0" fitWidth="40.0" layoutX="422.0" layoutY="213.0" onMouseClicked="#debitImageClick" onMouseEntered="#debitEnter" onMouseExited="#debitLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="debitPaidImage" fitHeight="40.0" fitWidth="40.0" layoutX="422.0" layoutY="213.0" onMouseClicked="#debitImageClick" onMouseEntered="#debitEnter" onMouseExited="#debitLeave" onMousePressed="#debitImagePress" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@resources/images/paid.png" />
                </image>
@@ -184,22 +184,22 @@
                   </Label>
                </children>
             </AnchorPane>
-            <ImageView fx:id="minusImage" onMousePressed="#minusImagePress" fitHeight="40.0" fitWidth="40.0" layoutX="172.0" layoutY="529.0" onMouseClicked="#subtractMoney" onMouseEntered="#minusImageEnter" onMouseExited="#minusImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="minusImage" fitHeight="40.0" fitWidth="40.0" layoutX="172.0" layoutY="529.0" onMouseClicked="#subtractMoney" onMouseEntered="#minusImageEnter" onMouseExited="#minusImageLeave" onMousePressed="#minusImagePress" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@resources/images/minus.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="plusImage" onMousePressed="#plusImagePress" fitHeight="40.0" fitWidth="43.0" layoutX="386.0" layoutY="529.0" onMouseClicked="#addMoney" onMouseEntered="#plusImageEnter" onMouseExited="#plusImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="plusImage" fitHeight="40.0" fitWidth="43.0" layoutX="386.0" layoutY="529.0" onMouseClicked="#addMoney" onMouseEntered="#plusImageEnter" onMouseExited="#plusImageLeave" onMousePressed="#plusImagePress" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@resources/images/add.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="resetImage" onMousePressed="#resetImagePress" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="479.0" onMouseClicked="#resetImageClick" onMouseEntered="#resetImageEnter" onMouseExited="#resetImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="resetImage" fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="479.0" onMouseClicked="#resetImageClick" onMouseEntered="#resetImageEnter" onMouseExited="#resetImageLeave" onMousePressed="#resetImagePress" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@resources/images/blank.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="saveImage" onMousePressed="#saveImagePress" fitHeight="40.0" fitWidth="40.0" layoutX="544.0" layoutY="529.0" onMouseClicked="#saveImageClick" onMouseEntered="#saveImageEnter" onMouseExited="#saveImageLeave" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
+            <ImageView fx:id="saveImage" fitHeight="40.0" fitWidth="40.0" layoutX="544.0" layoutY="529.0" onMouseClicked="#saveImageClick" onMouseEntered="#saveImageEnter" onMouseExited="#saveImageLeave" onMousePressed="#saveImagePress" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5; -fx-cursor: HAND;">
                <image>
                   <Image url="@resources/images/save.png" />
                </image>
@@ -442,12 +442,12 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="15.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="570.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="15.0" layoutX="15.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="570.0">
                <fill>
                   <LinearGradient endX="1.0" endY="0.5857142857142856" startX="1.0">
                      <stops>
                         <Stop color="WHITE" />
-                        <Stop color="#36454f" offset="0.007662835249042145" />
+                        <Stop color="#35434d00" offset="0.007662835249042145" />
                         <Stop color="#3e4f5b" offset="1.0" />
                      </stops>
                   </LinearGradient>
@@ -459,7 +459,8 @@
                      <stops>
                         <Stop color="WHITE" />
                         <Stop color="#678498" offset="0.007662835249042145" />
-                        <Stop color="#36454f" offset="1.0" />
+                        <Stop color="#35434d02" offset="0.9961832061068702" />
+                        <Stop color="#35434d00" offset="1.0" />
                      </stops>
                   </LinearGradient>
                </fill>

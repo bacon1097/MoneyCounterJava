@@ -163,7 +163,12 @@ public class Controller {
 
                 //Setting values from input
                 if (!String.valueOf(list.get(0)).isEmpty()) {
-                    moneyDisplay.setText(String.valueOf(list.get(0)));      //Setting the main value
+                    try {
+                        MoneyStuff.setValue(moneyDisplay, Float.parseFloat(String.valueOf(list.get(0))));      //Setting the main value
+                    }
+                    catch (NumberFormatException e) {
+                        System.out.println("*initialize* Cannot parse value as a float");
+                    }
                 }
                 System.out.println("New Value is: " + moneyDisplay.getText());
 
@@ -235,9 +240,11 @@ public class Controller {
                 }
             });
         }
-        catch (NullPointerException e) {}
+        catch (NullPointerException e) {
+            System.out.println("*initialize* Check listeners, NullPointerException");
+        }
     }
-    public void colorChange(ImageView image) {
+    private void colorChange(ImageView image) {
         image.setOpacity(1);
         image.setScaleX(1.3);
         image.setScaleY(1.3);
@@ -250,14 +257,14 @@ public class Controller {
         shadow.blurTypeProperty().setValue(BlurType.GAUSSIAN);
         image.setEffect(shadow);
     }
-    public void colorChangeBack(ImageView image) {
+    private void colorChangeBack(ImageView image) {
         image.setOpacity(0.5);
         image.setScaleX(1);
         image.setScaleY(1);
         image.setScaleZ(1);
         image.setEffect(null);
     }
-    public void releaseClickAnimate(ImageView image) {
+    private void releaseClickAnimate(ImageView image) {
         double time = 20;
         AudioClip noise = new AudioClip(getClass().getResource("/sample/resources/sounds/clickNoise.wav").toString());
         noise.setVolume(0.1);
@@ -281,53 +288,56 @@ public class Controller {
         timeline.play();
     }
     private void animate(AnchorPane scene, String direction, double time, String type) {
-        if (type.equals("load")) {
-            scene.opacityProperty().set(0);
-            if (direction.equals("left")) {
-                scene.translateXProperty().set(scene.getPrefWidth() + scene.getLayoutX());
-            } else if (direction.equals("right")) {
-                scene.translateXProperty().set(-scene.getPrefWidth() - scene.getLayoutX());
-            } else {
-                System.out.println("Direction doesn't exist");
-            }
-            KeyValue kv = new KeyValue(scene.translateXProperty(), 0, Interpolator.EASE_IN);
-            KeyFrame kf = new KeyFrame(Duration.seconds(time), kv);
-            KeyValue kv1 = new KeyValue(scene.opacityProperty(), 1.0f);
-            KeyFrame kf1 = new KeyFrame(Duration.seconds(time), kv1);
-            Timeline timeline = new Timeline();
-            timeline.getKeyFrames().addAll(kf, kf1);
-            timeline.play();
-        }
-        else if (type.equals("switch")) {
-            if (direction.equals("left") || direction.equals("right")) {
-                if (!scene.isVisible()) {
-                    scene.setVisible(true);
-                    if (direction.equals("left")) {
-                        scene.translateXProperty().set(scene.getPrefWidth() + scene.getLayoutX());
-                    } else if (direction.equals("right")) {
-                        scene.translateXProperty().set(-scene.getPrefWidth() - scene.getLayoutX());
-                    }
-                    KeyValue kv = new KeyValue(scene.translateXProperty(), 0, Interpolator.EASE_IN);
-                    KeyFrame kf = new KeyFrame(Duration.seconds(time), kv);
-                    Timeline timeline = new Timeline();
-                    timeline.getKeyFrames().add(kf);
-                    timeline.play();
+        switch (type) {
+            case "load":
+                scene.opacityProperty().set(0);
+                if (direction.equals("left")) {
+                    scene.translateXProperty().set(scene.getPrefWidth() + scene.getLayoutX());
+                } else if (direction.equals("right")) {
+                    scene.translateXProperty().set(-scene.getPrefWidth() - scene.getLayoutX());
+                } else {
+                    System.out.println("Direction doesn't exist");
                 }
-            } else if (direction.equals("backLeft") || direction.equals("backRight")) {
+                KeyValue kv = new KeyValue(scene.translateXProperty(), 0, Interpolator.EASE_IN);
+                KeyFrame kf = new KeyFrame(Duration.seconds(time), kv);
+                KeyValue kv1 = new KeyValue(scene.opacityProperty(), 1.0f);
+                KeyFrame kf1 = new KeyFrame(Duration.seconds(time), kv1);
+                Timeline timeline = new Timeline();
+                timeline.getKeyFrames().addAll(kf, kf1);
+                timeline.play();
+                break;
+            case "switch":
+                if (direction.equals("left") || direction.equals("right")) {
+                    if (!scene.isVisible()) {
+                        scene.setVisible(true);
+                        if (direction.equals("left")) {
+                            scene.translateXProperty().set(scene.getPrefWidth() + scene.getLayoutX());
+                        }
+                        else {
+                            scene.translateXProperty().set(-scene.getPrefWidth() - scene.getLayoutX());
+                        }
+                        KeyValue kv2 = new KeyValue(scene.translateXProperty(), 0, Interpolator.EASE_IN);
+                        KeyFrame kf2 = new KeyFrame(Duration.seconds(time), kv2);
+                        Timeline timeline1 = new Timeline();
+                        timeline1.getKeyFrames().add(kf2);
+                        timeline1.play();
+                    }
+                } else if (direction.equals("backLeft") || direction.equals("backRight")) {
+                    switchAnimate(scene, direction, time);
+                }
+                break;
+            case "close":
                 switchAnimate(scene, direction, time);
-            }
-        }
-        else if (type.equals("close")) {
-            switchAnimate(scene, direction, time);
-            KeyValue kv = new KeyValue(scene.opacityProperty(), 0.0f);
-            KeyFrame kf = new KeyFrame(Duration.seconds(time), kv);
-            Timeline timeline = new Timeline();
-            timeline.getKeyFrames().add(kf);
-            timeline.setOnFinished(e -> Main.closeProgram());
-            timeline.play();
-        }
-        else {
-            System.out.println("Type doesn't exist: " + type);
+                KeyValue kv3 = new KeyValue(scene.opacityProperty(), 0.0f);
+                KeyFrame kf3 = new KeyFrame(Duration.seconds(time), kv3);
+                Timeline timeline2 = new Timeline();
+                timeline2.getKeyFrames().add(kf3);
+                timeline2.setOnFinished(e -> Main.closeProgram());
+                timeline2.play();
+                break;
+            default:
+                System.out.println("Type doesn't exist: " + type);
+                break;
         }
     }
     private void switchAnimate(AnchorPane scene, String direction, double time) {
@@ -453,14 +463,18 @@ public class Controller {
         f.setDuration(Duration.millis(t));
         f.setNode(moneyDisplay);
         f.setOnFinished(e -> {
-            if (operation.equals("plus")) {
-                MoneyStuff.addMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
-            } else if (operation.equals("minus")) {
-                MoneyStuff.subtractMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
-            } else if (operation.equals("set")) {
-                MoneyStuff.setValue(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+            switch (operation) {
+                case "plus":
+                    MoneyStuff.addMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+                    break;
+                case "minus":
+                    MoneyStuff.subtractMoney(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+                    break;
+                case "set":
+                    MoneyStuff.setValue(moneyDisplay, Float.parseFloat(moneyInput.getText()));
+                    break;
             }
-            differenceDisplayLabel.setText(String.valueOf(Float.parseFloat(differenceDisplayLabel.getText()) - (valueBefore - Float.parseFloat(moneyDisplay.getText()))));      //Setting the difference calculated when changes are made.
+            differenceDisplayLabel.setText(String.valueOf(Math.floor((Float.parseFloat(differenceDisplayLabel.getText()) - (valueBefore - Float.parseFloat(moneyDisplay.getText()))) * 100) / 100));      //Setting the difference calculated when changes are made.
             refreshData();
 
             FadeTransition f2 = new FadeTransition();
@@ -576,9 +590,9 @@ public class Controller {
         float item = Float.parseFloat(debitList.getSelectionModel().getSelectedItem().toString());
         MoneyStuff.subtractMoney(moneyDisplay, item);
         MoneyStuff.setAmountAtPayDay(MoneyStuff.amountAtPayDay - item);
-        System.out.println("Debit Paid: " + String.valueOf(item));
+        System.out.println("Debit Paid: " + item);
     }
-    public void wageSliderChange() {
+    private void wageSliderChange() {
         String timePeriod;
         if (wageSlider.getValue() == 1) {
             timePeriod = "Monthly";
@@ -590,6 +604,8 @@ public class Controller {
             timePeriod = null;
             System.out.println("*wageSliderChange* Not a valid slider option");
         }
-        WageStuff.setWageSlider(wageSlider, perMonthLabel, timePeriod);
+        if (timePeriod != null) {
+            WageStuff.setWageSlider(wageSlider, perMonthLabel, timePeriod);
+        }
     }
 }

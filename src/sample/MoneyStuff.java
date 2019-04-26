@@ -25,15 +25,16 @@ public class MoneyStuff {
     }
     public static boolean validateInput(String value) {
         boolean flag;
-        try {
-            Float.parseFloat(value);
-            flag = true;
+        if (value != null) {
+            try {
+                Float.parseFloat(value);
+                flag = true;
+            } catch (NumberFormatException e) {
+                flag = false;
+                System.out.println("*validateInput* Input is not a valid float");
+            }
         }
-        catch (NumberFormatException e){
-            flag = false;
-            System.out.println("*validateInput* Input is not a valid float");
-        }
-        if (value.equals(null)) {
+        else {
             flag = false;
             System.out.println("*validateInput* Nothing Inputted");
         }
