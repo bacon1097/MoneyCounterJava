@@ -63,7 +63,7 @@ public class MoneyStuff {
         label.setText(String.format("%.2f", Math.floor(money * 100) / 100));
     }
     public static void setDailySpending(Label dailySpendingLabel) {
+        System.out.println("Daily Spending Value is: " + String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));
         dailySpendingLabel.setText(String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));
-        System.out.println("Daily Spending Value is: " + String.format("%.2f", WageStuff.getDailySpending()));
     }
 }

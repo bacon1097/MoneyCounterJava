@@ -67,12 +67,20 @@ public class WageStuff {
                 currentDay = currentDay.concat(String.valueOf(getPayDay().toCharArray()[i]));
             }
             else if (i == 3 || i == 4){
-                currentMonth = currentMonth.concat(String.valueOf(getPayDay().toCharArray()[i]));
+                currentMonth = currentMonth.concat(String.valueOf(date.toCharArray()[i]));
             }
         }
         if (wagePeriod.equals("Monthly")) {
             if (Integer.parseInt(currentMonth) > Integer.parseInt(payDayMonth)) {
-                return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth("0" + (Integer.parseInt(DateInfo.getMonth()) - 1));
+                if (Integer.parseInt(DateInfo.getMonth()) >= 11) {
+                    return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth(String.valueOf(Integer.parseInt(DateInfo.getMonth()) - 1));
+                }
+                else if (Integer.parseInt(DateInfo.getMonth()) == 1) {
+                    return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth("12");
+                }
+                else {
+                    return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth("0" + (Integer.parseInt(DateInfo.getMonth()) - 1));
+                }
             } else {
                 return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth(DateInfo.getMonth());
             }

@@ -142,8 +142,8 @@ public class Controller {
                 daysSincePayDayLabel.setText(String.valueOf(DateInfo.daysSince()));     //Setting the days since being paid
 
                 if (wageSliderValue != null && (wageSliderValue.equals("Monthly") || wageSliderValue.equals("Weekly"))) {
+                    System.out.println("New slider value: " + wageSliderValue);
                     WageStuff.setWageSlider(wageSlider, perMonthLabel, wageSliderValue);       //Setting the slider for monthly or weekly
-                    System.out.println("Setting wage slider to: " + wageSliderValue);
                 }
                 else{
                     WageStuff.setWageSlider(wageSlider, perMonthLabel, "Monthly");
@@ -359,28 +359,19 @@ public class Controller {
         }
     }
     public void settingsImagePress() { clickAnimate(settingsImage); }
-    public void closeImagePress() {
-        clickAnimate(closeImage);
-    }
+    public void closeImagePress() { clickAnimate(closeImage); }
     public void walletImagePress() { clickAnimate(walletImage); }
-    public void minusImagePress() {
-        clickAnimate(minusImage);
-    }
-    public void plusImagePress() {
-        clickAnimate(plusImage);
-    }
-    public void resetImagePress() {
-        clickAnimate(resetImage);
-    }
-    public void saveImagePress() {
-        clickAnimate(saveImage);
-    }
+    public void minusImagePress() { clickAnimate(minusImage); }
+    public void plusImagePress() { clickAnimate(plusImage); }
+    public void resetImagePress() { clickAnimate(resetImage); }
+    public void saveImagePress() { clickAnimate(saveImage); }
     public void confirmImagePress() { clickAnimate(confirmImage); }
     public void debitMinusPress() { clickAnimate(debitMinusImage); }
     public void debitPlusPress() { clickAnimate(debitPlusImage); }
     public void paidPress() { clickAnimate(paidImage); }
     public void debitImagePress() { clickAnimate(debitPaidImage); }
     public void investImagePress() { clickAnimate(investImage); }
+
     public void settingsImageEnter() { colorChange(settingsImage); }
     public void closeImageEnter() { colorChange(closeImage); }
     public void walletImageEnter() { colorChange(walletImage); }
@@ -394,6 +385,7 @@ public class Controller {
     public void paidEnter() { colorChange(paidImage); }
     public void debitEnter() { colorChange(debitPaidImage); }
     public void investImageEnter() { colorChange(investImage); }
+
     public void settingsImageLeave() { colorChangeBack(settingsImage); }
     public void closeImageLeave() { colorChangeBack(closeImage); }
     public void walletImageLeave() { colorChangeBack(walletImage); }
@@ -407,7 +399,6 @@ public class Controller {
     public void paidLeave() { colorChangeBack(paidImage); }
     public void debitLeave() { colorChangeBack(debitPaidImage); }
     public void investImageLeave() { colorChangeBack(investImage); }
-
     public void saveImageClick() {
         releaseClickAnimate(saveImage);
         FileStuff.saveInfo();
@@ -424,7 +415,6 @@ public class Controller {
             refreshData();
         }
     }
-
     public void debitMinusImageClick() {
         releaseClickAnimate(debitMinusImage);
         DebitStuff.deleteDebit(debitList);
