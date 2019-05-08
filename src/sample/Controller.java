@@ -222,7 +222,6 @@ public class Controller {
                 @Override
                 public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                     if (newValue.floatValue() == 0 || newValue.floatValue() == 1) {
-                        System.out.println(newValue);
                         wageSliderChange();
                     }
                 }
@@ -336,7 +335,7 @@ public class Controller {
                 timeline2.play();
                 break;
             default:
-                System.out.println("Type doesn't exist: " + type);
+                System.out.println("*animate* Type doesn't exist: " + type);
                 break;
         }
     }
@@ -356,6 +355,9 @@ public class Controller {
             timeline.getKeyFrames().add(kf);
             timeline.setOnFinished(e -> scene.setVisible(false));
             timeline.play();
+        }
+        else {
+            System.out.println("*switchAnimate* There is no such animation");
         }
     }
     public void settingsImagePress() { clickAnimate(settingsImage); }
@@ -403,10 +405,11 @@ public class Controller {
         releaseClickAnimate(saveImage);
         FileStuff.saveInfo();
     }
-
     public void confirmImageClick() {
         releaseClickAnimate(confirmImage);
-        WageStuff.setWage(Float.parseFloat(wageInput.getText()), wageDisplayLabel);
+        if (MoneyStuff.validateInput(wageInput.getText())) {
+            WageStuff.setWage(Float.parseFloat(wageInput.getText()), wageDisplayLabel);
+        }
     }
     public void debitPlusImageClick() {
         if (MoneyStuff.validateInput(debitInput.getText())) {
@@ -583,19 +586,14 @@ public class Controller {
         System.out.println("Debit Paid: " + item);
     }
     private void wageSliderChange() {
-        String timePeriod;
         if (wageSlider.getValue() == 1) {
-            timePeriod = "Monthly";
+            WageStuff.setWageSlider(wageSlider, perMonthLabel, "Monthly");
         }
         else if (wageSlider.getValue() == 0) {
-            timePeriod = "Weekly";
+            WageStuff.setWageSlider(wageSlider, perMonthLabel, "Weekly");
         }
         else {
-            timePeriod = null;
             System.out.println("*wageSliderChange* Not a valid slider option");
-        }
-        if (timePeriod != null) {
-            WageStuff.setWageSlider(wageSlider, perMonthLabel, timePeriod);
         }
     }
 }
