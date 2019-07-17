@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 
 public class MoneyStuff {
     static float amountAtPayDay;
+    static float savingsAmount;
     public static void setValue(Label moneyDisplay, float moneyInput) {
         moneyDisplay.setText(String.valueOf(moneyInput));
     }
@@ -50,7 +51,7 @@ public class MoneyStuff {
         amountAtPayDay = Float.parseFloat(String.valueOf(Math.floor(value * 100) / 100));
     }
     public static float getAmountAtPayDay() {
-        return (amountAtPayDay);
+        return amountAtPayDay;
     }
     /*
     Main savings calculations
@@ -59,8 +60,9 @@ public class MoneyStuff {
         float dailySpending = WageStuff.getDailySpending();
         int daysSince = DateInfo.daysSince();
         float currentAmount = Float.parseFloat(value);
-        float money = (dailySpending * (daysSince + 1)) - (amountAtPayDay - currentAmount);
-        label.setText(String.format("%.2f", Math.floor(money * 100) / 100));
+        String money = String.format ("%.2f", Math.floor ((dailySpending * (daysSince + 1) - (amountAtPayDay - currentAmount)) * 100) / 100);
+        savingsAmount = Float.valueOf(money);
+        label.setText(money);
     }
     public static void setDailySpending(Label dailySpendingLabel) {
         System.out.println("Daily Spending Value is: " + String.format("%.2f", Math.floor(WageStuff.getDailySpending() * 100) / 100));

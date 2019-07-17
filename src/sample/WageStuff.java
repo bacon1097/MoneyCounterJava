@@ -47,6 +47,7 @@ public class WageStuff {
             System.out.println("*setWageSlider* Invalid wage slider option");
         }
     }
+    //In Progress
     public static float getDailySpending() {
         String payDayDay = "";
         String payDayMonth = "";
@@ -71,26 +72,44 @@ public class WageStuff {
             }
         }
         if (wagePeriod.equals("Monthly")) {
-            if (Integer.parseInt(currentMonth) > Integer.parseInt(payDayMonth)) {
+            getShouldSpend();
+            float val = (getWage() + MoneyStuff.savingsAmount) - DebitStuff.getDebitsTotal();
+            // If it is a new month, determined by if the month is January or the month number is larger than the previous
+            if (Integer.parseInt(currentMonth) > Integer.parseInt(payDayMonth) || Integer.parseInt(currentMonth) == 1) {
+                /*
+                If the month is coming to the end of the year then use the previous month
+                because it is easier than deciding which month to use depending on the month.
+                 */
                 if (Integer.parseInt(DateInfo.getMonth()) >= 11) {
-                    return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth(String.valueOf(Integer.parseInt(DateInfo.getMonth()) - 1));
+                    return val / DateInfo.getDaysInMonth(String.valueOf(Integer.parseInt(DateInfo.getMonth()) - 1));
                 }
+                /*
+                If the month is the first then use the previous month
+                 */
                 else if (Integer.parseInt(DateInfo.getMonth()) == 1) {
-                    return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth("12");
+                    return val / DateInfo.getDaysInMonth("12");
                 }
+                // If it is any other month
                 else {
-                    return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth("0" + (Integer.parseInt(DateInfo.getMonth()) - 1));
+                    return val / DateInfo.getDaysInMonth("0" + (Integer.parseInt(DateInfo.getMonth()) - 1));
                 }
+                // If it is not a new month
             } else {
-                return (getWage() - DebitStuff.getDebitsTotal()) / DateInfo.getDaysInMonth(DateInfo.getMonth());
+                return val / DateInfo.getDaysInMonth(DateInfo.getMonth());
             }
         }
         else if (wagePeriod.equals("Weekly")) {
-            return (getWage() / 7) - ((DebitStuff.getDebitsTotal() / DateInfo.getDaysInMonth(DateInfo.getMonth())) * 7);
+            return ((getWage() + MoneyStuff.savingsAmount) / 7) - ((DebitStuff.getDebitsTotal() / DateInfo.getDaysInMonth(DateInfo.getMonth())) * 7);
         }
         else {
             System.out.println("*getDailySpending* Error finding wage period");
             return 0.00f;
         }
+    }
+    private static float getShouldSpend() {
+        int daysTill = DateInfo.getDaysInMonth(DateInfo.getMonth()) - DateInfo.daysSince();
+        float val = (WageStuff.getWage() - DebitStuff.getDebitsTotal()) / daysTill;
+        System.out.println("Should spend: " + val);
+        return val;
     }
 }
